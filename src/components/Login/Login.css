@@ -1,43 +1,23 @@
-.login-container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #fccb90;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
   }
   
-  .login-box {
-    border: 1px solid rgba(0, 0, 0, 0.384);
-    border-radius: 10px;
-    width: 600px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  @media (min-width: 768px) {
+  .gradient-form {
+  height: 100vh !important;
   }
-  
-  .input-container {
-    margin-bottom: 20px;
   }
-  
-  .input-control {
-    font: inherit;
-    padding: 0.5rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    width: 20rem;
-    max-width: 100%;
+  @media (min-width: 769px) {
+  .gradient-custom-2 {
+  border-top-right-radius: .3rem;
+  border-bottom-right-radius: .3rem;
   }
-  
-  
-  .signin-button {
-    text-align: end;
-    background-color: black;
-    border-radius: 10px;
-    color: white;
-    font-size: 18px;
-    padding: 10px;
-    cursor: pointer;
   }
   

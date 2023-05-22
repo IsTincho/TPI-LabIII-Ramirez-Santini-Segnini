@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useRef, useState } from "react";
+
 import "./Login.css";
-// Linea 63 a 66?
-const Login = () => (
-  <section class="h-100 gradient-form">
+import { useNavigate } from "react-router";
+
+const Login = () => {
+
+  return (
+    <section class="h-100 gradient-form">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-lg-5">
@@ -46,33 +50,15 @@ const Login = () => (
                   >
                     Iniciar Sesion
                   </button>
-                  <br />
-                  <a class="text-muted" href="#!">
-                    Olvidé mi contraseña
-                  </a>
-                </div>
-
-                <div class="d-flex flex-column align-items-center justify-content-center pb-4">
-                  <p class="mb-0 me-2">¿No tienes una cuenta?</p>
-                  <br></br>
-                  <button type="button" class="btn btn-outline-danger">
-                    Crear cuenta
-                  </button>
                 </div>
               </form>
             </div>
           </div>
-          {/* 
-          <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-            <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-              <h4 class="mb-4">Brindando la ropa a mejor precio-calidad</h4>
-            </div>
-          </div> 
-          */}
         </div>
       </div>
     </div>
   </section>
-);
+  );
+        };
 
 export default Login;

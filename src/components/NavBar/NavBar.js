@@ -3,7 +3,7 @@ import React from "react";
 const NavBar = () => {
   return (
     <div>
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
           <a class="navbar-brand" href=".">
             Logo

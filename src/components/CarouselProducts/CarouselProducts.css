@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap');
+
+.container {
+
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin-top: 40px;
+  background: transparent;
+}
+
+h1{
+  font-family: 'Space Grotesk', sans-serif;
+  text-align: start;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+.card {
+
+  text-align: center;
+  border:none;
+  max-width: 440px;
+  margin: auto 0.5rem;
+  text-align: center;
+  font-family: arial;
+  background: white;
+  
+}
+
+h2 {
+  color: rgb(192, 185, 185);
+}
+
+p {
+  text-align: center;
+  font-family: monospace;
+  font-size: 26px;
+  margin: 0;
+  color: black;
+}
+
+.card button {
+  width: 100%;
+  min-width: 100px;
+  height: 45px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 2.5px solid #E0E1E4;
+  box-shadow: 0px 0px 20px -20px;
+  cursor: pointer;
+  background-color: white;
+  transition: all 0.2s ease-in-out 0ms;
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.card button:hover {
+  background-color: #F2F2F2;
+  box-shadow: 0px 0px 20px -18px;
+}
+
+.card button:active {
+  transform: scale(0.95);
+}

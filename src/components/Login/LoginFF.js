@@ -49,9 +49,9 @@ const LoginFF = ({ onLogin }) => {
 
   return (
     <div className="container">
-      <div className="row vh-100 justify content align-items-center">
-        <div className="mx-auto border border-dark mx-auto col-auto">
-          <h2>Menu de inicio de Sesion</h2>
+      <div className="row vh-100 justify-content-center align-items-center">
+        <div className="col-12 col-md-6 col-lg-4 border border-dark p-4">
+          <h2 className="text-center mb-4">Menú de inicio de Sesión</h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formGroupEmail">
               <Form.Label>Correo Electrónico</Form.Label>
@@ -85,11 +85,11 @@ const LoginFF = ({ onLogin }) => {
             </Form.Group>
             <Button
               className="btn-light btn-outline-info"
-              as="input"
               type="submit"
-              value="Login"
               disabled={errors.user || errors.password}
-            />
+            >
+              Iniciar Sesión
+            </Button>
           </Form>
         </div>
       </div>

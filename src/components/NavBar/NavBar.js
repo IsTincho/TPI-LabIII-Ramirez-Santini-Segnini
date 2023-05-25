@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { useNavigate } from "react-router";
 import { Button } from "react-bootstrap";
@@ -51,7 +51,11 @@ const NavBar = ({ onLogout }) => {
           </div>
           <form class="d-flex justify-content-between">
             <input class="form-control me-2" type="text" placeholder="Search" />
-            <Button variant="primary" onClick={onLogoutHandler}>
+            <Button
+              type="button"
+              className="btn-dark btn-outline-info"
+              onClick={onLogoutHandler}
+            >
               Cerrar sesión
             </Button>
           </form>

@@ -1,6 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
-const NavBar = () => {
+import { useNavigate } from "react-router";
+import { Button } from "react-bootstrap";
+
+const NavBar = ({ onLogout }) => {
+  console.log("In Dashboard!");
+  const navigation = useNavigate();
+
+  const onLogoutHandler = () => {
+    onLogout();
+    navigation("/login");
+  };
+
   return (
     <div>
       <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
@@ -40,9 +51,9 @@ const NavBar = () => {
           </div>
           <form class="d-flex justify-content-between">
             <input class="form-control me-2" type="text" placeholder="Search" />
-            <button class="btn btn-primary" type="button">
-              Search
-            </button>
+            <Button variant="primary" onClick={onLogoutHandler}>
+              Cerrar sesión
+            </Button>
           </form>
         </div>
       </nav>

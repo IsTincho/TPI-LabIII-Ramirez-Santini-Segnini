@@ -1,0 +1,12 @@
+img{
+    width: 450px;
+}
+
+.container{
+    display: flex;
+}
+
+.login{
+    display: flex;
+    width: 100%;
+}

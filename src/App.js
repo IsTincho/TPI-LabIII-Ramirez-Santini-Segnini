@@ -7,6 +7,7 @@ import LoginFF from "./components/Login/LoginFF";
 import DashBoard from "./components/DashBoard/DashBoard";
 import Protected from "./routes/Protected";
 import NotFound from "./routes/NotFound";
+import ProductCatalog from "./components/ProductCatalog/ProductCatalog";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -29,6 +30,7 @@ const App = () => {
       element: (
         <Protected isSignedIn={isLoggedIn}>
           <DashBoard onLogout={logoutHandler} />
+
         </Protected>
       ),
     },

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useNavigate } from "react-router";
+
 import { Button } from "react-bootstrap";
 
 const NavBar = ({ onLogout }) => {
@@ -14,30 +15,30 @@ const NavBar = ({ onLogout }) => {
 
   return (
     <div>
-      <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
-        <div class="container-fluid">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+        <div className="container-fluid">
           <a class="navbar-brand" href=".">
             Logo
           </a>
           <button
-            class="navbar-toggler"
+            className="navbar-toggler"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#mynavbar"
           >
-            <span class="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"></span>
           </button>
           <div
-            class="collapse navbar-collapse justify-content-center"
+            className="collapse navbar-collapse justify-content-center"
             id="mynavbar"
           >
-            <ul class="nav navbar-nav navbar-center">
-              <li class="nav-item">
+            <ul className="nav navbar-nav navbar-center">
+              <li className="nav-item">
                 <a class="nav-link" href=".">
                   Link
                 </a>
               </li>
-              <li class="nav-item">
+              <li className="nav-item">
                 <a class="nav-link" href=".">
                   Link
                 </a>

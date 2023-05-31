@@ -50,8 +50,18 @@ const LoginFF = ({ onLogin }) => {
   return (
     <div className="container">
       <div className="row vh-100 justify-content-center align-items-center">
-        <div className="col-12 col-md-6 col-lg-4 border border-dark p-4">
-          <h2 className="text-center mb-4">Menú de inicio de Sesión</h2>
+        <div
+          className="col-12 col-md-6 col-lg-4 p-4"
+          style={{
+            border: "2px solid",
+            background: "linear-gradient(#63e4f2, #ed409f)",
+            borderRadius: "15px",
+            borderColor: "linear-gradient(#63e4f2, #ed409f)",
+          }}
+        >
+          <h2 className="text-center mb-4" style={{ color: "black" }}>
+            Menú de inicio de Sesión
+          </h2>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="formGroupEmail">
               <Form.Label>Correo Electrónico</Form.Label>

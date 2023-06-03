@@ -6,7 +6,7 @@ const NotFound = () => {
   const navigation = useNavigate();
 
   const goBackHandler = () => {
-    navigation("/login");
+    navigation("/home");
   };
 
   return (
@@ -22,7 +22,7 @@ const NotFound = () => {
           className="w-25 btn-light btn-outline-danger"
           onClick={goBackHandler}
         >
-          Volver al Login
+          Volver al Inicio
         </Button>
       </div>
     </div>

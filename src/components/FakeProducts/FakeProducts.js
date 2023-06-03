@@ -1,5 +1,3 @@
-import React from "react";
-
 const Products = [
   {
     id: 1,

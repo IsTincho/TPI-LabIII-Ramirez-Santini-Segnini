@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+
 import { Button, Form } from "react-bootstrap";
 
-const LoginFF = ({ onLogin }) => {
-  const [user, setUser] = useState("");
+import { AuthenticationContext } from "../services/authentication/authentication.context";
+
+const LoginFF = () => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({
-    user: false,
+    email: false,
     password: false,
   });
-  const navigation = useNavigate();
+
+  const { handleLogin } = useContext(AuthenticationContext);
 
   useEffect(() => {
     setErrors({
-      user: false,
+      email: false,
       password: false,
     });
   }, []);
@@ -21,9 +25,9 @@ const LoginFF = ({ onLogin }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    if (user === "" || password === "") {
+    if (email === "" || password === "") {
       setErrors({
-        user: user === "",
+        email: email === "",
         password: password === "",
       });
       return;
@@ -32,14 +36,16 @@ const LoginFF = ({ onLogin }) => {
     signInHandler();
   };
 
+  const navigation = useNavigate();
+
   const signInHandler = () => {
-    onLogin();
+    handleLogin(email);
     navigation("/home");
   };
 
-  const handleUserChange = (event) => {
-    setUser(event.target.value);
-    setErrors({ ...errors, user: false });
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
+    setErrors({ ...errors, email: false });
   };
 
   const handlePasswordChange = (event) => {
@@ -53,10 +59,12 @@ const LoginFF = ({ onLogin }) => {
         <div
           className="col-12 col-md-6 col-lg-4 p-4"
           style={{
-            border: "2px solid",
-            background: "linear-gradient(#63e4f2, #ed409f)",
-            borderRadius: "15px",
-            borderColor: "linear-gradient(#63e4f2, #ed409f)",
+            //Usamos una web que encontré, dejo el link con el estilizado que armamos para el borde: https://unused-css.com/tools/border-gradient-generator?p=22EYcwvALgxAZn8BoDsCCMAmZCAOAPNA3ADYAUqSAzACYCmICEATgIYB2Azts4zaxAAQAGAKQIoNVABYAHAGMYQ0YxDBmZAJwA2BOooJ0qQWgCU6dUpVrUAVnVpU2g5JPWRCZarIY0klOnRGqMZIblAyzMA0gvyGIsZAA
+            background:
+              "radial-gradient(circle at 100% 100%, #ffffff 0, #ffffff 5px, transparent 5px) 0% 0%/12px 12px no-repeat, radial-gradient(circle at 0 100%, #ffffff 0, #ffffff 5px, transparent 5px) 100% 0%/12px 12px no-repeat, radial-gradient(circle at 100% 0, #ffffff 0, #ffffff 5px, transparent 5px) 0% 100%/12px 12px no-repeat, radial-gradient(circle at 0 0, #ffffff 0, #ffffff 5px, transparent 5px) 100% 100%/12px 12px no-repeat, linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 14px) calc(100% - 24px) no-repeat, linear-gradient(#ffffff, #ffffff) 50% 50%/calc(100% - 24px) calc(100% - 14px) no-repeat, linear-gradient(173deg, transparent 0%, #e148cf 0%, rgba(196,93,210,1) 29%, rgba(159,116,214,1) 50%, rgba(112,147,220,1) 70%, #48abe0 100%)",
+            borderRadius: "12px",
+            padding: "14px",
+            boxSizing: "border-box",
           }}
         >
           <h2 className="text-center mb-4" style={{ color: "black" }}>
@@ -68,9 +76,9 @@ const LoginFF = ({ onLogin }) => {
               <Form.Control
                 type="email"
                 placeholder="Ingrese su Email"
-                value={user}
-                onChange={handleUserChange}
-                isInvalid={errors.user}
+                value={email}
+                onChange={handleEmailChange}
+                isInvalid={errors.email}
               />
               {errors.user && (
                 <Form.Control.Feedback type="invalid">
@@ -96,7 +104,7 @@ const LoginFF = ({ onLogin }) => {
             <Button
               className="btn-light btn-outline-info"
               type="submit"
-              disabled={errors.user || errors.password}
+              disabled={errors.email || errors.password}
             >
               Iniciar Sesión
             </Button>

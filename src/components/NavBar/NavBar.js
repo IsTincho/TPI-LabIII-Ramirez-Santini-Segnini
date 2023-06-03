@@ -1,11 +1,8 @@
 import React from "react";
-
 import { useNavigate } from "react-router";
-
 import { Button } from "react-bootstrap";
 
 const NavBar = ({ onLogout }) => {
-  console.log("In Dashboard!");
   const navigation = useNavigate();
 
   const onLogoutHandler = () => {
@@ -13,11 +10,40 @@ const NavBar = ({ onLogout }) => {
     navigation("/login");
   };
 
+  const navbarStyle = {
+    border: "4px solid",
+    borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 4",
+  };
+
+  const linkStyle = {
+    border: "2px solid",
+    borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 1",
+    padding: "8px",
+  };
+
+  const logoStyle = {
+    border: "2px solid",
+    borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 1",
+    padding: "4px",
+  };
+
+  const buttonStyle = {
+    border: "2px solid",
+    borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 1",
+  };
+
+  const buttonHoverStyle = {
+    backgroundColor: "rgba(237, 64, 159, 0.3)",
+  };
+
   return (
     <div>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+      <nav
+        className="navbar navbar-expand-sm navbar-light fixed-top"
+        style={navbarStyle}
+      >
         <div className="container-fluid">
-          <a class="navbar-brand" href=".">
+          <a className="navbar-brand" href="." style={logoStyle}>
             Logo
           </a>
           <button
@@ -34,27 +60,32 @@ const NavBar = ({ onLogout }) => {
           >
             <ul className="nav navbar-nav navbar-center">
               <li className="nav-item">
-                <a class="nav-link" href=".">
+                <a className="nav-link" href="." style={linkStyle}>
                   Link
                 </a>
               </li>
               <li className="nav-item">
-                <a class="nav-link" href=".">
+                <a className="nav-link" href="." style={linkStyle}>
                   Link
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href=".">
+              <li className="nav-item">
+                <a className="nav-link" href="." style={linkStyle}>
                   Link
                 </a>
               </li>
             </ul>
           </div>
-          <form class="d-flex justify-content-between">
-            <input class="form-control me-2" type="text" placeholder="Search" />
+          <form className="d-flex justify-content-between">
+            <input
+              className="form-control me-2"
+              type="text"
+              placeholder="Search"
+              style={buttonStyle}
+            />
             <Button
               type="button"
-              className="btn-dark btn-outline-info"
+              className="btn-light btn-outline-info"
               onClick={onLogoutHandler}
             >
               Cerrar sesión

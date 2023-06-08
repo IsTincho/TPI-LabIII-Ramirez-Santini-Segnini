@@ -2,8 +2,7 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./CarouselProducts.css"
-
-import Products from "../FakeProducts/FakeProducts";
+import Products from "../FakeProducts/FakeProducts"
 
 const responsive = {
   superLargeDesktop: {
@@ -24,16 +23,17 @@ const responsive = {
   },
 };
 
-function CarouselProducts() {
+const CarouselProducts = (products) => {
+  console.log(products.data)
+  
   return (
     <div className="container">
       <h1>Productos Destacados</h1>
       <Carousel responsive={responsive}>
-        {Products.map((item) => (
+        {products.data.map((item) => (
           <div className="container-cards" key={item.id}>
             <div className="card">
-              <img src={item.img} alt={item.title} />
-              <p>${item.price}</p>
+              <img src={item.image} alt=""/>
               <button>Ver</button>
             </div>
           </div>

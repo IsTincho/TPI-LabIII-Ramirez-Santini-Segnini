@@ -2,9 +2,8 @@ import { useContext } from "react";
 import { useNavigate } from "react-router";
 
 import NavBar from "../NavBar/NavBar";
-import CarouselProducts from "../CarouselProducts/CarouselProducts";
-
 import { AuthenticationContext } from "../services/authentication/authentication.context";
+import ProductProvider from "../ProductProvider/ProductProvider";
 
 const DashBoard = () => {
   const { user, handleLogout } = useContext(AuthenticationContext);
@@ -23,7 +22,7 @@ const DashBoard = () => {
   return (
     <div>
       <NavBar onLogout={onLogoutHandler} />
-      <CarouselProducts />
+      <ProductProvider />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"; //Vamos a agregar despues el modo claro/oscuro con el useContext
+//import { useState, useContext } from "react"; //Vamos a agregar despues el modo claro/oscuro con el useContext
 import {
   Navigate,
   RouterProvider,
@@ -11,7 +11,6 @@ import LoginFF from "./components/Login/LoginFF";
 import DashBoard from "./components/DashBoard/DashBoard";
 import Protected from "./routes/Protected";
 import NotFound from "./routes/NotFound";
-import ProductProvider from "./components/ProductProvider/ProductProvider";
 
 const App = () => {
   const router = createBrowserRouter([
@@ -21,7 +20,7 @@ const App = () => {
       element: (
         
           <LoginFF />
-        
+
       ),
     },
     {

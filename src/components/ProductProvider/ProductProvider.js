@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-//import axios from "axios";
 import CarouselProducts from "../CarouselProducts/CarouselProducts";
-const ProductProvider = ({ children }) => {
+
+const ProductProvider = () => {
   const [products, setProducts] = useState();
 
   useEffect(() => {
+    
     const fetchProducts = async () => {
       const url = "https://fakestoreapi.com/products/";
       const options = {
@@ -15,7 +16,7 @@ const ProductProvider = ({ children }) => {
           "X-RapidAPI-Host": "apidojo-forever21-v1.p.rapidapi.com",
         },
       };
-
+        
       try {
         const response = await fetch(url, options);
         const data = await response.json();

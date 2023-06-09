@@ -71,7 +71,7 @@ const NavBar = ({ onLogout }) => {
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="." style={linkStyle}>
-                  Niño/a
+                  Accesorios
                 </a>
               </li>
             </ul>

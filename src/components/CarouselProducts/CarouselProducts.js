@@ -1,6 +1,6 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
-import Spinner from "../ui/Spinner/Spinner"
+import Spinner from "../ui/Spinner/Spinner";
 import "react-multi-carousel/lib/styles.css";
 import "./CarouselProducts.css";
 
@@ -11,7 +11,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 5,
+    items: 4,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -24,26 +24,26 @@ const responsive = {
 };
 
 const CarouselProducts = (products) => {
-  console.log(products.data);
   const filteredProducts = products?.data?.filter((item) => {
-    return item.category === "men's clothing";
+    return item.category === "women's clothing" && item.price < 60;
   });
 
   return (
-    
     <div className="container">
-     <h1 className="container">Productos Destacados</h1>
+      <h1 className="container">Productos Destacados</h1>
       <Carousel responsive={responsive}>
-        {filteredProducts ? filteredProducts.map((item) => (
-          <div className="container-cards" key={item.id}>
-            <div className="card">
-              <img src={item.image} alt="" />
-              <button>Ver</button>
+        {filteredProducts ? (
+          filteredProducts.map((item) => (
+            <div className="container-cards" key={item.id}>
+              <div className="card">
+                <img src={item.image} alt="" />
+                <button>Ver</button>
+              </div>
             </div>
-          </div>
-        )): <div className="spinner-div"> 
-          {<Spinner/>}
-          </div>}
+          ))
+        ) : (
+          <div className="spinner-div">{<Spinner />}</div>
+        )}
       </Carousel>
     </div>
   );

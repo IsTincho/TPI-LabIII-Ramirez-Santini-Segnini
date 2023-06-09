@@ -1,15 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap");
+
 
 .react-multi-carousel-list {
-  display: flex;
+  justify-content: center; /*Si pongo el justify me deja una card vacia en el carousel */
   align-items: center;
   overflow: hidden;
   position: relative;
-  justify-content: center;
+  text-align: center;
 }
 
+img {
+  width: 270px;
+  max-height: 300px;
+}
 
-.spinner-div{
+.spinner-div {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   margin-top: 50px;
 }
 
@@ -17,27 +25,29 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 120px;
+  margin-top: 150px;
   background: transparent;
 }
 
-h1{
-  font-family: 'Space Grotesk', sans-serif;
+h1 {
+  font-family: "Space Grotesk", sans-serif;
   text-align: start;
+  margin-bottom: 30px;
   font-weight: 400;
   font-size: 24px;
   line-height: 28px;
 }
 
 .card {
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  border:none;
+  border: none;
   max-width: 440px;
   margin: auto 0.5rem;
   text-align: center;
   font-family: arial;
   background: white;
-  
 }
 
 h2 {
@@ -45,7 +55,6 @@ h2 {
 }
 
 p {
-  
   text-align: center;
   font-family: monospace;
   font-size: 26px;
@@ -54,22 +63,22 @@ p {
 }
 
 .card button {
-  width: 100%;
-  min-width: 100px;
+  margin-top: 5px;
+  width: 250px;
   height: 45px;
   padding: 8px;
   border-radius: 5px;
-  border: 2.5px solid #E0E1E4;
+  border: 2.5px solid #e0e1e4;
   box-shadow: 0px 0px 20px -20px;
   cursor: pointer;
   background-color: white;
   transition: all 0.2s ease-in-out 0ms;
   user-select: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .card button:hover {
-  background-color: #F2F2F2;
+  background-color: #f2f2f2;
   box-shadow: 0px 0px 20px -18px;
 }
 

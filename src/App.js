@@ -17,11 +17,7 @@ const App = () => {
     { path: "/", element: <Navigate to="login" /> },
     {
       path: "/login",
-      element: (
-        
-          <LoginFF />
-
-      ),
+      element: <LoginFF />,
     },
     {
       path: "/home",

@@ -1,5 +1,6 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
+import Spinner from "../ui/Spinner/Spinner"
 import "react-multi-carousel/lib/styles.css";
 import "./CarouselProducts.css";
 
@@ -10,7 +11,7 @@ const responsive = {
   },
   desktop: {
     breakpoint: { max: 3000, min: 1024 },
-    items: 20,
+    items: 5,
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
@@ -29,8 +30,9 @@ const CarouselProducts = (products) => {
   });
 
   return (
+    
     <div className="container">
-      <h1>Productos Destacados</h1>
+     <h1 className="container">Productos Destacados</h1>
       <Carousel responsive={responsive}>
         {filteredProducts ? filteredProducts.map((item) => (
           <div className="container-cards" key={item.id}>
@@ -39,7 +41,9 @@ const CarouselProducts = (products) => {
               <button>Ver</button>
             </div>
           </div>
-        )): <div>Cargando datos</div>}
+        )): <div className="spinner-div"> 
+          {<Spinner/>}
+          </div>}
       </Carousel>
     </div>
   );

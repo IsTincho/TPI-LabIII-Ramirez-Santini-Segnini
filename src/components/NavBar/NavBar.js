@@ -61,17 +61,17 @@ const NavBar = ({ onLogout }) => {
             <ul className="nav navbar-nav navbar-center">
               <li className="nav-item">
                 <a className="nav-link" href="." style={linkStyle}>
-                  Link
+                  Hombre
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="." style={linkStyle}>
-                  Link
+                  Mujer
                 </a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="." style={linkStyle}>
-                  Link
+                  Niño/a
                 </a>
               </li>
             </ul>

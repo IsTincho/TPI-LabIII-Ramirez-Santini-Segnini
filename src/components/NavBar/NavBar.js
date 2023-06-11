@@ -19,7 +19,7 @@ const NavBar = ({ onLogout }) => {
     border: "2px solid",
     borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 1",
     padding: "8px",
-    marginRight: "10px", // Añadido margen a la derecha
+    marginRight: "10px",
   };
 
   const logoStyle = {
@@ -54,8 +54,6 @@ const NavBar = ({ onLogout }) => {
           </button>
           <div className="collapse navbar-collapse" id="mynavbar">
             <ul className="nav navbar-nav mx-auto">
-              {" "}
-              {/* Cambio de clase a mx-auto para centrar horizontalmente */}
               <li className="nav-item">
                 <a className="nav-link" style={linkStyle}>
                   Hombre

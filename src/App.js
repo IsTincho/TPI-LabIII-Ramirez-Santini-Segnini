@@ -1,39 +1,36 @@
-//import { useState, useContext } from "react"; //Vamos a agregar despues el modo claro/oscuro con el useContext
+import React from "react";
 import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
   Navigate,
-  RouterProvider,
-  createBrowserRouter,
 } from "react-router-dom";
 
 import "./App.css";
 
-import LoginFF from "./components/Login/LoginFF";
 import DashBoard from "./components/DashBoard/DashBoard";
-import Protected from "./routes/Protected";
-import NotFound from "./routes/NotFound";
+import Protected from "./components/routes/Protected";
+import NotFound from "./components/routes/NotFound";
+import LoginForm from "./components/Login/LoginForm";
 
 const App = () => {
-  const router = createBrowserRouter([
-    { path: "/", element: <Navigate to="login" /> },
-    {
-      path: "/login",
-      element: <LoginFF />,
-    },
-    {
-      path: "/home",
-      element: (
-        <Protected>
-          <DashBoard />
-        </Protected>
-      ),
-    },
-    {
-      path: "*",
-      element: <NotFound />,
-    },
-  ]);
-
-  return <RouterProvider router={router} />;
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route
+          path="/home"
+          element={
+            <Protected>
+              <DashBoard />
+            </Protected>
+          }
+        />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Router>
+  );
 };
 
 export default App;

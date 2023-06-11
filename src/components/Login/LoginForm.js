@@ -1,9 +1,19 @@
-import React, { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button, Form } from "react-bootstrap";
-import { AuthenticationContext } from "../services/authentication/authentication.context";
+import React, { useContext, useState } from "react";
 
-const LoginFF = () => {
+import { Button, Form } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
+import { AuthenticationContext } from "../services/authentication/authentication.context";
+import RegisterForm from "./RegisterForm";
+
+const LoginForm = () => {
+  const buttonstyle = {
+    marginRight: "8px",
+  };
+
+  const navigate = useNavigate();
+  const { handleLogin } = useContext(AuthenticationContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({
@@ -11,17 +21,9 @@ const LoginFF = () => {
     password: false,
   });
 
-  const { handleLogin } = useContext(AuthenticationContext);
-  const navigate = useNavigate();
+  const [showRegisterForm, setShowRegisterForm] = useState(false);
 
-  useEffect(() => {
-    setErrors({
-      email: false,
-      password: false,
-    });
-  }, []);
-
-  const handleSubmit = (event) => {
+  const signInHandler = async (event) => {
     event.preventDefault();
 
     if (email === "" || password === "") {
@@ -32,12 +34,13 @@ const LoginFF = () => {
       return;
     }
 
-    signInHandler();
-  };
-
-  const signInHandler = async () => {
-    await handleLogin(email);
-    navigate("/home");
+    try {
+      await handleLogin(email, password);
+      navigate("/home");
+      console.log("Se ha iniciado sesión exitosamente");
+    } catch (error) {
+      console.error("Error de inicio de sesión:", error);
+    }
   };
 
   const handleEmailChange = (event) => {
@@ -49,6 +52,14 @@ const LoginFF = () => {
     setPassword(event.target.value);
     setErrors({ ...errors, password: false });
   };
+
+  const handleToggleForm = () => {
+    setShowRegisterForm(!showRegisterForm);
+  };
+
+  if (showRegisterForm) {
+    return <RegisterForm handleToggleForm={handleToggleForm} />;
+  }
 
   return (
     <div className="container">
@@ -66,7 +77,7 @@ const LoginFF = () => {
           <h2 className="text-center mb-4" style={{ color: "black" }}>
             Menú de inicio de Sesión
           </h2>
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={signInHandler}>
             <Form.Group className="mb-3" controlId="formGroupEmail">
               <Form.Label>Correo Electrónico</Form.Label>
               <Form.Control
@@ -101,8 +112,16 @@ const LoginFF = () => {
               className="btn-light btn-outline-info"
               type="submit"
               disabled={errors.email || errors.password}
+              style={buttonstyle}
             >
               Iniciar Sesión
+            </Button>
+            <Button
+              className="btn-light btn-outline-info"
+              onClick={handleToggleForm}
+              style={buttonstyle}
+            >
+              Crear Cuenta
             </Button>
           </Form>
         </div>
@@ -111,4 +130,4 @@ const LoginFF = () => {
   );
 };
 
-export default LoginFF;
+export default LoginForm;

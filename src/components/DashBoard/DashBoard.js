@@ -1,23 +1,21 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 import NavBar from "../NavBar/NavBar";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import ProductProvider from "../ProductProvider/ProductProvider";
 
 const DashBoard = () => {
-  const { user, handleLogout } = useContext(AuthenticationContext);
+  const navigate = useNavigate();
 
+  const { user, handleLogout } = useContext(AuthenticationContext);
+  console.log("Dashboard");
   const userName = user.email.split("@")[0];
 
   const onLogoutHandler = () => {
     handleLogout();
-    navigation("/login");
+    navigate("/login");
   };
-
-  const navigation = useNavigate();
-
- 
 
   return (
     <div>

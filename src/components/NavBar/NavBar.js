@@ -19,6 +19,7 @@ const NavBar = ({ onLogout }) => {
     border: "2px solid",
     borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 1",
     padding: "8px",
+    marginRight: "10px", // Añadido margen a la derecha
   };
 
   const logoStyle = {
@@ -29,11 +30,8 @@ const NavBar = ({ onLogout }) => {
 
   const buttonStyle = {
     border: "2px solid",
+    marginLeft: "35px",
     borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 1",
-  };
-
-  const buttonHoverStyle = {
-    backgroundColor: "rgba(237, 64, 159, 0.3)",
   };
 
   return (
@@ -54,43 +52,42 @@ const NavBar = ({ onLogout }) => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div
-            className="collapse navbar-collapse justify-content-center"
-            id="mynavbar"
-          >
-            <ul className="nav navbar-nav navbar-center">
+          <div className="collapse navbar-collapse" id="mynavbar">
+            <ul className="nav navbar-nav mx-auto">
+              {" "}
+              {/* Cambio de clase a mx-auto para centrar horizontalmente */}
               <li className="nav-item">
-                <a className="nav-link" href="." style={linkStyle}>
+                <a className="nav-link" style={linkStyle}>
                   Hombre
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="." style={linkStyle}>
+                <a className="nav-link" style={linkStyle}>
                   Mujer
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="." style={linkStyle}>
+                <a className="nav-link" style={linkStyle}>
                   Accesorios
                 </a>
               </li>
             </ul>
+            <form className="d-flex justify-content-between">
+              <input
+                className="form-control me-2"
+                type="text"
+                placeholder="Search"
+                style={buttonStyle}
+              />
+              <Button
+                type="button"
+                className="btn-light btn-outline-info"
+                onClick={onLogoutHandler}
+              >
+                Cerrar sesión
+              </Button>
+            </form>
           </div>
-          <form className="d-flex justify-content-between">
-            <input
-              className="form-control me-2"
-              type="text"
-              placeholder="Search"
-              style={buttonStyle}
-            />
-            <Button
-              type="button"
-              className="btn-light btn-outline-info"
-              onClick={onLogoutHandler}
-            >
-              Cerrar sesión
-            </Button>
-          </form>
         </div>
       </nav>
     </div>

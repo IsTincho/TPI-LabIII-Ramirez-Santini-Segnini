@@ -1,8 +1,6 @@
 import React, { useContext, useState } from "react";
-
 import { Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import RegisterForm from "./RegisterForm";
 
@@ -35,11 +33,19 @@ const LoginForm = () => {
     }
 
     try {
-      await handleLogin(email, password);
-      navigate("/home");
-      console.log("Se ha iniciado sesión exitosamente");
+      const success = await handleLogin(email, password);
+      if (success) {
+        // Inicio de sesión exitoso
+        navigate("/home");
+        console.log("Se ha iniciado sesión exitosamente");
+      } else {
+        // Inicio de sesión incorrecto
+        console.log("El inicio de sesión fue incorrecto");
+        //Acá vamos a agregar un mensaje de error para el usuario
+      }
     } catch (error) {
       console.error("Error de inicio de sesión:", error);
+      // Acá podemos meter otros errores de inicio de sesion en caso de ser necesario
     }
   };
 

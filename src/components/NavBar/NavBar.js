@@ -55,6 +55,7 @@ const NavBar = ({ onLogout }) => {
           <div className="collapse navbar-collapse" id="mynavbar">
             <ul className="nav navbar-nav mx-auto">
               <li className="nav-item">
+                {/* Agregar a estos "a" la funcion para filtrar productos en un onClick */}
                 <a className="nav-link" style={linkStyle}>
                   Hombre
                 </a>

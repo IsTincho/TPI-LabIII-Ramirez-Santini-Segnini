@@ -11,8 +11,10 @@ export const AuthenticationContextProvider = ({ children }) => {
       await auth.signInWithEmailAndPassword(email, password);
       const user = { email };
       setUser(user);
+      return true; // Inicio de sesión exitoso
     } catch (error) {
       console.error("Error de inicio de sesión:", error);
+      return false; // Inicio de sesión incorrecto
     }
   };
 

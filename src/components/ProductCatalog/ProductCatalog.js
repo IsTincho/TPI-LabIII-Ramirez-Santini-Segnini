@@ -1,19 +1,17 @@
 import React from "react";
-import CarouselProducts from "../CarouselProducts/CarouselProducts";
+import "./ProductCatalog.css";
+function ProductCatalog({ product }) {
+  if (!product) {
+    return "";
+  }
 
+  const { id, title, price, description, category, image, rating } = product;
 
-function ProductCatalog() {
   return (
-    <div>
-      <div class="container text-center">
-        <div class="row">
-          <div class="col">
-          <img />
-          Remera ...
-          </div>
-          <div class="col">Column</div>
-          <div class="col">Column</div>
-        </div>
+    <div className="g-col-4">
+      <div className="card-product">
+        <img src={image}/>
+        <h5>{title}</h5>
       </div>
     </div>
   );

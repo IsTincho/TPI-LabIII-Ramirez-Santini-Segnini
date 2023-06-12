@@ -1,0 +1,25 @@
+.container-catalog {
+  margin-top: 120px;
+  justify-content: center;
+  display: flex;
+}
+
+.card-product {
+  text-align: center;
+  max-width: 250px;
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 200px;
+  grid-row-gap: 120px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+/* CARD */
+

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+
 import CarouselProducts from "../CarouselProducts/CarouselProducts";
+import ProductMap from "../ProductMap/ProductMap";
 
 const ProductProvider = () => {
   const [products, setProducts] = useState();
 
   useEffect(() => {
-    
     const fetchProducts = async () => {
       const url = "https://fakestoreapi.com/products/";
       const options = {
@@ -16,10 +17,10 @@ const ProductProvider = () => {
           "X-RapidAPI-Host": "apidojo-forever21-v1.p.rapidapi.com",
         },
       };
-        
+
       try {
-        const response = await fetch(url, options);
-        const data = await response.json();
+        const res = await fetch(url, options);
+        const data = await res.json();
         setProducts(data);
       } catch (error) {
         console.error(error);
@@ -31,6 +32,7 @@ const ProductProvider = () => {
   return (
     <div>
       <CarouselProducts data={products} />
+      <ProductMap data={products} />
     </div>
   );
 };

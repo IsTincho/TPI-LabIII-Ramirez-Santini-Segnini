@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import ProductProvider from "../ProductProvider/ProductProvider";
+import ProductCatalog from "../ProductCatalog/ProductCatalog";
 
 const DashBoard = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const DashBoard = () => {
     <div>
       <NavBar onLogout={onLogoutHandler} />
       <ProductProvider />
+      <ProductCatalog />
     </div>
   );
 };

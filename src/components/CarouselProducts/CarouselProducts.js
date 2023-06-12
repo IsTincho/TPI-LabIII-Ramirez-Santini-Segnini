@@ -24,8 +24,9 @@ const responsive = {
 };
 
 const CarouselProducts = (products) => {
+
   const filteredProducts = products?.data?.filter((item) => {
-    return item.category === "women's clothing" && item.price < 60;
+    return item.category === "women's clothing" || item.category === "men's clothing"  && item.price < 20;
   });
 
   return (

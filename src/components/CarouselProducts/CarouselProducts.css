@@ -2,7 +2,8 @@
 
 
 .react-multi-carousel-list {
-  justify-content: center; /*Si pongo el justify me deja una card vacia en el carousel */
+  
+/*Si pongo el justify me deja una card vacia en el carousel */
   align-items: center;
   overflow: hidden;
   position: relative;
@@ -15,9 +16,7 @@ img {
 }
 
 .spinner-div {
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+
   margin-top: 50px;
 }
 

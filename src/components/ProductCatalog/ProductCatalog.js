@@ -17,7 +17,7 @@ function ProductCatalog({ product }) {
   const shortTitle = title.slice(0, 31);
 
   console.log(stock);
-  
+
   return (
     <ProductCard>
       <div className="g-col-4">

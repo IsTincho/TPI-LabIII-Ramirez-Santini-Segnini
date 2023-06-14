@@ -1,5 +1,4 @@
-import React, { useContext, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import RegisterForm from "./RegisterForm";
@@ -11,7 +10,7 @@ const LoginForm = () => {
   };
 
   const navigate = useNavigate();
-  const { handleLogin } = useContext(AuthenticationContext);
+  const { user, handleLogin } = useContext(AuthenticationContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,6 +20,12 @@ const LoginForm = () => {
   });
 
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/home");
+    }
+  }, [user, navigate]);
 
   const signInHandler = async (event) => {
     event.preventDefault();
@@ -36,17 +41,13 @@ const LoginForm = () => {
     try {
       const success = await handleLogin(email, password);
       if (success) {
-        // Inicio de sesión exitoso
         navigate("/home");
         console.log("Se ha iniciado sesión exitosamente");
       } else {
-        // Inicio de sesión incorrecto
         console.log("El inicio de sesión fue incorrecto");
-        //Acá vamos a agregar un mensaje de error para el usuario
       }
     } catch (error) {
       console.error("Error de inicio de sesión:", error);
-      // Acá podemos meter otros errores de inicio de sesion en caso de ser necesario
     }
   };
 
@@ -75,53 +76,55 @@ const LoginForm = () => {
           <h2 className="text-center mb-4" style={{ color: "black" }}>
             Menú de inicio de Sesión
           </h2>
-          <Form onSubmit={signInHandler}>
-            <Form.Group className="mb-3" controlId="formGroupEmail">
-              <Form.Label>Correo Electrónico</Form.Label>
-              <Form.Control
+          <form onSubmit={signInHandler}>
+            <div className="mb-3" controlId="formGroupEmail">
+              <label htmlFor="email">Correo Electrónico</label>
+              <input
                 type="email"
+                id="email"
+                className={`form-control ${errors.email ? "is-invalid" : ""}`}
                 placeholder="Ingrese su Email"
                 value={email}
                 onChange={handleEmailChange}
-                isInvalid={errors.email}
               />
               {errors.email && (
-                <Form.Control.Feedback type="invalid">
+                <div className="invalid-feedback">
                   Ingrese su correo electrónico
-                </Form.Control.Feedback>
+                </div>
               )}
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formGroupPassword">
-              <Form.Label>Contraseña</Form.Label>
-              <Form.Control
+            </div>
+            <div className="mb-3" controlId="formGroupPassword">
+              <label htmlFor="password">Contraseña</label>
+              <input
                 type="password"
+                id="password"
+                className={`form-control ${
+                  errors.password ? "is-invalid" : ""
+                }`}
                 placeholder="Ingrese su Contraseña"
                 value={password}
                 onChange={handlePasswordChange}
-                isInvalid={errors.password}
               />
               {errors.password && (
-                <Form.Control.Feedback type="invalid">
-                  Ingrese su contraseña
-                </Form.Control.Feedback>
+                <div className="invalid-feedback">Ingrese su contraseña</div>
               )}
-            </Form.Group>
-            <Button
-              className="btn-light btn-outline-info"
+            </div>
+            <button
+              className="btn btn-light btn-outline-info"
               type="submit"
               disabled={errors.email || errors.password}
               style={buttonstyle}
             >
               Iniciar Sesión
-            </Button>
-            <Button
-              className="btn-light btn-outline-info"
+            </button>
+            <button
+              className="btn btn-light btn-outline-info"
               onClick={handleToggleForm}
               style={buttonstyle}
             >
               Crear Cuenta
-            </Button>
-          </Form>
+            </button>
+          </form>
         </div>
       </div>
     </div>

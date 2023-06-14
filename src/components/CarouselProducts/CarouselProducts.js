@@ -28,10 +28,9 @@ const CarouselProducts = (products) => {
   const filteredProducts = products?.data?.filter((item) => {
     return item.category === "women's clothing" || item.category === "men's clothing"  && item.price < 20;
   });
-
   return (
-    <div className="container">
-      <h1 className="container">Productos Destacados</h1>
+    <div className="container-carousel">
+      <h1 className="container-carousel">Productos Destacados</h1>
       <Carousel responsive={responsive}>
         {filteredProducts ? (
           filteredProducts.map((item) => (
@@ -43,7 +42,7 @@ const CarouselProducts = (products) => {
             </div>
           ))
         ) : (
-          <div className="spinner-div">{<Spinner />}</div>
+          <Spinner />
         )}
       </Carousel>
     </div>

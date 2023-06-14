@@ -11,7 +11,7 @@ const DashBoard = () => {
 
   const { user, handleLogout } = useContext(AuthenticationContext);
   console.log("Dashboard");
-  const userName = user.email.split("@")[0];
+  //const userName = user.email.split("@")[0];
 
   const onLogoutHandler = () => {
     handleLogout();

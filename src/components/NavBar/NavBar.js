@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import { Button } from "react-bootstrap";
 import log from "../img/logo.svg";
 import cart from "../img/cart.svg";
+import { AuthenticationContext } from "../services/authentication/authentication.context";
 const NavBar = ({ onLogout }) => {
   const navigation = useNavigate();
-
+  const {user} = useContext(AuthenticationContext)
   const onLogoutHandler = () => {
     onLogout();
     navigation("/login");
@@ -61,22 +62,13 @@ const NavBar = ({ onLogout }) => {
             style={ulStyle}
           >
             <ul className="navbar-nav mx-auto">
-              <li className="nav-item">
-                {/* Agregar a estos "a" la funcion para filtrar productos en un onClick */}
-                <a className="nav-link" style={linkStyle}>
-                  Hombre
-                </a>
-              </li>
+              
               <li className="nav-item">
                 <a className="nav-link" style={linkStyle}>
-                  Mujer
+                  ¡Bienvenido {user.username}!
                 </a>
               </li>
-              <li className="nav-item">
-                <a className="nav-link" style={linkStyle}>
-                  Accesorios
-                </a>
-              </li>
+              
             </ul>
           </div>
           <form className="d-flex justify-content-between">

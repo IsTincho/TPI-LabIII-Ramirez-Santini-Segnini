@@ -20,8 +20,8 @@ export const AuthenticationContextProvider = ({ children }) => {
         const userData = userSnapshot.val();
 
         const isAdmin = userData?.isAdmin || false; // Obtener el valor de isAdmin, si no existe, establecerlo como false
-
-        const loggedInUser = { email, isAdmin };
+        const username = userData?.username || "";
+        const loggedInUser = { email, isAdmin, username };
         setUser(loggedInUser);
         localStorage.setItem("user", JSON.stringify(loggedInUser));
       } else {
@@ -45,8 +45,8 @@ export const AuthenticationContextProvider = ({ children }) => {
       const userData = userSnapshot.val();
 
       const isAdmin = userData?.isAdmin || false; // Obtener el valor de isAdmin, si no existe, establecerlo como false
-
-      const loggedInUser = { email, isAdmin };
+      const username = userData?.username || "";
+      const loggedInUser = { email, isAdmin, username };
       setUser(loggedInUser);
       localStorage.setItem("user", JSON.stringify(loggedInUser));
       localStorage.setItem("isAdmin", JSON.stringify(isAdmin)); // Agregar esta línea para guardar isAdmin en localStorage

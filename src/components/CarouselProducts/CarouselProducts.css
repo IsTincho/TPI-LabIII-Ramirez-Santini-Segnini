@@ -2,7 +2,6 @@
 
 
 .react-multi-carousel-list {
-  
 /*Si pongo el justify me deja una card vacia en el carousel */
   align-items: center;
   overflow: hidden;
@@ -15,11 +14,8 @@ img {
   max-height: 300px;
 }
 
-.spinner-div {
-  
-}
+.container{
 
-.container-carousel {
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -30,6 +26,7 @@ img {
 h1 {
   font-family: "Space Grotesk", sans-serif;
   text-align: start;
+  margin-bottom: 5px;
   margin-bottom: 30px;
   font-weight: 400;
   font-size: 24px;
@@ -48,6 +45,10 @@ h1 {
   background: white;
 }
 
+h4{
+  font-size: 18px;
+}
+
 h2 {
   color: rgb(192, 185, 185);
 }
@@ -61,7 +62,7 @@ p {
 }
 
 .card button {
-  margin-top: 5px;
+  margin-top: 15px;
   width: 250px;
   height: 45px;
   padding: 8px;

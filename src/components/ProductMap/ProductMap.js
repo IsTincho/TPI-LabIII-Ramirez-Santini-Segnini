@@ -1,9 +1,10 @@
 import React from "react";
 import ProductCatalog from "../ProductCatalog/ProductCatalog";
+import ProductCatalogFilter from "../ProductCatalogFilter/ProductCatalogFilter";
 
 function ProductMap(products) {
   const filterProducts = products?.data?.filter((e) => {
-    return e.category === "men's clothing" || e.category === "women's clothing";
+    return e.gender === "men's clothing" || e.gender === "women's clothing" || e.gender === "jewelery";
   });
 
   const productsWithStock = filterProducts?.map((product) => {
@@ -13,8 +14,11 @@ function ProductMap(products) {
   localStorage.setItem("products", JSON.stringify(productsWithStock));
   
   return (
+    <>
+    
     <div className="container-catalog">
-      <div className="parent">
+    <ProductCatalogFilter />
+      <div className="parent ml-5">
         {productsWithStock
           ? productsWithStock.map((product, index) => {
               return <ProductCatalog product={product} key={index} />;
@@ -22,6 +26,7 @@ function ProductMap(products) {
           : ""}
       </div>
     </div>
+    </>
   );
 }
 

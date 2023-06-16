@@ -1,7 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { Button } from "react-bootstrap";
-
+import log from "../img/logo.svg";
+import cart from "../img/cart.svg";
 const NavBar = ({ onLogout }) => {
   const navigation = useNavigate();
 
@@ -11,9 +12,7 @@ const NavBar = ({ onLogout }) => {
   };
 
   const navbarStyle = {
-    border: "4px solid",
-    borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 4",
-    
+    border: "0.5px solid",
   };
 
   const linkStyle = {
@@ -21,13 +20,6 @@ const NavBar = ({ onLogout }) => {
     borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 1",
     padding: "8px",
     marginRight: "10px",
-  };
-
-  const logoStyle = {
-    border: "2px solid",
-    borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 1",
-    padding: "4px",
-
   };
 
   const buttonStyle = {
@@ -38,8 +30,12 @@ const NavBar = ({ onLogout }) => {
   };
 
   const ulStyle = {
-    marginLeft: "93px"
-  }
+    marginLeft: "93px",
+  };
+
+  const logoStyle = {
+    width: "40px",
+  };
 
   return (
     <div>
@@ -48,8 +44,8 @@ const NavBar = ({ onLogout }) => {
         style={navbarStyle}
       >
         <div className="container-fluid mx-auto">
-          <a className="navbar-brand mx-auto" href="." style={logoStyle}>
-            Logo
+          <a className="navbar-brand mx-auto" href=".">
+            <img src={log} style={logoStyle} />
           </a>
           <button
             className="navbar-toggler"
@@ -59,7 +55,11 @@ const NavBar = ({ onLogout }) => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="collapse navbar-collapse" id="mynavbar" style={ulStyle}>
+          <div
+            className="collapse navbar-collapse"
+            id="mynavbar"
+            style={ulStyle}
+          >
             <ul className="navbar-nav mx-auto">
               <li className="nav-item">
                 {/* Agregar a estos "a" la funcion para filtrar productos en un onClick */}
@@ -80,15 +80,18 @@ const NavBar = ({ onLogout }) => {
             </ul>
           </div>
           <form className="d-flex justify-content-between">
-              <Button
-                style={buttonStyle}
-                type="button"
-                className="btn-light btn-outline-info"
-                onClick={onLogoutHandler}
-              >
-                Cerrar sesión
-              </Button>
-            </form>
+            <a className="navbar-brand mx-auto" href=".">
+              <img src={cart} style={logoStyle} />
+            </a>
+            <Button
+              style={buttonStyle}
+              type="button"
+              className="btn-light btn-outline-info"
+              onClick={onLogoutHandler}
+            >
+              Cerrar sesión
+            </Button>
+          </form>
         </div>
       </nav>
     </div>

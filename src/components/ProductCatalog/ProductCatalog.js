@@ -14,7 +14,7 @@ function ProductCatalog({ product }) {
   const { title, price, image, stock, description } = product;
 
   // Recortar string de title.
-  const shortTitle = title.slice(0, 31);
+  //const shortTitle = title.slice(0, 31);
 
   console.log(stock);
 

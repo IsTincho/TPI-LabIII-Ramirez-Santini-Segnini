@@ -1,25 +1,55 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button, Navbar, Nav } from "react-bootstrap";
 import UserManagementPage from "../UserManagementPage/UserManagementPage";
+import ProductsManagementPage from "../ProductsManagementPage/ProductsManagementPage";
+import UnknownPage from "../UnknownPage/UnknownPage";
+import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
 const AdminPage = () => {
+  const { user, handleLogout } = useContext(AuthenticationContext);
   const navigate = useNavigate();
+  const [currentPage, setCurrentPage] = useState("userManagement");
 
   const handleGoBack = () => {
     navigate("/home");
   };
 
+  const handleUserManagement = () => {
+    setCurrentPage("userManagement");
+  };
+
+  const handleProductsManagement = () => {
+    setCurrentPage("productsManagement");
+  };
+
+  const handleUnknownPage = () => {
+    setCurrentPage("unknownPage");
+  };
+
   return (
     <div>
-      <h1>Solo admins xD</h1>
-      <button className="btn btn-outline-danger" onClick={handleGoBack}>
-        Volver a Home
-      </button>
-      <UserManagementPage />
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand href="#home">Admin Panel</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link onClick={handleUserManagement}>User Management</Nav.Link>
+            <Nav.Link onClick={handleProductsManagement}>
+              Products Management
+            </Nav.Link>
+            <Nav.Link onClick={handleUnknownPage}>Unknown Page</Nav.Link>
+          </Nav>
+          <Button variant="outline-danger" onClick={handleLogout}>
+            Cerrar Sesión
+          </Button>
+        </Navbar.Collapse>
+      </Navbar>
+      {currentPage === "userManagement" && <UserManagementPage />}
+      {currentPage === "productsManagement" && <ProductsManagementPage />}
+      {currentPage === "unknownPage" && <UnknownPage />}
     </div>
   );
 };
-//El boton es rojo porque tira mas facha, dejo esto asi chicos por si quieren adelantar algo
-//Sino mañana cuando resucite de la salida le meto a full y ya hago el AddUsers desde acá
-//Porfis manejemos todo lo que sea del Admin adentro de estar carpetitas
+
 export default AdminPage;

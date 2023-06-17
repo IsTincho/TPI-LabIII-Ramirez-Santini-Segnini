@@ -12,6 +12,8 @@ import DashBoard from "./components/DashBoard/DashBoard";
 import Protected from "./components/routes/Protected";
 import NotFound from "./components/routes/NotFound";
 import LoginForm from "./components/Login/LoginForm";
+import AdminProtected from "./components/routes/AdminProtected";
+import AdminPage from "./components/Admin/AdminPage/AdminPage";
 
 const App = () => {
   return (
@@ -25,6 +27,14 @@ const App = () => {
             <Protected>
               <DashBoard />
             </Protected>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <AdminProtected>
+              <AdminPage />
+            </AdminProtected>
           }
         />
         <Route path="*" element={<NotFound />} />

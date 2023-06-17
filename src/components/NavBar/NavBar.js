@@ -1,15 +1,24 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
+
 import { Button } from "react-bootstrap";
+import { AuthenticationContext } from "../services/authentication/authentication.context";
+
 import log from "../img/logo.svg";
 import cart from "../img/cart.svg";
-import { AuthenticationContext } from "../services/authentication/authentication.context";
+import AdminPage from "../Admin/AdminPage/AdminPage";
+
 const NavBar = ({ onLogout }) => {
   const navigation = useNavigate();
-  const {user} = useContext(AuthenticationContext)
+  const { user } = useContext(AuthenticationContext);
+
   const onLogoutHandler = () => {
     onLogout();
     navigation("/login");
+  };
+
+  const adminPageClickHandler = () => {
+    navigation("/admin"); // Redirige al usuario a la página "/admin" al hacer clic en el botón "AdminPage"
   };
 
   const navbarStyle = {
@@ -62,19 +71,25 @@ const NavBar = ({ onLogout }) => {
             style={ulStyle}
           >
             <ul className="navbar-nav mx-auto">
-              
+              {user && user.isAdmin && (
+                <li className="nav-link">
+                  <Button style={buttonStyle} onClick={adminPageClickHandler}>
+                    AdminPage
+                  </Button>
+                </li>
+              )}
               <li className="nav-item">
                 <a className="nav-link" style={linkStyle}>
                   ¡Bienvenido {user.username}!
                 </a>
               </li>
-              
             </ul>
           </div>
           <form className="d-flex justify-content-between">
             <a className="navbar-brand mx-auto" href=".">
               <img src={cart} style={logoStyle} />
             </a>
+
             <Button
               style={buttonStyle}
               type="button"

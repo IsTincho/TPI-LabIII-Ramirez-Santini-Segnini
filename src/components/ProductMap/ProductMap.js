@@ -1,21 +1,17 @@
 import React, { useState } from "react";
 import ProductCatalog from "../ProductCatalog/ProductCatalog";
 
-
-
 function ProductMap(products) {
   const filterProducts = products?.data?.filter((e) => {
     return e.gender;
   });
 
- 
-
   // ------ //
-  
-    const productsWithStock = filterProducts?.map((product) => {
+
+  const productsWithStock = filterProducts?.map((product) => {
     return { ...product, stock: 5 };
-  }); 
-  
+  });
+
   //localStorage.setItem("products", JSON.stringify(productsWithStock));
 
   return (
@@ -31,7 +27,7 @@ function ProductMap(products) {
         <div className="parent ml-5">
           {productsWithStock
             ? productsWithStock.map((product) => {
-                return <ProductCatalog product={product} />;
+                return <ProductCatalog key={product.id} product={product} />;
               })
             : ""}
         </div>

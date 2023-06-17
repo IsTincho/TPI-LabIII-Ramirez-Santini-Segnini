@@ -8,7 +8,9 @@
   position: relative;
   text-align: center;
 }
-
+.p-destacados{
+  margin-top: 120px;
+}
 img {
   width: 270px;
   max-height: 300px;

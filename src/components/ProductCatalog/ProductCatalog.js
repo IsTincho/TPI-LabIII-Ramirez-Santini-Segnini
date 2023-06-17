@@ -13,19 +13,14 @@ function ProductCatalog({ product }) {
   // Desestructurar mas datos si es necesario: id, category, rating, etc.
   const { title, price, image, stock, description } = product;
 
-  // Recortar string de title.
-  //const shortTitle = title.slice(0, 31);
-
-  console.log(stock);
-
   return (
     <ProductCard>
       <div className="g-col-4">
-        <div class="card-product">
+        <div className="card-product">
           <img src={image} alt="" />
-          <div class="card-body">
-            <div class="row">
-              <div class="card-title">
+          <div className="card-body">
+            <div className="row">
+              <div className="card-title">
                 <h4>{title}</h4>
                 <h3>${price}</h3>
                 <div className="stock-product">
@@ -35,8 +30,8 @@ function ProductCatalog({ product }) {
             </div>
             <hr />
             <p>{description}</p>
-            <div class="btn-group">
-              <div class="btn">
+            <div className="btn-group">
+              <div className="btn">
                 <button>Añadir</button>
               </div>
             </div>

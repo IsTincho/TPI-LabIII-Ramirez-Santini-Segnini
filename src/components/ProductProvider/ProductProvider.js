@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import CarouselProducts from "../CarouselProducts/CarouselProducts";
 import ProductMap from "../ProductMap/ProductMap";
 
+
 const ProductProvider = () => {
   const [products, setProducts] = useState();
 
@@ -24,6 +25,7 @@ const ProductProvider = () => {
     <div>
       <CarouselProducts data={products} />
       <ProductMap data={products} />
+      x
     </div>
   );
 };

@@ -1,0 +1,17 @@
+.container-filter {
+  justify-content: center;
+  text-align: center;
+  margin-top: 50px;
+}
+.gender {
+  text-align: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: black;
+}
+.container-filter-gender {
+
+  justify-content: center;
+  text-align: center;
+}

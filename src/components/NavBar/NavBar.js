@@ -6,7 +6,6 @@ import { AuthenticationContext } from "../services/authentication/authentication
 
 import log from "../img/logo.svg";
 import cart from "../img/cart.svg";
-import AdminPage from "../Admin/AdminPage/AdminPage";
 
 const NavBar = ({ onLogout }) => {
   const navigation = useNavigate();

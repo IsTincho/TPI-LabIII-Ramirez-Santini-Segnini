@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import UserManagementPage from "../UserManagementPage/UserManagementPage";
 
 const AdminPage = () => {
   const navigate = useNavigate();
@@ -14,6 +15,7 @@ const AdminPage = () => {
       <button className="btn btn-outline-danger" onClick={handleGoBack}>
         Volver a Home
       </button>
+      <UserManagementPage />
     </div>
   );
 };

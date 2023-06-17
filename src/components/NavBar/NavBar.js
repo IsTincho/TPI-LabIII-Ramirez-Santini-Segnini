@@ -71,10 +71,14 @@ const NavBar = ({ onLogout }) => {
           >
             <ul className="navbar-nav mx-auto">
               {user && user.isAdmin && (
-                <li className="nav-link">
-                  <Button style={buttonStyle} onClick={adminPageClickHandler}>
+                <li className="nav-item">
+                  <a
+                    style={linkStyle}
+                    className="nav-link"
+                    onClick={adminPageClickHandler}
+                  >
                     AdminPage
-                  </Button>
+                  </a>
                 </li>
               )}
               <li className="nav-item">

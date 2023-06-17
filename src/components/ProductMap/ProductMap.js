@@ -1,31 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import ProductCatalog from "../ProductCatalog/ProductCatalog";
-import ProductCatalogFilter from "../ProductCatalogFilter/ProductCatalogFilter";
+
+
 
 function ProductMap(products) {
   const filterProducts = products?.data?.filter((e) => {
-    return e.gender === "men's clothing" || e.gender === "women's clothing" || e.gender === "jewelery";
+    return e.gender;
   });
 
-  const productsWithStock = filterProducts?.map((product) => {
-    return { ...product, stock: 5 };
-    
-  });
-  localStorage.setItem("products", JSON.stringify(productsWithStock));
+ 
+
+  // ------ //
   
+    const productsWithStock = filterProducts?.map((product) => {
+    return { ...product, stock: 5 };
+  }); 
+  
+  //localStorage.setItem("products", JSON.stringify(productsWithStock));
+
   return (
     <>
-    
-    <div className="container-catalog">
-    <ProductCatalogFilter />
-      <div className="parent ml-5">
-        {productsWithStock
-          ? productsWithStock.map((product, index) => {
-              return <ProductCatalog product={product} key={index} />;
-            })
-          : ""}
+      {/*<div className="container-filter">
+        <div className="container-filter-gender">
+          <h4 className="gender"> Genero </h4>
+          
+        </div>
+      </div>*/}
+
+      <div className="container-catalog">
+        <div className="parent ml-5">
+          {productsWithStock
+            ? productsWithStock.map((product) => {
+                return <ProductCatalog product={product} />;
+              })
+            : ""}
+        </div>
       </div>
-    </div>
     </>
   );
 }

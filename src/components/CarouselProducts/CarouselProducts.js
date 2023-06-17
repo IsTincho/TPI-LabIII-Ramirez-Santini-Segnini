@@ -26,11 +26,11 @@ const responsive = {
 const CarouselProducts = (products) => {
 
   const filteredProducts = products?.data?.filter((item) => {
-    return item.gender === "women's clothing" || item.gender === "men's clothing" ;
+    return item.gender === "Mujer" || item.gender === "Hombre" && item.id > 7;
   });
   return (
     <div className="container">
-      <h1>Productos Destacados</h1>
+      <h1 className="p-destacados">Productos Destacados</h1>
       <Carousel responsive={responsive}>
         {filteredProducts ? (
           filteredProducts.map((item) => (

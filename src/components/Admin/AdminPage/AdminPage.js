@@ -40,6 +40,7 @@ const AdminPage = () => {
             </Nav.Link>
             <Nav.Link onClick={handleUnknownPage}>Unknown Page</Nav.Link>
           </Nav>
+          <Nav.Link onClick={handleGoBack}>Volver al Inicio</Nav.Link>
           <Button variant="outline-danger" onClick={handleLogout}>
             Cerrar Sesión
           </Button>

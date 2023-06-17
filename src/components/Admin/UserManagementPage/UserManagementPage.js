@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-
 import { getDatabase, ref, update, get } from "firebase/database";
+import { Table, Button } from "react-bootstrap";
 
 const UserManagementPage = () => {
   const [users, setUsers] = useState([]);
@@ -45,7 +45,7 @@ const UserManagementPage = () => {
   return (
     <div>
       <h1>User Management</h1>
-      <table>
+      <Table striped bordered hover responsive>
         <thead>
           <tr>
             <th>Username</th>
@@ -57,20 +57,21 @@ const UserManagementPage = () => {
           {users.map((user) => (
             <tr key={user.id}>
               <td>{user.username}</td>
-              <td>{user.isAdmin ? "Yes" : "No"}</td>
+              <td>{user.isAdmin ? "Si" : "No"}</td>
               <td>
-                <button
+                <Button
+                  variant="btn btn-outline-info"
                   onClick={() =>
                     handleUpdatePermissions(user.id, !user.isAdmin)
                   }
                 >
                   Toggle Admin
-                </button>
+                </Button>
               </td>
             </tr>
           ))}
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 };

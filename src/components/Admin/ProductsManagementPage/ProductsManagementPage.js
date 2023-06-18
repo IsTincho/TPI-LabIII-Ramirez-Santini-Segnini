@@ -17,7 +17,8 @@ const ProductsManagementPage = () => {
     getProducts();
   }, []);
   const getProducts = async () => {
-    const url = "hhttps://648f29e975a96b664444c707.mockapi.io/api/v1/products";
+    
+    const url = "https://648f29e975a96b664444c707.mockapi.io/api/v1/products";
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -210,23 +211,24 @@ const ProductsManagementPage = () => {
       </div>
       <h1>Product Management</h1>
       <div className="btn-add">
-        <button
-          type="button"
-          className="btn btn-primary mb-2 w-25"
-          data-bs-toggle="modal"
-          data-bs-target="#exampleModal"
-          onClick={() => openModal(1)}
-        >
-          Añadir
-        </button>
+      <button
+        type="button"
+        className="btn btn-primary mb-2 w-25"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        onClick={() => openModal(1)}
+      >
+      
+        Añadir
+      </button>
       </div>
       <Table bordered hover responsive>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Titulo</th>
+            <th>Title</th>
             <th>Descripcion</th>
-            <th>Precio</th>
+            <th>Price</th>
             <th>Genero</th>
           </tr>
         </thead>
@@ -240,7 +242,7 @@ const ProductsManagementPage = () => {
               <td>{item.gender}</td>
               <button
                 type="button"
-                class="btn-primary btn-outline-primary"
+                class="btn btn-primary"
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
                 onClick={() =>

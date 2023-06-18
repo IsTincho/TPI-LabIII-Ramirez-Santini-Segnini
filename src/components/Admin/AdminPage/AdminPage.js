@@ -4,21 +4,21 @@ import { useNavigate } from "react-router-dom";
 import { Button, Navbar, Nav } from "react-bootstrap";
 import { AuthenticationContext } from "../../services/authentication/authentication.context";
 
-import UserManagementPage from "../UserManagementPage/UserManagementPage";
 import ProductsManagementPage from "../ProductsManagementPage/ProductsManagementPage";
 import UnknownPage from "../UnknownPage/UnknownPage";
+import UserManagementScreen from "../UserManagementPage/UserManagementScreen";
 
 const AdminPage = () => {
   const { user, handleLogout } = useContext(AuthenticationContext);
   const navigate = useNavigate();
-  const [currentPage, setCurrentPage] = useState("userManagement");
+  const [currentPage, setCurrentPage] = useState("userManagementScreen");
 
   const handleGoBack = () => {
     navigate("/home");
   };
 
   const handleUserManagement = () => {
-    setCurrentPage("userManagement");
+    setCurrentPage("userManagementScreen");
   };
 
   const handleProductsManagement = () => {
@@ -63,7 +63,7 @@ const AdminPage = () => {
           </Button>
         </Navbar.Collapse>
       </Navbar>
-      {currentPage === "userManagement" && <UserManagementPage />}
+      {currentPage === "userManagementScreen" && <UserManagementScreen />}
       {currentPage === "productsManagement" && <ProductsManagementPage />}
       {currentPage === "unknownPage" && <UnknownPage />}
     </div>

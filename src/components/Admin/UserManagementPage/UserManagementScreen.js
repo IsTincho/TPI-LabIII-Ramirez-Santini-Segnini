@@ -5,15 +5,16 @@ import { database } from "../../firebaseConfig/firebaseConfig";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
+import AddNewUsers from "./AddNewUsers";
 
 const UserManagementScreen = () => {
   const { user } = useContext(AuthenticationContext);
   const [users, setUsers] = useState([]);
   const [userToDelete, setUserToDelete] = useState(null);
-  const [isAdminToggle, setIsAdminToggle] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showAdminModal, setShowAdminModal] = useState(false);
   const [adminUser, setAdminUser] = useState(null);
+  const [showAddNewUsers, setShowAddNewUsers] = useState(false);
 
   useEffect(() => {
     const usersRef = database.ref("users");
@@ -45,41 +46,8 @@ const UserManagementScreen = () => {
     };
   }, []);
 
-  const handleDeleteUser = async () => {
-    try {
-      const usersRef = database.ref("users");
-      await usersRef.child(userToDelete.id).remove();
-
-      const auth = getAuth();
-      await deleteUser(auth, userToDelete.userId); // Eliminar el usuario de autenticación
-
-      setUserToDelete(null);
-      setShowDeleteModal(false);
-    } catch (error) {
-      console.error("Error al eliminar usuario:", error);
-    }
-  };
-
-  const handleToggleAdmin = async (user) => {
-    try {
-      setAdminUser(user);
-      setShowAdminModal(true);
-    } catch (error) {
-      console.error("Error al cambiar isAdmin:", error);
-    }
-  };
-
-  const confirmToggleAdmin = async () => {
-    try {
-      const usersRef = database.ref("users");
-      await usersRef
-        .child(adminUser.id)
-        .update({ isAdmin: !adminUser.isAdmin });
-      setAdminUser(null);
-      setShowAdminModal(false);
-    } catch (error) {
-      console.error("Error al cambiar isAdmin:", error);
-    }
+  const handleToggleAddNewUsers = () => {
+    setShowAddNewUsers(!showAddNewUsers);
   };
 
   const openDeleteConfirmationModal = (user) => {
@@ -92,9 +60,39 @@ const UserManagementScreen = () => {
     setShowDeleteModal(false);
   };
 
+  const handleDeleteUser = () => {
+    const { id } = userToDelete;
+    const usersRef = database.ref("users").child(id);
+    usersRef.remove();
+
+    // También puedes eliminar la cuenta de autenticación del usuario si lo deseas
+    const auth = getAuth();
+    const { email } = userToDelete;
+    deleteUser(auth, email);
+
+    closeDeleteModal();
+  };
+
+  const openAdminConfirmationModal = (user) => {
+    setAdminUser(user);
+    setShowAdminModal(true);
+  };
+
   const closeAdminModal = () => {
     setAdminUser(null);
     setShowAdminModal(false);
+  };
+
+  const handleToggleAdmin = (user) => {
+    openAdminConfirmationModal(user);
+  };
+
+  const confirmToggleAdmin = () => {
+    const { id, isAdmin } = adminUser;
+    const usersRef = database.ref("users").child(id);
+    usersRef.update({ isAdmin: !isAdmin });
+
+    closeAdminModal();
   };
 
   if (!user || !user.isAdmin) {
@@ -104,6 +102,10 @@ const UserManagementScreen = () => {
   return (
     <div>
       <h1>Administración de Usuarios</h1>
+      <Button variant="primary" onClick={handleToggleAddNewUsers}>
+        Agregar Nuevo Usuario
+      </Button>
+      {showAddNewUsers && <AddNewUsers />}
       <Table responsive>
         <thead>
           <tr>

@@ -17,7 +17,7 @@ const ProductsManagementPage = () => {
     getProducts();
   }, []);
   const getProducts = async () => {
-    const url = "hhttps://648f29e975a96b664444c707.mockapi.io/api/v1/products";
+    const url = "https://648f29e975a96b664444c707.mockapi.io/api/v1/products";
     try {
       const res = await fetch(url);
       const data = await res.json();

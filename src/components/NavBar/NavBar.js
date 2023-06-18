@@ -69,12 +69,15 @@ const NavBar = ({ onLogout }) => {
             id="mynavbar"
             style={ulStyle}
           >
-            <ul className="navbar-nav mx-auto">
+            <ul
+              className="navbar-nav mx-auto"
+              style={{ display: "flex", alignItems: "center" }}
+            >
               {user && user.isAdmin && (
                 <li className="nav-item">
                   <button
-                    style={linkStyle}
                     className="nav-link"
+                    style={linkStyle}
                     onClick={adminPageClickHandler}
                   >
                     AdminPage

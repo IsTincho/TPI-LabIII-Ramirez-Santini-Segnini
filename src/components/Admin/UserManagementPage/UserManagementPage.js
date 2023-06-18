@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getDatabase, ref, update, get } from "firebase/database";
+import { getDatabase, ref, update, get, remove } from "firebase/database";
 import { Table, Button } from "react-bootstrap";
 
 const UserManagementPage = () => {
@@ -42,6 +42,15 @@ const UserManagementPage = () => {
     setUsers(updatedUsers);
   };
 
+  const handleDeleteUser = (userId) => {
+    const database = getDatabase();
+    const userRef = ref(database, `users/${userId}`);
+    remove(userRef);
+
+    const updatedUsers = users.filter((user) => user.id !== userId);
+    setUsers(updatedUsers);
+  };
+
   return (
     <div>
       <h1>User Management</h1>
@@ -50,7 +59,8 @@ const UserManagementPage = () => {
           <tr>
             <th>Username</th>
             <th>Admin</th>
-            <th>Action</th>
+            <th>Accion</th>
+            <th>Eliminar</th>
           </tr>
         </thead>
         <tbody>
@@ -66,6 +76,14 @@ const UserManagementPage = () => {
                   }
                 >
                   Toggle Admin
+                </Button>
+              </td>
+              <td>
+                <Button
+                  variant="btn btn-outline-danger"
+                  onClick={() => handleDeleteUser(user.id)}
+                >
+                  Eliminar
                 </Button>
               </td>
             </tr>

@@ -17,7 +17,7 @@ const ProductsManagementPage = () => {
     getProducts();
   }, []);
   const getProducts = async () => {
-    const url = "https://648a58945fa58521cab118b9.mockapi.io/api/v1/products";
+    const url = "hhttps://648f29e975a96b664444c707.mockapi.io/api/v1/products";
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -65,7 +65,7 @@ const ProductsManagementPage = () => {
     } else if (gender.trim() === "") {
       alert("Escribe el genero del producto");
     } else {
-      fetch("https://648a58945fa58521cab118b9.mockapi.io/api/v1/products", {
+      fetch("https://648f29e975a96b664444c707.mockapi.io/api/v1/products", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(dataProducts),
@@ -81,7 +81,7 @@ const ProductsManagementPage = () => {
 
     {
       /* falta implementar el metodo PUT para editar el producto 
-        fetch("https://648a58945fa58521cab118b9.mockapi.io/api/v1/products", {
+        fetch("https://648f29e975a96b664444c707.mockapi.io/api/v1/products", {
           method: "PUT",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(dataProducts),

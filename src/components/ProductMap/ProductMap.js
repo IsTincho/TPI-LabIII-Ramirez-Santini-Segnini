@@ -4,6 +4,8 @@ import ProductCatalog from "../ProductCatalog/ProductCatalog";
 
 
 function ProductMap(products) {
+
+
   const filterProducts = products?.data?.filter((e) => {
     return e.gender;
   });
@@ -16,7 +18,7 @@ function ProductMap(products) {
     return { ...product, stock: 5 };
   }); 
   
-  //localStorage.setItem("products", JSON.stringify(productsWithStock));
+  localStorage.setItem("products", JSON.stringify(productsWithStock));
 
   return (
     <>

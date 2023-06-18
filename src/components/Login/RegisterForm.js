@@ -66,7 +66,7 @@ const RegisterForm = ({ handleToggleForm }) => {
             Menú de Registro
           </h2>
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formUsername">
+            <Form.Group controlid="formUsername">
               <Form.Label>Nombre de usuario</Form.Label>
               <Form.Control
                 type="text"
@@ -76,7 +76,7 @@ const RegisterForm = ({ handleToggleForm }) => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formEmail">
+            <Form.Group controlid="formEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -86,7 +86,7 @@ const RegisterForm = ({ handleToggleForm }) => {
               />
             </Form.Group>
 
-            <Form.Group controlId="formPassword">
+            <Form.Group controlid="formPassword">
               <Form.Label>Contraseña</Form.Label>
               <Form.Control
                 type="password"

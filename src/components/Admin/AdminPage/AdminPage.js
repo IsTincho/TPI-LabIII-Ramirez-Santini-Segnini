@@ -30,7 +30,7 @@ const AdminPage = () => {
   return (
     <div>
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">Admin Panel</Navbar.Brand>
+        <Navbar.Brand>Admin Panel</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
@@ -40,6 +40,7 @@ const AdminPage = () => {
             </Nav.Link>
             <Nav.Link onClick={handleUnknownPage}>Unknown Page</Nav.Link>
           </Nav>
+          <Nav.Link onClick={handleGoBack}>Volver al Inicio</Nav.Link>
           <Button variant="outline-danger" onClick={handleLogout}>
             Cerrar Sesión
           </Button>

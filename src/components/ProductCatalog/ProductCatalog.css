@@ -5,7 +5,6 @@
   display: flex;
 }
 
-
 .parent {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -56,21 +55,20 @@
 
 .btn-group {
   margin-top: 25px;
-  justify-content:center;
+  justify-content: center;
   display: flex;
 }
 
 .btn-group .btn button {
   transition: all 0.2s ease-in-out 0ms;
   border: none;
-  justify-content:center;
+  justify-content: center;
   padding: 5px 15px;
   background-color: #2cd453;
   color: #fff;
   border-radius: 3px;
   margin-left: -2px;
 }
-
 
 .btn-group .btn button:hover {
   background-color: #93e696;
@@ -81,6 +79,23 @@
   transform: scale(0.95);
 }
 
-.stock-product{
+.stock-product {
   text-align: center;
+}
+
+/* Estilos para pantallas de móviles */
+@media (max-width: 767px) {
+  .parent {
+    grid-template-columns: 1fr; /* Cambia a una sola columna en pantallas móviles */
+    grid-column-gap: 0; /* Elimina el espacio entre las columnas en pantallas móviles */
+  }
+
+  .card-product {
+    width: 100%; /* Ocupa todo el ancho disponible en pantallas móviles */
+    height: auto; /* Ajusta la altura automáticamente en pantallas móviles */
+  }
+
+  .card-product img {
+    height: 200px; /* Ajusta el tamaño de la imagen en pantallas móviles */
+  }
 }

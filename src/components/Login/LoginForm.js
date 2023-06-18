@@ -77,7 +77,7 @@ const LoginForm = () => {
             Menú de inicio de Sesión
           </h2>
           <form onSubmit={signInHandler}>
-            <div className="mb-3" controlId="formGroupEmail">
+            <div className="mb-3" controlid="formGroupEmail">
               <label htmlFor="email">Correo Electrónico</label>
               <input
                 type="email"
@@ -93,7 +93,7 @@ const LoginForm = () => {
                 </div>
               )}
             </div>
-            <div className="mb-3" controlId="formGroupPassword">
+            <div className="mb-3" controlid="formGroupPassword">
               <label htmlFor="password">Contraseña</label>
               <input
                 type="password"

@@ -8,4 +8,17 @@
   justify-content: center;
 }
 
-
+/* Estilos para pantallas de móviles */
+@media (max-width: 767px) {
+  .book-item-container {
+    padding: 10px; /* Ajusta el espaciado interno en pantallas móviles */
+  }
+  
+  .book-item-container img {
+    height: 200px; /* Ajusta el tamaño de la imagen en pantallas móviles */
+  }
+  
+  .card-title {
+    text-align: center; /* Centra el título en pantallas móviles */
+  }
+}

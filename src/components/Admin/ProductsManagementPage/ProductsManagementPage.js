@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { Table, Button } from "react-bootstrap";
+import "./ProductsManagementPage.css";
+import { Table } from "react-bootstrap";
 
 const ProductsManagementPage = () => {
   const [cantProducts, setCantProducts] = useState([]);
   const [operation, setOperation] = useState(1);
   const [option, setOption] = useState("");
-  const [id, setId] = useState("");
+  const [id, setId] = useState();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
-  const [img, setImg] = useState("");
+  const [image, setImage] = useState("");
+  const [gender, setGender] = useState("");
 
   useEffect(() => {
     getProducts();
@@ -26,26 +28,31 @@ const ProductsManagementPage = () => {
     }
   };
 
-  const openModal = (option, id, title, description, price) => {
-    setId("");
+  const openModal = (option, id, title, description, price, image, gender) => {
+    setId();
     setTitle("");
     setDescription("");
     setPrice("");
+    setImage("");
+    setGender("");
     setOperation(option);
+
     if (option === 1) {
-      setOperation(1)
+      setOperation(1);
       setOption("Registrar Producto");
     } else if (option === 2) {
-      setOperation(2)
+      setOperation(2);
       setOption("Editar Producto");
       setTitle(title);
       setDescription(description);
       setPrice(price);
+      setImage(image);
+      setGender(gender);
     }
   };
 
-  const validation = (operation) => {
-    const dataProducts = { title, description, price };
+  const validation = () => {
+    const dataProducts = { title, description, price, image, gender };
 
     if (title.trim() === "") {
       alert("Escribe el titulo del producto");
@@ -53,22 +60,27 @@ const ProductsManagementPage = () => {
       alert("Escribe la descripcion del producto");
     } else if (price === "") {
       alert("Escribe el precio del producto");
+    } else if (image.trim() === "") {
+      alert("Escribe la url del producto");
+    } else if (gender.trim() === "") {
+      alert("Escribe el genero del producto");
     } else {
-      
-        fetch("https://648a58945fa58521cab118b9.mockapi.io/api/v1/products", {
-          method: "POST",
-          headers: { "content-type": "application/json" },
-          body: JSON.stringify(dataProducts),
+      fetch("https://648a58945fa58521cab118b9.mockapi.io/api/v1/products", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(dataProducts),
+      })
+        .then((res) => {
+          alert("SAVED SUCCESS");
+          getProducts();
         })
-          .then((res) => {
-            alert("SAVED SUCCESS");
-            getProducts();
-          })
-          .catch((err) => {
-            console.log(err.message);
-          });
-      } 
-       {/*
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+
+    {
+      /* falta implementar el metodo PUT para editar el producto 
         fetch("https://648a58945fa58521cab118b9.mockapi.io/api/v1/products", {
           method: "PUT",
           headers: { "content-type": "application/json" },
@@ -82,22 +94,12 @@ const ProductsManagementPage = () => {
             console.log(err.message);
           });
 
-        */}
-    
+        */
+    }
   };
 
   return (
-    <div>
-      <button
-        type="button"
-        class="btn btn-primary"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        onClick={() => openModal(1)}
-      >
-        Añadir
-      </button>
-
+    <div className="container-product-management">
       <div
         class="modal fade"
         id="exampleModal"
@@ -151,12 +153,38 @@ const ProductsManagementPage = () => {
                   <i className="fa-solid fa-gift"></i>
                 </span>
                 <input
-                  type="text"
+                  type="number"
                   id="precio"
                   className="form-control"
                   placeholder="Precio"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
+                ></input>
+              </div>
+              <div className="input-group mb-3">
+                <span className="input-group-text">
+                  <i className="fa-solid fa-gift"></i>
+                </span>
+                <input
+                  type="text"
+                  id="image"
+                  className="form-control"
+                  placeholder="Imagen - URL"
+                  value={image}
+                  onChange={(e) => setImage(e.target.value)}
+                ></input>
+              </div>
+              <div className="input-group mb-3">
+                <span className="input-group-text">
+                  <i className="fa-solid fa-gift"></i>
+                </span>
+                <input
+                  type="text"
+                  id="gender"
+                  className="form-control"
+                  placeholder="Genero - Hombre o Mujer"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
                 ></input>
               </div>
             </div>
@@ -181,14 +209,26 @@ const ProductsManagementPage = () => {
         </div>
       </div>
       <h1>Product Management</h1>
-
-      <Table striped bordered hover responsive>
+      <div className="btn-add">
+      <button
+        type="button"
+        className="btn btn-primary mb-2 w-25"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        onClick={() => openModal(1)}
+      >
+      
+        Añadir
+      </button>
+      </div>
+      <Table bordered hover responsive>
         <thead>
           <tr>
             <th>ID</th>
             <th>Title</th>
             <th>Descripcion</th>
             <th>Price</th>
+            <th>Genero</th>
           </tr>
         </thead>
         <tbody>
@@ -198,6 +238,7 @@ const ProductsManagementPage = () => {
               <td>{item.title}</td>
               <td>{item.description}</td>
               <td>{item.price}</td>
+              <td>{item.gender}</td>
               <button
                 type="button"
                 class="btn btn-primary"
@@ -209,7 +250,9 @@ const ProductsManagementPage = () => {
                     item.id,
                     item.title,
                     item.description,
-                    item.price
+                    item.price,
+                    item.image,
+                    item.gender
                   )
                 }
               >

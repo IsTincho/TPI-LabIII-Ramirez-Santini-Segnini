@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./ProductsManagementPage.css";
+import Button from "react-bootstrap/Button";
 import { Table } from "react-bootstrap";
 
 const ProductsManagementPage = () => {
@@ -21,7 +22,6 @@ const ProductsManagementPage = () => {
     try {
       const res = await fetch(url);
       const data = await res.json();
-      console.log(data);
       setCantProducts(data);
     } catch (err) {
       console.log(err.message);
@@ -41,8 +41,8 @@ const ProductsManagementPage = () => {
       setOperation(1);
       setOption("Registrar Producto");
     } else if (option === 2) {
-      setOption("Editar Producto");
       setOperation(2);
+      setOption("Editar Producto");
       setId(id);
       setTitle(title);
       setDescription(description);
@@ -66,14 +66,14 @@ const ProductsManagementPage = () => {
       alert("Escribe el genero del producto");
     } else {
       if (operation === 1) {
-        const dataProducts = {title,description,price,image,gender};
+        const dataProducts = { title, description, price, image, gender };
         fetch("https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products", {
           method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(dataProducts),
         })
           .then((res) => {
-            console.log(res);
+            setId(id);
             alert("SAVED SUCCESS");
             getProducts();
           })
@@ -81,7 +81,6 @@ const ProductsManagementPage = () => {
             console.log(err.message);
           });
       } else if (operation === 2) {
-        console.log("OPCION EDITAR (PUT)");
         const dataProducts = { title, description, price, image, gender };
 
         fetch(
@@ -93,7 +92,6 @@ const ProductsManagementPage = () => {
           }
         )
           .then((res) => {
-            console.log(res);
             alert("SAVED SUCCESS");
             getProducts();
           })
@@ -101,6 +99,23 @@ const ProductsManagementPage = () => {
             console.log(err.message);
           });
       }
+    }
+  };
+
+  const handleRemove = (id) => {
+    if (window.confirm("Seguro uieres eliminar este producto?")) {
+      fetch(
+        `https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
+        .then((res) => {
+          getProducts();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
     }
   };
 
@@ -215,14 +230,14 @@ const ProductsManagementPage = () => {
                 class="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
-                Close
+                Cerrar
               </button>
               <button
                 type="button"
                 class="btn btn-primary"
                 onClick={() => validation()}
               >
-                Save changes
+                Guardar Cambios
               </button>
             </div>
           </div>
@@ -240,7 +255,7 @@ const ProductsManagementPage = () => {
           Añadir
         </button>
       </div>
-      <Table bordered hover responsive>
+      <Table responsive>
         <thead>
           <tr>
             <th>ID</th>
@@ -278,7 +293,14 @@ const ProductsManagementPage = () => {
               >
                 Editar
               </button>
-              <button>Eliminar</button>
+              <Button
+                variant="danger"
+                onClick={() => {
+                  handleRemove(item.id);
+                }}
+              >
+                Eliminar
+              </Button>
             </tr>
           ))}
         </tbody>

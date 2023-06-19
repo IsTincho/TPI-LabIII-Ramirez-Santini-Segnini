@@ -9,11 +9,11 @@
 
 .cart-dropdown-container > div {
   position: absolute;
-  top: 100%;
-  right: 0;
+  width: 400px;
+  top: -30%;
+  right: 50%;
   background-color: #fff;
   border: 1px solid #ccc;
-  padding: 10px;
   min-width: 200px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }

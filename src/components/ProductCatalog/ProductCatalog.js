@@ -11,7 +11,7 @@ const ProductCatalog = ({ product }) => {
   const [products, setProducts] = useState([]);
   const { cart, setCart } = useContext(CartContext);
 
-  // En caso de que no existan productos devolver null.
+  // Setear productos.
   useEffect(() => {
     if (!product) {
       setProducts("");

@@ -273,7 +273,7 @@ const ProductsManagementPage = () => {
       <div className="btn-add">
         <button
           type="button"
-          className="btn btn-primary mb-2 w-25"
+          className="btn btn-outline-primary mb-2 w-25"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           onClick={() => openModal(1)}

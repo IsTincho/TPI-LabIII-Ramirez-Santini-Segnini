@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import RegisterForm from "./RegisterForm";
 import { borderStyle } from "./bordercolor";
+import { TiEyeOutline, TiEye } from "react-icons/ti";
 
 const LoginForm = () => {
-  const buttonstyle = {
+  const buttonStyle = {
     marginRight: "8px",
   };
 
@@ -20,6 +21,7 @@ const LoginForm = () => {
   });
 
   const [showRegisterForm, setShowRegisterForm] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     if (user) {
@@ -77,7 +79,7 @@ const LoginForm = () => {
             Menú de inicio de Sesión
           </h2>
           <form onSubmit={signInHandler}>
-            <div className="mb-3" controlid="formGroupEmail">
+            <div className="mb-3" controlId="formGroupEmail">
               <label htmlFor="email">Correo Electrónico</label>
               <input
                 type="email"
@@ -93,37 +95,49 @@ const LoginForm = () => {
                 </div>
               )}
             </div>
-            <div className="mb-3" controlid="formGroupPassword">
+            <div className="mb-3" controlId="formGroupPassword">
               <label htmlFor="password">Contraseña</label>
-              <input
-                type="password"
-                id="password"
-                className={`form-control ${
-                  errors.password ? "is-invalid" : ""
-                }`}
-                placeholder="Ingrese su Contraseña"
-                value={password}
-                onChange={handlePasswordChange}
-              />
+
+              <div className="input-group">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  id="password"
+                  className={`form-control ${
+                    errors.password ? "is-invalid" : ""
+                  }`}
+                  placeholder="Ingrese su Contraseña"
+                  value={password}
+                  onChange={handlePasswordChange}
+                />
+                <div className="input-group-append">
+                  <span
+                    className="input-group-text password-toggle-icon"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <TiEyeOutline /> : <TiEye />}
+                  </span>
+                </div>
+              </div>
               {errors.password && (
                 <div className="invalid-feedback">Ingrese su contraseña</div>
               )}
             </div>
-            <button
-              className="btn btn-light btn-outline-info"
-              type="submit"
-              disabled={errors.email || errors.password}
-              style={buttonstyle}
-            >
-              Iniciar Sesión
-            </button>
-            <button
-              className="btn btn-light btn-outline-info"
-              onClick={handleToggleForm}
-              style={buttonstyle}
-            >
-              Crear Cuenta
-            </button>
+            <div className="d-grid gap-2">
+              <button
+                className="btn btn-outline-info"
+                type="submit"
+                style={buttonStyle}
+              >
+                Iniciar Sesión
+              </button>
+              <button
+                className="btn btn-outline-info"
+                type="button"
+                onClick={handleToggleForm}
+              >
+                Registrarse
+              </button>
+            </div>
           </form>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { TiEyeOutline, TiEye } from "react-icons/ti";
 
 import "firebase/auth";
 import "firebase/database";
@@ -11,6 +12,7 @@ const RegisterForm = ({ handleToggleForm }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -88,17 +90,28 @@ const RegisterForm = ({ handleToggleForm }) => {
 
             <Form.Group controlid="formPassword">
               <Form.Label>Contraseña</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Ingresa tu contraseña"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
+
+              <div className="input-group">
+                <Form.Control
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Ingresa tu contraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+
+                <div
+                  className="input-group-append"
+                  onClick={() => setShowPassword(!showPassword)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <span className="input-group-text">
+                    {showPassword ? <TiEyeOutline /> : <TiEye />}
+                  </span>
+                </div>
+              </div>
             </Form.Group>
 
             <div className="d-flex justify-content-center" style={styles}>
-              {" "}
-              {/* Contenedor con clase d-flex para alinear los botones en línea */}
               <Button
                 className="btn-light btn-outline-info"
                 type="submit"

@@ -102,7 +102,7 @@ const UserManagementScreen = () => {
   return (
     <div>
       <h1>Administración de Usuarios</h1>
-      <Button variant="primary" onClick={handleToggleAddNewUsers}>
+      <Button variant="outline-primary" onClick={handleToggleAddNewUsers}>
         Agregar Nuevo Usuario
       </Button>
       {showAddNewUsers && <AddNewUsers />}
@@ -123,13 +123,13 @@ const UserManagementScreen = () => {
               <td>{user.isAdmin ? "Sí" : "No"}</td>
               <td>
                 <Button
-                  variant="danger"
+                  variant="outline-danger"
                   onClick={() => openDeleteConfirmationModal(user)}
                 >
                   Eliminar
                 </Button>
                 <Button
-                  variant="primary"
+                  variant="outline-primary"
                   onClick={() => handleToggleAdmin(user)}
                 >
                   {user.isAdmin ? "Remover Admin" : "Asignar Admin"}

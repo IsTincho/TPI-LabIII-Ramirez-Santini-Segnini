@@ -57,3 +57,22 @@
     margin-left: -2px;
   }
   
+  .remove-button{
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    font-family: monospace;
+    transition: all 0.2s ease-in-out 0ms;
+    border: none;
+    justify-content: center;
+    background-color: #d42c2c;
+    color: #fff;
+    border-radius: 3px;
+    margin-left: -2px;
+  }
+
+  .clear-button{
+    margin-left: 100px;
+    width: 30px;
+    height: 30px;
+  }

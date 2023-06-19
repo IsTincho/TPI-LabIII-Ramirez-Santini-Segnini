@@ -3,6 +3,7 @@ import { CartContext } from "../services/cartcontext/cart.context";
 
 import "./ProductCatalog.css";
 
+import { AuthenticationContext } from "../services/authentication/authentication.context";
 import ProductCard from "../ProductCard/ProductCard";
 import ChangeStock from "../ChangeStock/ChangeStock";
 import Cart from "../Cart/Cart";
@@ -10,6 +11,7 @@ import Cart from "../Cart/Cart";
 const ProductCatalog = ({ product }) => {
   const [products, setProducts] = useState([]);
   const { cart, setCart } = useContext(CartContext);
+  const { user } = useContext(AuthenticationContext);
 
   // Setear productos.
   useEffect(() => {
@@ -38,7 +40,7 @@ const ProductCatalog = ({ product }) => {
                 <h4>{title}</h4>
                 <h3>${price}</h3>
                 <div className="stock-product">
-                  <ChangeStock initialStock={stock} />
+                {user.isAdmin ? <ChangeStock initialStock={stock} /> : null}
                 </div>
               </div>
             </div>

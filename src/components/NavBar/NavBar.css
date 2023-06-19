@@ -1,0 +1,19 @@
+.cart-dropdown-container {
+  position: relative;
+  display: inline-block;
+}
+
+.cart-dropdown-container img {
+  cursor: pointer;
+}
+
+.cart-dropdown-container > div {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 10px;
+  min-width: 200px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

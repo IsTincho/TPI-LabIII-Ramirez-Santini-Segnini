@@ -34,7 +34,7 @@ function ProductMap(products) {
         <div className="parent ml-5">
           {productsWithStock
             ? productsWithStock.map((product) => {
-                return <ProductCatalog product={product} />;
+                return <ProductCatalog product={product} key={product.id}/>;
               })
             : ""}
         </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 
 import { Button } from "react-bootstrap";
@@ -6,10 +6,13 @@ import { AuthenticationContext } from "../services/authentication/authentication
 
 import log from "../img/logo.svg";
 import cart from "../img/cart.svg";
+import Cart from "../Cart/Cart";
+import "../NavBar/NavBar.css"
 
 const NavBar = ({ onLogout }) => {
   const navigation = useNavigate();
   const { user } = useContext(AuthenticationContext);
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const onLogoutHandler = () => {
     onLogout();
@@ -18,6 +21,10 @@ const NavBar = ({ onLogout }) => {
 
   const adminPageClickHandler = () => {
     navigation("/admin"); // Redirige al usuario a la página "/admin" al hacer clic en el botón "AdminPage"
+  };
+
+  const toggleCart = () => {
+    setIsCartOpen(!isCartOpen); // Cambia el estado del carrito abierto o cerrado
   };
 
   const navbarStyle = {
@@ -92,9 +99,16 @@ const NavBar = ({ onLogout }) => {
             </ul>
           </div>
           <form className="d-flex justify-content-between">
-            <a className="navbar-brand mx-auto" href=".">
-              <img src={cart} style={logoStyle} />
-            </a>
+            <div className="navbar-brand mx-auto cart-dropdown-container">
+              <img
+                src={cart}
+                style={logoStyle}
+                alt="cart"
+                onClick={toggleCart} // Agrega el evento onClick para abrir o cerrar el carrito al hacer clic en la imagen
+              />
+              {isCartOpen && <Cart />}{" "}
+              {/* Muestra el componente Cart solo si el carrito está abierto */}
+            </div>
 
             <Button
               style={buttonStyle}

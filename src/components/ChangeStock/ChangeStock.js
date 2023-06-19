@@ -1,18 +1,42 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 
 import "./ChangeStock.css";
 
-// Solo el admin puede acceder a esta función.
-
-const ChangeStock = ({ initialStock }) => {
-  const [stock, setStock] = useState(initialStock);
+const ChangeStock = ({ stockProp, idProp }) => {
+  const [stock, setStock] = useState(stockProp);
 
   const incrementStock = () => {
-    setStock(stock + 1);
+    const newStock = stock + 1;
+    updateStock(newStock);
   };
 
   const decrementStock = () => {
-    setStock(stock - 1);
+    const newStock = stock - 1;
+    updateStock(newStock);
+  };
+
+  const updateStock = async (newStock) => {
+    try {
+      // Realizar la llamada a la API para actualizar el stock
+      const response = await fetch(`https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products/${idProp}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ stock: newStock }),
+      });
+
+      if (response.ok) {
+        // Si la actualización es exitosa, actualizamos el estado local
+        setStock(newStock);
+      } else {
+        // Manejar errores de la API
+        console.error("Error al actualizar el stock");
+      }
+    } catch (error) {
+      // Manejar errores de red u otros errores
+      console.error("Error al actualizar el stock:", error);
+    }
   };
 
   return (

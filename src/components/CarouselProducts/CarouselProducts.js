@@ -24,9 +24,8 @@ const responsive = {
 };
 
 const CarouselProducts = (products) => {
-
   const filteredProducts = products?.data?.filter((item) => {
-    return item.gender === "Mujer" || item.gender === "Hombre" && item.id > 7;
+    return item.gender === "Mujer" || (item.gender === "Hombre" && item.id > 7);
   });
   return (
     <div className="container">

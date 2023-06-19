@@ -1,25 +1,11 @@
-import React, { useState } from "react";
 import ProductCatalog from "../ProductCatalog/ProductCatalog";
 
-
-
-function ProductMap(products) {
-
-    console.log(products)
+const ProductMap = (products) => {
+  console.log(products);
 
   const filterProducts = products?.data?.filter((e) => {
     return e.gender;
   });
-
- 
-
-  // ------ //
-  
-    const productsWithStock = filterProducts?.map((product) => {
-    return { ...product, stock: 5 };
-  }); 
-  
- 
 
   return (
     <>
@@ -32,15 +18,15 @@ function ProductMap(products) {
 
       <div className="container-catalog">
         <div className="parent ml-5">
-          {productsWithStock
-            ? productsWithStock.map((product) => {
-                return <ProductCatalog product={product} key={product.id}/>;
+          {filterProducts
+            ? filterProducts.map((product) => {
+                return <ProductCatalog product={product} key={product.id} />;
               })
             : ""}
         </div>
       </div>
     </>
   );
-}
+};
 
 export default ProductMap;

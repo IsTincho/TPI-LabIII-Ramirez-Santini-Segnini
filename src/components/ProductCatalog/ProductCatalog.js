@@ -6,7 +6,6 @@ import "./ProductCatalog.css";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import ProductCard from "../ProductCard/ProductCard";
 import ChangeStock from "../ChangeStock/ChangeStock";
-import Cart from "../Cart/Cart";
 
 const ProductCatalog = ({ product }) => {
   const [products, setProducts] = useState([]);
@@ -20,7 +19,7 @@ const ProductCatalog = ({ product }) => {
     } else {
       setProducts(product);
     }
-  }, []);
+  }, [product]);
 
   // Desestructurar mas datos si es necesario: id, category, rating, etc.
   const { id, title, price, image, stock, description } = products;
@@ -40,7 +39,7 @@ const ProductCatalog = ({ product }) => {
                 <h4>{title}</h4>
                 <h3>${price}</h3>
                 <div className="stock-product">
-                {user.isAdmin ? <ChangeStock initialStock={stock} /> : null}
+                {user.isAdmin ? <ChangeStock stockProp={stock} idProp={id} /> : null}
                 </div>
               </div>
             </div>

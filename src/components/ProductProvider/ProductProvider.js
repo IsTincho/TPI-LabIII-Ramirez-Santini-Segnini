@@ -7,7 +7,7 @@ const ProductProvider = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const url = "https://648f29e975a96b664444c707.mockapi.io/api/v1/products";
+      const url = "https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products";
       try {
         const res = await fetch(url);
         const data = await res.json();

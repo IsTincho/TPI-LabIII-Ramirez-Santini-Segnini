@@ -4,20 +4,20 @@ import { Table } from "react-bootstrap";
 
 const ProductsManagementPage = () => {
   const [cantProducts, setCantProducts] = useState([]);
-  const [operation, setOperation] = useState(1);
+  const [operation, setOperation] = useState();
   const [option, setOption] = useState("");
   const [id, setId] = useState();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [image, setImage] = useState("");
-  const [gender, setGender] = useState("");
+  const [title, setTitle] = useState();
+  const [description, setDescription] = useState();
+  const [price, setPrice] = useState();
+  const [image, setImage] = useState();
+  const [gender, setGender] = useState();
 
   useEffect(() => {
     getProducts();
   }, []);
   const getProducts = async () => {
-    const url = "https://648f29e975a96b664444c707.mockapi.io/api/v1/products";
+    const url = "https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products";
     try {
       const res = await fetch(url);
       const data = await res.json();
@@ -29,7 +29,7 @@ const ProductsManagementPage = () => {
   };
 
   const openModal = (option, id, title, description, price, image, gender) => {
-    setId();
+    setId("");
     setTitle("");
     setDescription("");
     setPrice("");
@@ -41,8 +41,9 @@ const ProductsManagementPage = () => {
       setOperation(1);
       setOption("Registrar Producto");
     } else if (option === 2) {
-      setOperation(2);
       setOption("Editar Producto");
+      setOperation(2);
+      setId(id);
       setTitle(title);
       setDescription(description);
       setPrice(price);
@@ -52,8 +53,7 @@ const ProductsManagementPage = () => {
   };
 
   const validation = () => {
-    const dataProducts = { title, description, price, image, gender };
-
+    // validacion para cada propiedad del producto, si pasa le damos su respectivo metodo y lo agregamos a la API
     if (title.trim() === "") {
       alert("Escribe el titulo del producto");
     } else if (description.trim() === "") {
@@ -65,36 +65,42 @@ const ProductsManagementPage = () => {
     } else if (gender.trim() === "") {
       alert("Escribe el genero del producto");
     } else {
-      fetch("https://648f29e975a96b664444c707.mockapi.io/api/v1/products", {
-        method: "POST",
-        headers: { "content-type": "application/json" },
-        body: JSON.stringify(dataProducts),
-      })
-        .then((res) => {
-          alert("SAVED SUCCESS");
-          getProducts();
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-    }
-
-    {
-      /* falta implementar el metodo PUT para editar el producto 
-        fetch("https://648f29e975a96b664444c707.mockapi.io/api/v1/products", {
-          method: "PUT",
+      if (operation === 1) {
+        const dataProducts = {title,description,price,image,gender};
+        fetch("https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products", {
+          method: "POST",
           headers: { "content-type": "application/json" },
           body: JSON.stringify(dataProducts),
         })
           .then((res) => {
+            console.log(res);
             alert("SAVED SUCCESS");
             getProducts();
           })
           .catch((err) => {
             console.log(err.message);
           });
+      } else if (operation === 2) {
+        console.log("OPCION EDITAR (PUT)");
+        const dataProducts = { title, description, price, image, gender };
 
-        */
+        fetch(
+          `https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products/${id}`,
+          {
+            method: "PUT",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify(dataProducts),
+          }
+        )
+          .then((res) => {
+            console.log(res);
+            alert("SAVED SUCCESS");
+            getProducts();
+          })
+          .catch((err) => {
+            console.log(err.message);
+          });
+      }
     }
   };
 
@@ -122,6 +128,20 @@ const ProductsManagementPage = () => {
             </div>
             <div class="modal-body">
               <input type="hidden" id="id"></input>
+              <div className="input-group mb-3">
+                <span className="input-group-text">
+                  <i className="fa-solid fa-gift"></i>
+                </span>
+                <input
+                  disabled="true"
+                  type="text"
+                  id="id"
+                  className="form-control"
+                  placeholder="ID"
+                  value={id}
+                  onChange={(e) => setTitle(e.target.value)}
+                ></input>
+              </div>
               <div className="input-group mb-3">
                 <span className="input-group-text">
                   <i className="fa-solid fa-gift"></i>
@@ -210,16 +230,15 @@ const ProductsManagementPage = () => {
       </div>
       <h1>Product Management</h1>
       <div className="btn-add">
-      <button
-        type="button"
-        className="btn btn-primary mb-2 w-25"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-        onClick={() => openModal(1)}
-      >
-      
-        Añadir
-      </button>
+        <button
+          type="button"
+          className="btn btn-primary mb-2 w-25"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          onClick={() => openModal(1)}
+        >
+          Añadir
+        </button>
       </div>
       <Table bordered hover responsive>
         <thead>
@@ -229,6 +248,7 @@ const ProductsManagementPage = () => {
             <th>Descripcion</th>
             <th>Price</th>
             <th>Genero</th>
+            <th>Opciones</th>
           </tr>
         </thead>
         <tbody>
@@ -237,7 +257,7 @@ const ProductsManagementPage = () => {
               <td>{item.id}</td>
               <td>{item.title}</td>
               <td>{item.description}</td>
-              <td>{item.price}</td>
+              <td>${new Intl.NumberFormat("es-mx").format(item.price)}</td>
               <td>{item.gender}</td>
               <button
                 type="button"

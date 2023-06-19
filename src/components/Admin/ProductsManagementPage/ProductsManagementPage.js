@@ -13,6 +13,7 @@ const ProductsManagementPage = () => {
   const [price, setPrice] = useState();
   const [image, setImage] = useState();
   const [gender, setGender] = useState();
+  const [stock, setStock] = useState();
 
   useEffect(() => {
     getProducts();
@@ -28,11 +29,21 @@ const ProductsManagementPage = () => {
     }
   };
 
-  const openModal = (option, id, title, description, price, image, gender) => {
+  const openModal = (
+    option,
+    id,
+    title,
+    description,
+    price,
+    image,
+    gender,
+    stock
+  ) => {
     setId("");
     setTitle("");
     setDescription("");
-    setPrice("");
+    setPrice();
+    setStock();
     setImage("");
     setGender("");
     setOperation(option);
@@ -47,6 +58,7 @@ const ProductsManagementPage = () => {
       setTitle(title);
       setDescription(description);
       setPrice(price);
+      setStock(stock);
       setImage(image);
       setGender(gender);
     }
@@ -58,15 +70,17 @@ const ProductsManagementPage = () => {
       alert("Escribe el titulo del producto");
     } else if (description.trim() === "") {
       alert("Escribe la descripcion del producto");
-    } else if (price === "") {
+    } else if (price <= 0) {
       alert("Escribe el precio del producto");
     } else if (image.trim() === "") {
       alert("Escribe la url del producto");
     } else if (gender.trim() === "") {
       alert("Escribe el genero del producto");
+    } else if (stock <= 0) {
+      alert("El stock debe ser mayor que cero");
     } else {
       if (operation === 1) {
-        const dataProducts = { title, description, price, image, gender };
+        const dataProducts = { title, description, price, image, gender, stock };
         fetch("https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products", {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -81,7 +95,7 @@ const ProductsManagementPage = () => {
             console.log(err.message);
           });
       } else if (operation === 2) {
-        const dataProducts = { title, description, price, image, gender };
+        const dataProducts = { title, description, price, image, gender, stock };
 
         fetch(
           `https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products/${id}`,
@@ -154,7 +168,6 @@ const ProductsManagementPage = () => {
                   className="form-control"
                   placeholder="ID"
                   value={id}
-                  onChange={(e) => setTitle(e.target.value)}
                 ></input>
               </div>
               <div className="input-group mb-3">
@@ -193,7 +206,20 @@ const ProductsManagementPage = () => {
                   className="form-control"
                   placeholder="Precio"
                   value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={(e) => setPrice(parseFloat(e.target.value))}
+                ></input>
+              </div>
+              <div className="input-group mb-3">
+                <span className="input-group-text">
+                  <i className="fa-solid fa-gift"></i>
+                </span>
+                <input
+                  type="number"
+                  id="stock"
+                  className="form-control"
+                  placeholder="Stock"
+                  value={stock}
+                  onChange={(e) => setStock(parseFloat(e.target.value))}
                 ></input>
               </div>
               <div className="input-group mb-3">
@@ -263,6 +289,7 @@ const ProductsManagementPage = () => {
             <th>Descripcion</th>
             <th>Price</th>
             <th>Genero</th>
+            <th>Stock</th>
             <th>Opciones</th>
           </tr>
         </thead>
@@ -274,6 +301,7 @@ const ProductsManagementPage = () => {
               <td>{item.description}</td>
               <td>${new Intl.NumberFormat("es-mx").format(item.price)}</td>
               <td>{item.gender}</td>
+              <td>{item.stock}</td>
               <button
                 type="button"
                 class="btn btn-primary"
@@ -287,7 +315,8 @@ const ProductsManagementPage = () => {
                     item.description,
                     item.price,
                     item.image,
-                    item.gender
+                    item.gender,
+                    item.stock
                   )
                 }
               >

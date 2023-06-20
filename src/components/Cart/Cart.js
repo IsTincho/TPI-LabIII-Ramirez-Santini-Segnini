@@ -24,8 +24,10 @@ const Cart = () => {
     removeFromCart(productId);
   };
 
+  // Borrar carrito del localStorage y los productos del carrito.
   const handleClearCart = () => {
     clearCart();
+    localStorage.removeItem("cart"); 
   };
 
   

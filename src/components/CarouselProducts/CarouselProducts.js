@@ -1,8 +1,10 @@
-import React from "react";
-import Carousel from "react-multi-carousel";
-import Spinner from "../ui/Spinner/Spinner";
+import { React } from "react";
+
 import "react-multi-carousel/lib/styles.css";
 import "./CarouselProducts.css";
+
+import Carousel from "react-multi-carousel";
+import Spinner from "../ui/Spinner/Spinner";
 
 const responsive = {
   superLargeDesktop: {
@@ -24,9 +26,12 @@ const responsive = {
 };
 
 const CarouselProducts = (products) => {
+ //const { cart, setCart } = useContext(CartContext);
+
   const filteredProducts = products?.data?.filter((item) => {
     return item.gender === "Mujer" || (item.gender === "Hombre" && item.id > 7);
   });
+  
   return (
     <div className="container">
       <h1 className="p-destacados">Productos Destacados</h1>

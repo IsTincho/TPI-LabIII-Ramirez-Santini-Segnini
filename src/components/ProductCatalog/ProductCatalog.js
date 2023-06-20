@@ -1,6 +1,5 @@
 import { React, useState, useEffect, useContext } from "react";
 
-
 import "./ProductCatalog.css";
 import { CartContext } from "../services/cartcontext/cart.context";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
@@ -21,6 +20,18 @@ const ProductCatalog = ({ product }) => {
     }
   }, [product]);
 
+  // Recuperar productos del localStorage
+  useEffect(() => {
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      try {
+        setCart(JSON.parse(savedCart));
+      } catch (error) {
+        console.error("Error parsing cart data:", error);
+      }
+    }
+  }, [setCart]);
+
   if (!products) {
     return null; // Retorna null o un componente de carga mientras se carga el producto
   }
@@ -29,6 +40,7 @@ const ProductCatalog = ({ product }) => {
 
   const addToCart = () => {
     setCart([...cart, products]);
+    localStorage.setItem("cart", JSON.stringify(cart));
   };
 
   return (

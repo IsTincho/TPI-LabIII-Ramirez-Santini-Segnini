@@ -3,6 +3,9 @@ import { React, useState, useEffect, useContext } from "react";
 import "./ProductCatalog.css";
 import { CartContext } from "../services/cartcontext/cart.context";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import ProductCard from "../ProductCard/ProductCard";
 import ChangeStock from "../ChangeStock/ChangeStock";
 
@@ -41,6 +44,16 @@ const ProductCatalog = ({ product }) => {
   const addToCart = () => {
     setCart([...cart, products]);
     localStorage.setItem("cart", JSON.stringify(cart));
+    toast.success('¡Producto añadido!', {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   };
 
   return (
@@ -66,6 +79,7 @@ const ProductCatalog = ({ product }) => {
               <div className="btn">
                 <button onClick={addToCart}>Añadir al carrito</button>
               </div>
+              <ToastContainer />
             </div>
           </div>
         </div>

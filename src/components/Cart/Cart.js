@@ -1,11 +1,14 @@
 import React, { useContext } from "react";
 import { CartContext } from "../services/cartcontext/cart.context";
-import { ProductCatalogContext } from "../services/productCatalogcontext/productCatalog.context";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "../Cart/Cart.css";
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
-  
+
   const getProductCount = (productId) => {
     let count = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -22,15 +25,33 @@ const Cart = () => {
 
   const handleRemoveFromCart = (productId) => {
     removeFromCart(productId);
+    toast.success('¡Producto borrado!', {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   };
 
   // Borrar carrito del localStorage y los productos del carrito.
   const handleClearCart = () => {
     clearCart();
-    localStorage.removeItem("cart"); 
+    localStorage.removeItem("cart");
+    toast.success('¡Carrito borrado!', {
+      position: "top-left",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      });
   };
-
-  
 
   return (
     <div className="cart">
@@ -65,15 +86,15 @@ const Cart = () => {
           <button type="button" className="cart-button">
             Finalizar Compra
           </button>
-          <img 
+          <img
             onClick={handleClearCart}
             width="50px"
             height="50px"
             alt="Vaciar carrito"
             src="https://img.icons8.com/?size=1x&id=14237&format=png"
             className="clear-button"
-            
           ></img>
+          <ToastContainer/>
         </div>
       )}
     </div>

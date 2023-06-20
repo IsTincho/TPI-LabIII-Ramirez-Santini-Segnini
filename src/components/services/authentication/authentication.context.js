@@ -28,6 +28,7 @@ export const AuthenticationContextProvider = ({ children }) => {
         setUser(null);
         localStorage.removeItem("user"); // Eliminar el usuario de Local Storage al cerrar sesión
         localStorage.removeItem("isAdmin");
+        localStorage.removeItem("cart");
       }
     });
 

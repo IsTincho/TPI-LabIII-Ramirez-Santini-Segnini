@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
 import { CartContext } from "../services/cartcontext/cart.context";
-
+import { ProductCatalogContext } from "../services/productCatalogcontext/productCatalog.context";
 import "../Cart/Cart.css";
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
-
+  
   const getProductCount = (productId) => {
     let count = 0;
     for (let i = 0; i < cart.length; i++) {
@@ -27,6 +27,8 @@ const Cart = () => {
   const handleClearCart = () => {
     clearCart();
   };
+
+  
 
   return (
     <div className="cart">

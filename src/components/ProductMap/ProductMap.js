@@ -1,8 +1,6 @@
 import ProductCatalog from "../ProductCatalog/ProductCatalog";
 
 const ProductMap = (products) => {
-  console.log(products);
-
   const filterProducts = products?.data?.filter((e) => {
     return e.gender;
   });

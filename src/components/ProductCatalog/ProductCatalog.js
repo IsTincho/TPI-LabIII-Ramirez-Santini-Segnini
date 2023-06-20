@@ -1,27 +1,30 @@
 import { React, useState, useEffect, useContext } from "react";
-import { CartContext } from "../services/cartcontext/cart.context";
+
 
 import "./ProductCatalog.css";
-
+import { CartContext } from "../services/cartcontext/cart.context";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import ProductCard from "../ProductCard/ProductCard";
 import ChangeStock from "../ChangeStock/ChangeStock";
 
 const ProductCatalog = ({ product }) => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const { cart, setCart } = useContext(CartContext);
   const { user } = useContext(AuthenticationContext);
 
   // Setear productos.
   useEffect(() => {
-    if (!product) {
-      setProducts("");
-    } else {
+    if (product) {
       setProducts(product);
+    } else {
+      setProducts(null);
     }
   }, [product]);
 
-  // Desestructurar mas datos si es necesario: id, category, rating, etc.
+  if (!products) {
+    return null; // Retorna null o un componente de carga mientras se carga el producto
+  }
+
   const { id, title, price, image, stock, description } = products;
 
   const addToCart = () => {
@@ -39,7 +42,9 @@ const ProductCatalog = ({ product }) => {
                 <h4>{title}</h4>
                 <h3>${price}</h3>
                 <div className="stock-product">
-                {user.isAdmin ? <ChangeStock stockProp={stock} idProp={id} /> : null}
+                  {user.isAdmin ? (
+                    <ChangeStock stockProp={stock} idProp={id} />
+                  ) : null}
                 </div>
               </div>
             </div>

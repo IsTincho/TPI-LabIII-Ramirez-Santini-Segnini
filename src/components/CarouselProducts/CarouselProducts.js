@@ -1,5 +1,8 @@
-import { React } from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../services/cartcontext/cart.context";
+import { toast } from "react-toastify";
 
+import "react-toastify/dist/ReactToastify.css";
 import "react-multi-carousel/lib/styles.css";
 import "./CarouselProducts.css";
 
@@ -26,12 +29,28 @@ const responsive = {
 };
 
 const CarouselProducts = (products) => {
- //const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart } = useContext(CartContext);
 
   const filteredProducts = products?.data?.filter((item) => {
     return item.gender === "Mujer" || (item.gender === "Hombre" && item.id > 7);
   });
-  
+
+  const addToCart = (product) => {
+    const newCart = [...cart, product];
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    toast.success("¡Producto añadido!", {
+      position: "top-left",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   return (
     <div className="container">
       <h1 className="p-destacados">Productos Destacados</h1>
@@ -41,8 +60,11 @@ const CarouselProducts = (products) => {
             <div className="container-cards" key={item.id}>
               <div className="card">
                 <img src={item.image} alt="" />
+                <h4>{item.title}</h4>
                 <h4>${item.price}</h4>
-                <button>Añadir</button>
+                <button className="btn-style" onClick={() => addToCart(item)}>
+                  Añadir al carrito
+                </button>
               </div>
             </div>
           ))

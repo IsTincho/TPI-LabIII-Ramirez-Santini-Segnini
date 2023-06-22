@@ -1,11 +1,9 @@
-import { React, useState, useEffect, useContext } from "react";
-
+import React, { useState, useEffect, useContext } from "react";
 import "./ProductCatalog.css";
 import { CartContext } from "../services/cartcontext/cart.context";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ProductCard from "../ProductCard/ProductCard";
 import ChangeStock from "../ChangeStock/ChangeStock";
 
@@ -40,20 +38,21 @@ const ProductCatalog = ({ product }) => {
   }
 
   const { id, title, price, image, stock, description } = products;
-
+  
   const addToCart = () => {
-    setCart([...cart, products]);
-    localStorage.setItem("cart", JSON.stringify(cart));
-    toast.success('¡Producto añadido!', {
+    const newCart = [...cart, products];
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    toast.success("¡Producto añadido!", {
       position: "top-left",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
+    });
   };
 
   return (
@@ -67,19 +66,16 @@ const ProductCatalog = ({ product }) => {
                 <h4>{title}</h4>
                 <h3>${price}</h3>
                 <div className="stock-product">
-                  {user.isAdmin ? (
-                    <ChangeStock stockProp={stock} idProp={id} />
-                  ) : null}
+                  {user.isAdmin ? <ChangeStock stockProp={stock} idProp={id} /> : null}
                 </div>
               </div>
             </div>
             <hr />
             <p>{description}</p>
             <div className="btn-group">
-              <div className="btn">
+              <div className="btn-cart">
                 <button onClick={addToCart}>Añadir al carrito</button>
               </div>
-              <ToastContainer />
             </div>
           </div>
         </div>

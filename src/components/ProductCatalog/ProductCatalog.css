@@ -59,23 +59,23 @@
   display: flex;
 }
 
-.btn-group .btn button {
+.btn-group .btn-cart button {
   transition: all 0.2s ease-in-out 0ms;
   border: none;
   justify-content: center;
   padding: 5px 15px;
-  background-color: #2cd453;
+  background-color: #2cbbd4;
   color: #fff;
   border-radius: 3px;
   margin-left: -2px;
 }
 
-.btn-group .btn button:hover {
-  background-color: #93e696;
+.btn-group .btn-cart button:hover {
+  background-color: #2cbbd4;
   box-shadow: 0px 0px 20px -18px;
 }
 
-.btn-group .btn button:active {
+.btn-group .btn-cart button:active {
   transform: scale(0.95);
 }
 

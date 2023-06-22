@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { CartContext } from "../services/cartcontext/cart.context";
-
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 import "../Cart/Cart.css";
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
+  const lastToastRef = useRef(null);
 
   const getProductCount = (productId) => {
     let count = 0;
@@ -25,32 +24,43 @@ const Cart = () => {
 
   const handleRemoveFromCart = (productId) => {
     removeFromCart(productId);
-    toast.success('¡Producto borrado!', {
+
+    const newToastMessage = '¡Producto borrado!';
+    if (lastToastRef.current && lastToastRef.current.props && lastToastRef.current.props.children === newToastMessage) {
+      return;
+    }
+
+    lastToastRef.current = toast.error(newToastMessage, {
       position: "top-left",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
+    });
   };
 
-  // Borrar carrito del localStorage y los productos del carrito.
   const handleClearCart = () => {
     clearCart();
     localStorage.removeItem("cart");
-    toast.success('¡Carrito borrado!', {
+
+    const newToastMessage = '¡Carrito borrado!';
+    if (lastToastRef.current && lastToastRef.current.props && lastToastRef.current.props.children === newToastMessage) {
+      return;
+    }
+
+    lastToastRef.current = toast.error(newToastMessage, {
       position: "top-left",
-      autoClose: 5000,
+      autoClose: 2000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
       theme: "light",
-      });
+    });
   };
 
   return (
@@ -94,7 +104,6 @@ const Cart = () => {
             src="https://img.icons8.com/?size=1x&id=14237&format=png"
             className="clear-button"
           ></img>
-          <ToastContainer/>
         </div>
       )}
     </div>

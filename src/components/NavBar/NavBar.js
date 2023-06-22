@@ -4,10 +4,11 @@ import { useNavigate } from "react-router";
 import { Button } from "react-bootstrap";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 
-import log from "../img/logo.svg";
+import { borderStyle } from "../Login/bordercolor.js";
+import log from "../img/icon.svg";
 import cart from "../img/cart.svg";
 import Cart from "../Cart/Cart";
-import "../NavBar/NavBar.css"
+import "../NavBar/NavBar.css";
 
 const NavBar = ({ onLogout }) => {
   const navigation = useNavigate();
@@ -27,9 +28,15 @@ const NavBar = ({ onLogout }) => {
     setIsCartOpen(!isCartOpen); // Cambia el estado del carrito abierto o cerrado
   };
 
-  const navbarStyle = {
-    border: "0.5px solid",
+  // Funcion para prevenir el redireccionamiento innecesario. (borrrar si es necesario)
+  const handlePreventRediction = (event) => {
+    event.preventDefault();
+    console.log("El evento fue prevenido");
   };
+
+  // const navbarStyle = {
+  //   border: "0.5px solid",
+  // };
 
   const linkStyle = {
     border: "2px solid",
@@ -57,11 +64,16 @@ const NavBar = ({ onLogout }) => {
     <div>
       <nav
         className="navbar navbar-expand-sm navbar-light bg-light fixed-top"
-        style={navbarStyle}
+        style={borderStyle}
       >
         <div className="container-fluid mx-auto">
           <a className="navbar-brand mx-auto" href=".">
-            <img src={log} style={logoStyle} />
+            <img
+              src={log}
+              style={logoStyle}
+              onClick={handlePreventRediction}
+              alt="logo"
+            />
           </a>
           <button
             className="navbar-toggler"
@@ -92,7 +104,12 @@ const NavBar = ({ onLogout }) => {
                 </li>
               )}
               <li className="nav-item">
-                <a className="nav-link" style={linkStyle}>
+                <a
+                  className="nav-link"
+                  style={linkStyle}
+                  href="."
+                  onClick={handlePreventRediction}
+                >
                   ¡Bienvenido {user.username}!
                 </a>
               </li>

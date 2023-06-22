@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 
 import { Button } from "react-bootstrap";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
+import { CartContext } from "../services/cartcontext/cart.context";
 
 import { borderStyle } from "../Login/bordercolor.js";
 import log from "../img/icon.svg";
@@ -13,6 +14,7 @@ import "../NavBar/NavBar.css";
 const NavBar = ({ onLogout }) => {
   const navigation = useNavigate();
   const { user } = useContext(AuthenticationContext);
+  const { totalProductCount } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const onLogoutHandler = () => {
@@ -116,17 +118,17 @@ const NavBar = ({ onLogout }) => {
             </ul>
           </div>
           <form className="d-flex justify-content-between">
-            <div className="navbar-brand mx-auto cart-dropdown-container">
+            <div className="navbar-brand mx-auto mt-2 cart-dropdown-container">
               <img
                 src={cart}
                 style={logoStyle}
                 alt="cart"
                 onClick={toggleCart} // Agrega el evento onClick para abrir o cerrar el carrito al hacer clic en la imagen
               />
+              <span className="cart-item-count">{totalProductCount}</span>
               {isCartOpen && <Cart />}{" "}
               {/* Muestra el componente Cart solo si el carrito está abierto */}
             </div>
-
             <Button
               style={buttonStyle}
               type="button"

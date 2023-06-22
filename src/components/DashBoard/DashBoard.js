@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import { CartProvider } from "../services/cartcontext/cart.context";
-import { ProductCatalogProvider } from "../services/productCatalogcontext/productCatalog.context";
 
 import NavBar from "../NavBar/NavBar";
 import ProductProvider from "../ProductProvider/ProductProvider";
@@ -23,13 +22,11 @@ const DashBoard = () => {
 
   return (
     <div>
-      <ProductCatalogProvider>
         <CartProvider>
           <NavBar onLogout={onLogoutHandler} />
           <ProductProvider />
           <ProductCatalog />
         </CartProvider>
-      </ProductCatalogProvider>
     </div>
   );
 };

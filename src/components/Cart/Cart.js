@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext } from "react";
 import { CartContext } from "../services/cartcontext/cart.context";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -6,7 +6,6 @@ import "../Cart/Cart.css";
 
 const Cart = () => {
   const { cart, removeFromCart, clearCart } = useContext(CartContext);
-  const lastToastRef = useRef(null);
 
   const getProductCount = (productId) => {
     let count = 0;
@@ -24,13 +23,7 @@ const Cart = () => {
 
   const handleRemoveFromCart = (productId) => {
     removeFromCart(productId);
-
-    const newToastMessage = '¡Producto borrado!';
-    if (lastToastRef.current && lastToastRef.current.props && lastToastRef.current.props.children === newToastMessage) {
-      return;
-    }
-
-    lastToastRef.current = toast.error(newToastMessage, {
+    toast.error("¡Producto borrado!", {
       position: "top-left",
       autoClose: 2000,
       hideProgressBar: false,
@@ -45,13 +38,7 @@ const Cart = () => {
   const handleClearCart = () => {
     clearCart();
     localStorage.removeItem("cart");
-
-    const newToastMessage = '¡Carrito borrado!';
-    if (lastToastRef.current && lastToastRef.current.props && lastToastRef.current.props.children === newToastMessage) {
-      return;
-    }
-
-    lastToastRef.current = toast.error(newToastMessage, {
+    toast.error("¡Carrito borrado!", {
       position: "top-left",
       autoClose: 2000,
       hideProgressBar: false,

@@ -23,7 +23,7 @@ const NavBar = ({ onLogout }) => {
   const adminPageClickHandler = () => {
     navigation("/admin"); // Redirige al usuario a la página "/admin" al hacer clic en el botón "AdminPage"
   };
-
+ 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen); // Cambia el estado del carrito abierto o cerrado
   };

@@ -5,7 +5,6 @@ import { Button } from "react-bootstrap";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import { CartContext } from "../services/cartcontext/cart.context";
 
-import { borderStyle } from "../Login/bordercolor.js";
 import log from "../img/icon.svg";
 import cart from "../img/cart.svg";
 import Cart from "../Cart/Cart";
@@ -36,9 +35,9 @@ const NavBar = ({ onLogout }) => {
     console.log("El evento fue prevenido");
   };
 
-  // const navbarStyle = {
-  //   border: "0.5px solid",
-  // };
+  const navbarStyle = {
+    border: "0.5px solid",
+  };
 
   const linkStyle = {
     border: "2px solid",
@@ -66,7 +65,7 @@ const NavBar = ({ onLogout }) => {
     <div>
       <nav
         className="navbar navbar-expand-sm navbar-light bg-light fixed-top"
-        style={borderStyle}
+        style={navbarStyle}
       >
         <div className="container-fluid mx-auto">
           <a className="navbar-brand mx-auto" href=".">

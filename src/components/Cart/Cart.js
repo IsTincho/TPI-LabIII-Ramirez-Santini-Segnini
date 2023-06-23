@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import "../Cart/Cart.css";
 
 const Cart = () => {
-  const { cart, removeFromCart, clearCart } = useContext(CartContext);
+  const { cart, clearCart, setCart } = useContext(CartContext);
 
   const getProductCount = (productId) => {
     let count = 0;
@@ -22,17 +22,22 @@ const Cart = () => {
   const totalPrice = cart.reduce((total, product) => total + product.price, 0);
 
   const handleRemoveFromCart = (productId) => {
-    removeFromCart(productId);
-    toast.error("¡Producto borrado!", {
-      position: "top-left",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+    const productIndex = cart.findIndex((product) => product.id === productId);
+    if (productIndex !== -1) {
+      const updatedCart = [...cart];
+      updatedCart.splice(productIndex, 1);
+      setCart(updatedCart);
+      toast.error("¡Producto borrado!", {
+        position: "top-left",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   const handleClearCart = () => {

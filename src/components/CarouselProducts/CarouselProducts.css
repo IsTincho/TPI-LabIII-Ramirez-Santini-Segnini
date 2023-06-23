@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300&display=swap");
 
+
+.book-item-container-dark {
+  background-color: #020c1a;
+  color: white;
+
+}
+
+
 .react-multi-carousel-list {
   /* Si pongo el justify me deja una card vacía en el carousel */
   align-items: center;
@@ -28,6 +36,7 @@ img {
   background: transparent;
   /* Agrega esta propiedad para eliminar el margen superior */
   margin-top: 0;
+
 }
 
 
@@ -50,7 +59,7 @@ h1 {
   margin: auto 0.5rem;
   text-align: center;
   font-family: arial;
-  background: white;
+  background: transparent;
   border-radius: 5px;
   box-shadow: 0 12px 12px 0 rgba(-3, 15, 25, 0.2);
 }
@@ -59,16 +68,12 @@ h4 {
   font-size: 18px;
 }
 
-h2 {
-  color: rgb(192, 185, 185);
-}
 
 p {
   text-align: center;
   font-family: monospace;
   font-size: 26px;
   margin: 0;
-  color: rgb(85, 82, 82);
 }
 
 .card button {

@@ -7,6 +7,7 @@ import { AuthenticationContext } from "../../services/authentication/authenticat
 import ProductsManagementPage from "../ProductsManagementPage/ProductsManagementPage";
 import UnknownPage from "../UnknownPage/UnknownPage";
 import UserManagementScreen from "../UserManagementPage/UserManagementScreen";
+import ToggleTheme from "../../ui/ToggleTheme";
 
 const AdminPage = () => {
   const { user, handleLogout } = useContext(AuthenticationContext);
@@ -61,6 +62,7 @@ const AdminPage = () => {
           <Button variant="outline-danger" onClick={handleLogout}>
             Cerrar Sesión
           </Button>
+          <ToggleTheme />
         </Navbar.Collapse>
       </Navbar>
       {currentPage === "userManagementScreen" && <UserManagementScreen />}

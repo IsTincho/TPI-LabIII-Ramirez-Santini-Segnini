@@ -5,7 +5,15 @@ import RegisterForm from "./RegisterForm";
 import { borderStyle } from "./bordercolor";
 import { TiEyeOutline, TiEye } from "react-icons/ti";
 
+import ToggleTheme from "../ui/ToggleTheme";
+
+import { ThemeContext } from "../services/theme.context";
+
+
 const LoginForm = () => {
+
+  const {theme} = useContext(ThemeContext)
+
   const buttonStyle = {
     marginRight: "8px",
   };
@@ -75,7 +83,7 @@ const LoginForm = () => {
     <div className="container">
       <div className="row vh-100 justify-content-center align-items-center">
         <div className="col-12 col-md-6 col-lg-4 p-4" style={borderStyle}>
-          <h2 className="text-center mb-4" style={{ color: "black" }}>
+          <h2 className="text-center mb-4">
             Menú de inicio de Sesión
           </h2>
           <form onSubmit={signInHandler}>
@@ -138,6 +146,7 @@ const LoginForm = () => {
                 Registrarse
               </button>
             </div>
+            <ToggleTheme />
           </form>
         </div>
       </div>

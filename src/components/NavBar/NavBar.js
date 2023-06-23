@@ -9,6 +9,7 @@ import log from "../img/icon.svg";
 import cart from "../img/cart.svg";
 import Cart from "../Cart/Cart";
 import "../NavBar/NavBar.css";
+import ToggleTheme from "../ui/ToggleTheme";
 
 const NavBar = ({ onLogout }) => {
   const navigation = useNavigate();
@@ -137,6 +138,7 @@ const NavBar = ({ onLogout }) => {
               Cerrar sesión
             </Button>
           </form>
+          <ToggleTheme />
         </div>
       </nav>
     </div>

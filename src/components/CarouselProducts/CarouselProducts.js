@@ -8,6 +8,7 @@ import "./CarouselProducts.css";
 
 import Carousel from "react-multi-carousel";
 import Spinner from "../ui/Spinner/Spinner";
+import { ThemeContext } from "../services/theme.context";
 
 const responsive = {
   superLargeDesktop: {
@@ -51,6 +52,8 @@ const CarouselProducts = (products) => {
     });
   };
 
+  const { theme } = useContext(ThemeContext);
+
   return (
     <div className="container">
       <h1 className="p-destacados">Productos Destacados</h1>
@@ -60,8 +63,15 @@ const CarouselProducts = (products) => {
             <div className="container-cards" key={item.id}>
               <div className="card">
                 <img src={item.image} alt="" />
-                <h4>{item.title}</h4>
-                <h4>${item.price}</h4>
+                <div
+                  className={`book-item-container ${
+                    theme === "dark" && "book-item-container-dark"
+                  }`}
+                >
+                  <h4>{item.title}</h4>
+                  <h4>${item.price}</h4>
+                </div>
+
                 <button className="btn-style" onClick={() => addToCart(item)}>
                   Añadir al carrito
                 </button>

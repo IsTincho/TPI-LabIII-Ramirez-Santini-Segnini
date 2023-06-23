@@ -7,11 +7,16 @@ import "./index.css";
 
 import App from "./App";
 import { AuthenticationContextProvider } from "./components/services/authentication/authentication.context";
+
+import { ThemeContextProvider } from "./components/services/theme.context";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <AuthenticationContextProvider>
-      <App />
-    </AuthenticationContextProvider>
-  </React.StrictMode>
+  <ThemeContextProvider>
+    <React.StrictMode>
+      <AuthenticationContextProvider>
+        <App />
+      </AuthenticationContextProvider>
+    </React.StrictMode>
+  </ThemeContextProvider>
 );

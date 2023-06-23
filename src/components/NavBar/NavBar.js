@@ -10,12 +10,15 @@ import cart from "../img/cart.svg";
 import Cart from "../Cart/Cart";
 import "../NavBar/NavBar.css";
 import ToggleTheme from "../ui/ToggleTheme";
+import { ThemeContext } from "../services/theme.context";
 
 const NavBar = ({ onLogout }) => {
   const navigation = useNavigate();
   const { user } = useContext(AuthenticationContext);
   const { totalProductCount } = useContext(CartContext);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  
+  const { theme } = useContext(ThemeContext);
 
   const onLogoutHandler = () => {
     onLogout();
@@ -41,6 +44,8 @@ const NavBar = ({ onLogout }) => {
   };
 
   const linkStyle = {
+    color:"black",
+    background:"white",
     border: "2px solid",
     borderImage: "linear-gradient(to right, #63e4f2, #ed409f) 1",
     padding: "8px",
@@ -63,9 +68,11 @@ const NavBar = ({ onLogout }) => {
   };
 
   return (
-    <div>
+    <div  className={`book-item-container ${
+      theme === "dark" && "book-item-container-dark"
+    }`}>
       <nav
-        className="navbar navbar-expand-sm navbar-light bg-light fixed-top"
+        className="navbar navbar-expand-sm fixed-top navbar-dark"
         style={navbarStyle}
       >
         <div className="container-fluid mx-auto">
@@ -95,9 +102,9 @@ const NavBar = ({ onLogout }) => {
               style={{ display: "flex", alignItems: "center" }}
             >
               {user && user.isAdmin && (
-                <li className="nav-item">
+                <li >
                   <button
-                    className="nav-link"
+                    
                     style={linkStyle}
                     onClick={adminPageClickHandler}
                   >
@@ -105,11 +112,9 @@ const NavBar = ({ onLogout }) => {
                   </button>
                 </li>
               )}
-              <li className="nav-item">
+              <li>
                 <a
-                  className="nav-link"
                   style={linkStyle}
-                  href="."
                   onClick={handlePreventRediction}
                 >
                   ¡Bienvenido {user.username}!
@@ -138,7 +143,10 @@ const NavBar = ({ onLogout }) => {
               Cerrar sesión
             </Button>
           </form>
+          <div>
           <ToggleTheme />
+          </div>
+          
         </div>
       </nav>
     </div>

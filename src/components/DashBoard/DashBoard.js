@@ -10,6 +10,7 @@ import ProductCatalog from "../ProductCatalog/ProductCatalog";
 
 
 const DashBoard = () => {
+
   const navigate = useNavigate();
 
   const { handleLogout } = useContext(AuthenticationContext);

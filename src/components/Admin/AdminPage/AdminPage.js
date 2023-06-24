@@ -31,8 +31,8 @@ const AdminPage = () => {
   };
 
   return (
-    <div>
-      <Navbar bg="light" expand="lg">
+    <div className="bg-light">
+      <Navbar>
         <Navbar.Brand>Admin Panel</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -49,20 +49,18 @@ const AdminPage = () => {
             >
               Products Management
             </Nav.Link>
-            <Nav.Link
-              onClick={handleUnknownPage}
-              className="btn btn-outline-light"
-            >
+            <Nav.Link onClick={handleUnknownPage} variant="outline-danger">
               Unknown Page
             </Nav.Link>
-          </Nav>
-          <Nav.Link onClick={handleGoBack} className="btn btn-outline-light">
+            <Nav.Link onClick={handleGoBack} variant="outline-danger">
             Volver al Inicio
           </Nav.Link>
+          </Nav>
+          
+
           <Button variant="outline-danger" onClick={handleLogout}>
             Cerrar Sesión
           </Button>
-          <ToggleTheme />
         </Navbar.Collapse>
       </Navbar>
       {currentPage === "userManagementScreen" && <UserManagementScreen />}

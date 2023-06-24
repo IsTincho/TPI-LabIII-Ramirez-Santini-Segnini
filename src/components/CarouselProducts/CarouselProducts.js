@@ -64,9 +64,9 @@ const CarouselProducts = (products) => {
               <div className="card">
                 <img src={item.image} alt="" />
                 <div
-                  className={`book-item-container ${
+                  /*className={`book-item-container ${
                     theme === "dark" && "book-item-container-dark"
-                  }`}
+                  }`} */
                 >
                   <h4>{item.title}</h4>
                   <h4>${item.price}</h4>

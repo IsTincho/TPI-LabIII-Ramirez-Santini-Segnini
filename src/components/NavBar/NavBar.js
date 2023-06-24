@@ -72,7 +72,7 @@ const NavBar = ({ onLogout }) => {
       theme === "dark" && "book-item-container-dark"
     }`}>
       <nav
-        className="navbar navbar-expand-sm fixed-top navbar-dark"
+        className="navbar navbar-expand-sm fixed-top navbar-light bg-secondary"
         style={navbarStyle}
       >
         <div className="container-fluid mx-auto">

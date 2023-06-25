@@ -1,3 +1,9 @@
+
+.book-item-container-dark {
+  background-color: #020c1a;
+  color: white;
+}
+
 .cart-dropdown-container {
   position: relative;
   display: inline-block;
@@ -43,3 +49,4 @@
   border-style: solid;
   border-color: transparent transparent #ffffff transparent;
 }
+

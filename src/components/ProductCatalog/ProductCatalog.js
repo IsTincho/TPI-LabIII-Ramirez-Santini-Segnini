@@ -63,7 +63,7 @@ const ProductCatalog = ({ product }) => {
           <div className="card-body">
             <div className="row">
               <div className="card-title">
-                <h4>{title}</h4>
+                <h4 >{title}</h4>
                 <h3>${price}</h3>
                 <div className="stock-product">
                   {user.isAdmin ? <ChangeStock stockProp={stock} idProp={id} /> : null}

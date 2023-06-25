@@ -8,7 +8,9 @@ import NavBar from "../NavBar/NavBar";
 import ProductProvider from "../ProductProvider/ProductProvider";
 import ProductCatalog from "../ProductCatalog/ProductCatalog";
 
+
 const DashBoard = () => {
+
   const navigate = useNavigate();
 
   const { handleLogout } = useContext(AuthenticationContext);

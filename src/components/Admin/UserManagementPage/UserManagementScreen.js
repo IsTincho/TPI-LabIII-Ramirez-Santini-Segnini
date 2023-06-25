@@ -102,10 +102,13 @@ const UserManagementScreen = () => {
   return (
     <div>
       <h1>Administración de Usuarios</h1>
-      <Button variant="outline-primary" onClick={handleToggleAddNewUsers}>
-        Agregar Nuevo Usuario
-      </Button>
-      {showAddNewUsers && <AddNewUsers />}
+      {showAddNewUsers ? (
+        <AddNewUsers />
+      ) : (
+        <Button variant="outline-primary" onClick={handleToggleAddNewUsers}>
+          Agregar Nuevo Usuario
+        </Button>
+      )}{" "}
       <Table responsive>
         <thead>
           <tr>
@@ -139,7 +142,6 @@ const UserManagementScreen = () => {
           ))}
         </tbody>
       </Table>
-
       <Modal show={showDeleteModal} onHide={closeDeleteModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmar Eliminación</Modal.Title>
@@ -157,7 +159,6 @@ const UserManagementScreen = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-
       <Modal show={showAdminModal} onHide={closeAdminModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmar Cambio de Estado de Admin</Modal.Title>

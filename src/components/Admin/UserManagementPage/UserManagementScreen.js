@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import AddNewUsers from "./AddNewUsers";
 
-const UserManagementScreen = () => {
+const UserManagementScreen = ({ theme }) => {
   const { user } = useContext(AuthenticationContext);
   const [users, setUsers] = useState([]);
   const [userToDelete, setUserToDelete] = useState(null);
@@ -100,7 +100,7 @@ const UserManagementScreen = () => {
   }
 
   return (
-    <div>
+    <div className={theme === "light" ? "bg-light" : "bg-dark text-light"}>
       <h1>Administración de Usuarios</h1>
       {showAddNewUsers ? (
         <AddNewUsers />
@@ -109,7 +109,10 @@ const UserManagementScreen = () => {
           Agregar Nuevo Usuario
         </Button>
       )}{" "}
-      <Table responsive>
+      <Table
+        responsive
+        className={theme === "light" ? "table-light" : "table-dark"}
+      >
         <thead>
           <tr>
             <th>Nombre de usuario</th>

@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 
 import "./App.css";
-import { ThemeContext } from "./components/services/theme.context"
+import { ThemeContext } from "./components/services/theme/theme.context";
 import DashBoard from "./components/DashBoard/DashBoard";
 import Protected from "./components/routes/Protected";
 import NotFound from "./components/routes/NotFound";
@@ -17,8 +17,6 @@ import AdminProtected from "./components/routes/AdminProtected";
 import AdminPage from "./components/Admin/AdminPage/AdminPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-
 
 const App = () => {
   const { theme } = useContext(ThemeContext);

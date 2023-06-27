@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { TiEyeOutline, TiEye } from "react-icons/ti";
 
@@ -7,6 +7,8 @@ import "firebase/database";
 
 import { auth, database } from "../firebaseConfig/firebaseConfig.js";
 import { borderStyle } from "./bordercolor.js";
+import ToggleTheme from "../services/theme/ToggleTheme.js";
+import { ThemeContext } from "../services/theme/theme.context.js";
 
 const RegisterForm = ({ handleToggleForm }) => {
   const [username, setUsername] = useState("");
@@ -60,11 +62,19 @@ const RegisterForm = ({ handleToggleForm }) => {
     padding: "15px",
   };
 
+  const { theme } = useContext(ThemeContext);
+
   return (
     <div className="container">
       <div className="row vh-100 justify-content-center align-items-center">
         <div className="col-12 col-md-6 col-lg-4 p-4" style={borderStyle}>
-          <h2 className="text-center mb-4" style={{ color: "black" }}>
+          <h2
+            className="text-center mb-4"
+            style={{
+              backgroundColor: theme === "light" ? "white" : "black",
+              color: theme === "light" ? "black" : "white",
+            }}
+          >
             Menú de Registro
           </h2>
           <Form onSubmit={handleSubmit}>
@@ -75,6 +85,7 @@ const RegisterForm = ({ handleToggleForm }) => {
                 placeholder="Ingresa tu nombre de usuario"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                className={theme === "light" ? "light-theme" : "dark-theme"}
               />
             </Form.Group>
 
@@ -85,6 +96,7 @@ const RegisterForm = ({ handleToggleForm }) => {
                 placeholder="Ingresa tu email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className={theme === "light" ? "light-theme" : "dark-theme"}
               />
             </Form.Group>
 
@@ -93,6 +105,7 @@ const RegisterForm = ({ handleToggleForm }) => {
 
               <div className="input-group">
                 <Form.Control
+                  className={theme === "light" ? "light-theme" : "dark-theme"}
                   type={showPassword ? "text" : "password"}
                   placeholder="Ingresa tu contraseña"
                   value={password}
@@ -112,21 +125,19 @@ const RegisterForm = ({ handleToggleForm }) => {
             </Form.Group>
 
             <div className="d-flex justify-content-center" style={styles}>
-              <Button
-                className="btn-light btn-outline-info"
+              <button
+                className="btn btn-outline-info"
                 type="submit"
                 style={buttonstyle}
               >
                 Registrarse
-              </Button>
-              <Button
-                className="btn-light btn-outline-info"
-                onClick={handleLogin}
-              >
+              </button>
+              <button className="btn btn-outline-info" onClick={handleLogin}>
                 Iniciar Sesión
-              </Button>
+              </button>
             </div>
           </Form>
+          <ToggleTheme />
         </div>
       </div>
     </div>

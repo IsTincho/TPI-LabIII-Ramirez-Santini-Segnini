@@ -8,7 +8,7 @@ import "./index.css";
 import App from "./App";
 import { AuthenticationContextProvider } from "./components/services/authentication/authentication.context";
 
-import { ThemeContextProvider } from "./components/services/theme.context";
+import { ThemeContextProvider } from "./components/services/theme/theme.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

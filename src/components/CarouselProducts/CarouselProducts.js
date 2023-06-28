@@ -8,7 +8,7 @@ import "./CarouselProducts.css";
 
 import Carousel from "react-multi-carousel";
 import Spinner from "../ui/Spinner/Spinner";
-import { ThemeContext } from "../services/theme/theme.context";
+import { ThemeContext } from "../services/theme.context";
 
 const responsive = {
   superLargeDesktop: {
@@ -33,7 +33,7 @@ const CarouselProducts = (products) => {
   const { cart, setCart } = useContext(CartContext);
 
   const filteredProducts = products?.data?.filter((item) => {
-    return item.id > 5 && item.id < 12;
+    return  (item.id > 5 && item.id <12);
   });
 
   const addToCart = (product) => {
@@ -64,9 +64,9 @@ const CarouselProducts = (products) => {
               <div className="card">
                 <img src={item.image} alt="" />
                 <div
-                /*className={`book-item-container ${
+                  className={`book-item-container ${
                     theme === "dark" && "book-item-container-dark"
-                  }`} */
+                  }`}
                 >
                   <h4>{item.title}</h4>
                   <h4>${item.price}</h4>

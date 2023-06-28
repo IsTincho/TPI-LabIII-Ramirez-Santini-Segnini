@@ -38,6 +38,9 @@ h2 {
   font-weight: bold;
 }
 
+.orderh{
+  color: #333;
+}
 .total-price {
   margin-top: 10px;
   text-align: right;

@@ -7,7 +7,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import AddNewUsers from "./AddNewUsers";
 
-const UserManagementScreen = ({ theme }) => {
+const UserManagementScreen = () => {
   const { user } = useContext(AuthenticationContext);
   const [users, setUsers] = useState([]);
   const [userToDelete, setUserToDelete] = useState(null);
@@ -100,19 +100,13 @@ const UserManagementScreen = ({ theme }) => {
   }
 
   return (
-    <div className={theme === "light" ? "bg-light" : "bg-dark text-light"}>
+    <div>
       <h1>Administración de Usuarios</h1>
-      {showAddNewUsers ? (
-        <AddNewUsers />
-      ) : (
-        <Button variant="outline-primary" onClick={handleToggleAddNewUsers}>
-          Agregar Nuevo Usuario
-        </Button>
-      )}{" "}
-      <Table
-        responsive
-        className={theme === "light" ? "table-light" : "table-dark"}
-      >
+      <Button variant="outline-primary" onClick={handleToggleAddNewUsers}>
+        Agregar Nuevo Usuario
+      </Button>
+      {showAddNewUsers && <AddNewUsers />}
+      <Table responsive>
         <thead>
           <tr>
             <th>Nombre de usuario</th>
@@ -145,6 +139,7 @@ const UserManagementScreen = ({ theme }) => {
           ))}
         </tbody>
       </Table>
+
       <Modal show={showDeleteModal} onHide={closeDeleteModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmar Eliminación</Modal.Title>
@@ -162,6 +157,7 @@ const UserManagementScreen = ({ theme }) => {
           </Button>
         </Modal.Footer>
       </Modal>
+
       <Modal show={showAdminModal} onHide={closeAdminModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmar Cambio de Estado de Admin</Modal.Title>

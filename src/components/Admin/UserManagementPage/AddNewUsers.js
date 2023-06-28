@@ -15,20 +15,17 @@ const AddNewUsers = () => {
     handleToggleModal();
   };
 
-  if (showModal) {
-    return (
+  return (
+    <>
+      <Button variant="primary" onClick={handleToggleModal}>
+        Agregar Nuevo Usuario
+      </Button>
       <AddNewUsersModal
         show={showModal}
         handleClose={handleToggleModal}
         handleSubmit={handleFormSubmit}
       />
-    );
-  }
-
-  return (
-    <Button variant="primary" onClick={handleToggleModal}>
-      Agregar Nuevo Usuario
-    </Button>
+    </>
   );
 };
 

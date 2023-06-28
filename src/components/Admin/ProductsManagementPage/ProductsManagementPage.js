@@ -3,7 +3,7 @@ import "./ProductsManagementPage.css";
 import Button from "react-bootstrap/Button";
 import { Table } from "react-bootstrap";
 
-const ProductsManagementPage = ({ theme }) => {
+const ProductsManagementPage = () => {
   const [cantProducts, setCantProducts] = useState([]);
   const [operation, setOperation] = useState();
   const [option, setOption] = useState("");
@@ -80,14 +80,7 @@ const ProductsManagementPage = ({ theme }) => {
       alert("El stock debe ser mayor que cero");
     } else {
       if (operation === 1) {
-        const dataProducts = {
-          title,
-          description,
-          price,
-          image,
-          gender,
-          stock,
-        };
+        const dataProducts = { title, description, price, image, gender, stock };
         fetch("https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products", {
           method: "POST",
           headers: { "content-type": "application/json" },
@@ -102,14 +95,7 @@ const ProductsManagementPage = ({ theme }) => {
             console.log(err.message);
           });
       } else if (operation === 2) {
-        const dataProducts = {
-          title,
-          description,
-          price,
-          image,
-          gender,
-          stock,
-        };
+        const dataProducts = { title, description, price, image, gender, stock };
 
         fetch(
           `https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products/${id}`,
@@ -295,10 +281,7 @@ const ProductsManagementPage = ({ theme }) => {
           Añadir
         </button>
       </div>
-      <Table
-        responsive
-        className={theme === "light" ? "table-light" : "table-dark"}
-      >
+      <Table responsive>
         <thead>
           <tr>
             <th>ID</th>

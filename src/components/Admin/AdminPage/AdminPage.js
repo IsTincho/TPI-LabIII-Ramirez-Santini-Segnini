@@ -30,7 +30,7 @@ const AdminPage = () => {
   };
 
   const { theme } = useContext(ThemeContext);
-
+  //xd
   return (
     <div className={`bg-${theme}`}>
       <Navbar>

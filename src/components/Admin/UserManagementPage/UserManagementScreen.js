@@ -6,11 +6,7 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import AddNewUsers from "./AddNewUsers";
-<<<<<<< HEAD
 //xdddd
-=======
-
->>>>>>> parent of 8537078 (Added function: view buy history. Added orderPage, orderContext, modified Cart & NavBar)
 const UserManagementScreen = ({ theme }) => {
   const { user } = useContext(AuthenticationContext);
   const [users, setUsers] = useState([]);

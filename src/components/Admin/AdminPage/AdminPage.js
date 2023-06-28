@@ -29,16 +29,8 @@ const AdminPage = () => {
     setCurrentPage("unknownPage");
   };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
   const { theme } = useContext(ThemeContext);
   //xd
-=======
->>>>>>> 8537078529be6918fd530d266a69e9d582e3e864
-=======
-  const { theme } = useContext(ThemeContext);
-
->>>>>>> parent of 8537078 (Added function: view buy history. Added orderPage, orderContext, modified Cart & NavBar)
   return (
     <div className={`bg-${theme}`}>
       <Navbar>

@@ -8,7 +8,6 @@ import ProductsManagementPage from "../ProductsManagementPage/ProductsManagement
 import UnknownPage from "../UnknownPage/UnknownPage";
 import UserManagementScreen from "../UserManagementPage/UserManagementScreen";
 import ToggleTheme from "../../ui/ToggleTheme";
-import { ThemeContext } from "../../services/theme.context";
 
 const AdminPage = () => {
   const { user, handleLogout } = useContext(AuthenticationContext);
@@ -31,8 +30,11 @@ const AdminPage = () => {
     setCurrentPage("unknownPage");
   };
 
+<<<<<<< HEAD
   const { theme } = useContext(ThemeContext);
   //xd
+=======
+>>>>>>> 8537078529be6918fd530d266a69e9d582e3e864
   return (
     <div>
       <Navbar bg="light" expand="lg">

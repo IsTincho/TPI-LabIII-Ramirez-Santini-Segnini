@@ -12,7 +12,7 @@ export const CartProvider = ({ children }) => {
   }, [cart]);
 
   const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
+    setCart([...cart, product]);
   };
 
   const removeFromCart = (productId) => {

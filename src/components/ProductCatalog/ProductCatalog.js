@@ -36,8 +36,9 @@ const ProductCatalog = ({ product }) => {
   if (!products) {
     return null; // Retorna null o un componente de carga mientras se carga el producto
   }
-  console.log(cart);
+
   const { id, title, price, image, stock, description } = products;
+  
   const addToCart = () => {
     const newCart = [...cart, products];
     setCart(newCart);
@@ -62,12 +63,10 @@ const ProductCatalog = ({ product }) => {
           <div className="card-body">
             <div className="row">
               <div className="card-title">
-                <h4>{title}</h4>
+                <h4 >{title}</h4>
                 <h3>${price}</h3>
                 <div className="stock-product">
-                  {user.isAdmin ? (
-                    <ChangeStock stockProp={stock} idProp={id} />
-                  ) : null}
+                  {user.isAdmin ? <ChangeStock stockProp={stock} idProp={id} /> : null}
                 </div>
               </div>
             </div>

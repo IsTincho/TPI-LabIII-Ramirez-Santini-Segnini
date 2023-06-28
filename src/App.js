@@ -1,21 +1,20 @@
 import React, { useContext } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import {
-  // BrowserRouter as Router,
-  // Routes,
-  // Route,
+  BrowserRouter as Router,
+  Routes,
+  Route,
   Navigate,
 } from "react-router-dom";
 
 import "./App.css";
-import { ThemeContext } from "./components/services/theme.context";
+import { ThemeContext } from "./components/services/theme/theme.context";
 import DashBoard from "./components/DashBoard/DashBoard";
 import Protected from "./components/routes/Protected";
 import NotFound from "./components/routes/NotFound";
 import LoginForm from "./components/Login/LoginForm";
 import AdminProtected from "./components/routes/AdminProtected";
 import AdminPage from "./components/Admin/AdminPage/AdminPage";
-import OrderPage from "./components/OrderPage/OrderPage";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -43,10 +42,6 @@ const App = () => {
           <AdminPage />
         </AdminProtected>
       ),
-    },
-    {
-      path: "/orders",
-      element: <OrderPage />,
     },
     {
       path: "*",

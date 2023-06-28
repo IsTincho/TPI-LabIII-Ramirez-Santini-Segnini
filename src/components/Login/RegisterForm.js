@@ -9,7 +9,7 @@ import { auth, database } from "../firebaseConfig/firebaseConfig.js";
 import { borderStyle } from "./bordercolor.js";
 import ToggleTheme from "../services/theme/ToggleTheme.js";
 import { ThemeContext } from "../services/theme/theme.context.js";
-
+//xdddxd
 const RegisterForm = ({ handleToggleForm }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");

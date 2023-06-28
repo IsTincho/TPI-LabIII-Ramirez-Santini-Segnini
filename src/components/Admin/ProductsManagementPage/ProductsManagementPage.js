@@ -129,7 +129,7 @@ const ProductsManagementPage = ({ theme }) => {
       }
     }
   };
-
+  //xddd
   const handleRemove = (id) => {
     if (window.confirm("Seguro uieres eliminar este producto?")) {
       fetch(

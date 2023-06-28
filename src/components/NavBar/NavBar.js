@@ -27,6 +27,10 @@ const NavBar = ({ onLogout }) => {
     navigation("/admin");
   };
 
+  const myOrdereClickHandler = () => {
+    navigation("/orders"); // Redirige al usuario a la página "/admin" al hacer clic en el botón "AdminPage"
+  };
+
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
@@ -39,19 +43,6 @@ const NavBar = ({ onLogout }) => {
   const navbarStyle = {
     border: "0.5px solid",
     background: theme === "light" ? "#f8f9fa" : "#1a202c",
-  };
-
-  const linkStyle = {
-    color: theme === "light" ? "#000" : "#fff",
-    background: theme === "light" ? "#fff" : "#000",
-    padding: "8px",
-    marginRight: "10px",
-  };
-
-  const buttonStyle = {
-    border: `2px solid ${theme === "light" ? "#63e4f2" : "#ed409f"}`,
-    marginLeft: "35px",
-    padding: "8px",
   };
 
   const ulStyle = {
@@ -113,9 +104,22 @@ const NavBar = ({ onLogout }) => {
                 </li>
               )}
               <li>
-                <a style={linkStyle} onClick={handlePreventRediction}>
+                <button
+                  className={`btn btn-${theme === "light" ? "dark" : "light"}`}
+                  onClick={handlePreventRediction}
+                >
                   ¡Bienvenido {user.username}!
-                </a>
+                </button>
+              </li>
+              <li>
+                <button
+                  className={`btn btn-outline-${
+                    theme === "light" ? "dark" : "light"
+                  }`}
+                  onClick={myOrdereClickHandler}
+                >
+                  Mi historial de compras
+                </button>
               </li>
             </ul>
           </div>

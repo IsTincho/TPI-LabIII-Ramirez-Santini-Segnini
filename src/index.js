@@ -7,7 +7,8 @@ import "./index.css";
 
 import App from "./App";
 import { AuthenticationContextProvider } from "./components/services/authentication/authentication.context";
-
+import { CartProvider } from "./components/services/cartcontext/cart.context";
+import { OrderProvider } from "./components/services/orderContext/order.context";
 import { ThemeContextProvider } from "./components/services/theme/theme.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -15,7 +16,11 @@ root.render(
   <ThemeContextProvider>
     <React.StrictMode>
       <AuthenticationContextProvider>
-        <App />
+        <CartProvider>
+          <OrderProvider>
+            <App />
+          </OrderProvider>
+        </CartProvider>
       </AuthenticationContextProvider>
     </React.StrictMode>
   </ThemeContextProvider>

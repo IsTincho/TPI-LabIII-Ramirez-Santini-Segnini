@@ -16,6 +16,7 @@ import LoginForm from "./components/Login/LoginForm";
 import AdminProtected from "./components/routes/AdminProtected";
 import AdminPage from "./components/Admin/AdminPage/AdminPage";
 import { ToastContainer } from "react-toastify";
+import OrderPage from "./components/OrderPage/OrderPage"
 import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
@@ -34,6 +35,10 @@ const App = () => {
           <DashBoard />
         </Protected>
       ),
+    },
+    {
+      path: "/orders",
+      element: <OrderPage />,
     },
     {
       path: "/admin",

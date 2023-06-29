@@ -101,7 +101,7 @@ const LoginForm = () => {
           <h2
             className="text-center mb-4"
             style={{
-              backgroundColor: theme === "light" ? "white" : "black",
+              
               color: theme === "light" ? "black" : "white",
             }}
           >
@@ -122,7 +122,6 @@ const LoginForm = () => {
                 type="email"
                 id="email"
                 className={`form-control ${errors.email ? "is-invalid" : ""}`}
-                placeholder="Ingrese su Email"
                 value={email}
                 onChange={handleEmailChange}
                 style={{
@@ -146,7 +145,6 @@ const LoginForm = () => {
                   className={`form-control ${
                     errors.password ? "is-invalid" : ""
                   }`}
-                  placeholder="Ingrese su Contraseña"
                   value={password}
                   onChange={handlePasswordChange}
                   style={{

@@ -1,5 +1,9 @@
 .login-box-dark {
     border: 1px solid white;
-    color: white;
+    color: black;
+}
+
+.book-item-container-dark{
+    color:  black !important;
 }
 

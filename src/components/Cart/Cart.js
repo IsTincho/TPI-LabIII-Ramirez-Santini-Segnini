@@ -1,13 +1,23 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { CartContext } from "../services/cartcontext/cart.context";
 import { OrderContext } from "../services/orderContext/order.context";
 import { toast } from "react-toastify";
+
+import { AuthenticationContext } from "../services/authentication/authentication.context";
+import { auth, database } from "../firebaseConfig/firebaseConfig.js";
+
 import "react-toastify/dist/ReactToastify.css";
 import "../Cart/Cart.css";
 
 const Cart = () => {
   const { cart, clearCart, setCart } = useContext(CartContext);
   const { addToOrder } = useContext(OrderContext); // Añadir clearOrder
+  const { userIdForCart } = useContext(AuthenticationContext);
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    setUserId(userIdForCart);
+  }, []);
 
   const getProductCount = (productId) => {
     let count = 0;
@@ -59,18 +69,56 @@ const Cart = () => {
       totalPrice: product.price * getProductCount(product.id),
     }));
     addToOrder(productsWithTotalPrice);
-    clearCart();
-    localStorage.removeItem("cart");
-    toast.success("¡Gracias por su compra!", {
-      position: "top-left",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+
+    const usuarioRef = database.ref(`users/${userId}`);
+    console.log(userId);
+
+    usuarioRef.child("CantidadPedidos").transaction(
+      (contador = 0) => {
+        // Incrementa el contador de pedidos
+        if (!contador) {
+          return 1;
+        } else {
+          return contador + 1;
+        }
+      },
+      (error, committed, snapshot) => {
+        if (error) {
+          console.error("Error al incrementar el contador de pedidos:", error);
+          return;
+        }
+
+        if (committed) {
+          const contador = snapshot.val();
+          const pedidoId = `pedido ${contador}`;
+
+          const pedidosRef = usuarioRef.child("pedidos").child(pedidoId);
+          pedidosRef
+            .set(productsWithTotalPrice)
+            .then(() => {
+              console.log(`Pedido "${pedidoId}" agregado correctamente.`);
+            })
+            .catch((error) => {
+              console.error(`Error al agregar el pedido "${pedidoId}":`, error);
+            });
+
+          clearCart();
+          localStorage.removeItem("cart");
+          toast.success("¡Gracias por su compra!", {
+            position: "top-left",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          });
+        } else {
+          console.error("No se pudo incrementar el contador de pedidos.");
+        }
+      }
+    );
   };
 
   return (

@@ -5,6 +5,7 @@ export const AuthenticationContext = createContext();
 
 export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userIdForCart, setUserIdForCart] = useState();
 
   useEffect(() => {
     // Comprobar si hay un usuario autenticado al cargar el componente
@@ -68,8 +69,14 @@ export const AuthenticationContextProvider = ({ children }) => {
     }
   };
 
+  const getUserId = auth.onAuthStateChanged(async (authenticatedUser) => {
+    setUserIdForCart(authenticatedUser?.uid);
+  });
+
   return (
-    <AuthenticationContext.Provider value={{ user, handleLogin, handleLogout }}>
+    <AuthenticationContext.Provider
+      value={{ user, handleLogin, handleLogout, getUserId, userIdForCart }}
+    >
       {children}
     </AuthenticationContext.Provider>
   );

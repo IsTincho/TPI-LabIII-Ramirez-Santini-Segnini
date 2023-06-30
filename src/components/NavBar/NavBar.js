@@ -45,6 +45,19 @@ const NavBar = ({ onLogout }) => {
     background: theme === "light" ? "#f8f9fa" : "#1a202c",
   };
 
+  const linkStyle = {
+    color: theme === "light" ? "#000" : "#fff",
+    background: theme === "light" ? "#fff" : "#000",
+    padding: "8px",
+    marginRight: "10px",
+  };
+
+  const buttonStyle = {
+    border: `2px solid ${theme === "light" ? "#63e4f2" : "#ed409f"}`,
+    marginLeft: "35px",
+    padding: "8px",
+  };
+
   const ulStyle = {
     marginLeft: "93px",
   };
@@ -108,7 +121,7 @@ const NavBar = ({ onLogout }) => {
                   className={`btn btn-${theme === "light" ? "dark" : "light"}`}
                   onClick={handlePreventRediction}
                 >
-                  ¡Bienvenido {user.username}!
+                  ¡Bienvenido {user?.username}!
                 </button>
               </li>
               <li>

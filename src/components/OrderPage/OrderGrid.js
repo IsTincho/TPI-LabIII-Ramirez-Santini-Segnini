@@ -1,104 +1,118 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { OrderContext } from "../services/orderContext/order.context";
 import { ThemeContext } from "../services/theme/theme.context";
-
+import { database } from "../firebaseConfig/firebaseConfig";
+import { AuthenticationContext } from "../services/authentication/authentication.context";
 import "./OrderGrid.css";
 
 const OrderGrid = () => {
-  const { order } = useContext(OrderContext);
   const { theme } = useContext(ThemeContext);
-  if (!order) {
-    return null; // Retorna null o un componente de carga mientras se carga el producto
+  const { userIdForCart } = useContext(AuthenticationContext);
+  const [orders, setOrders] = useState([]);
+  const [userId, setUserId] = useState("");
+
+  useEffect(() => {
+    setUserId(userIdForCart);
+  }, [userIdForCart]);
+
+  useEffect(() => {
+    const usuarioRef = database.ref(`users/${userId}/pedidos`);
+    usuarioRef.on("value", (snapshot) => {
+      const data = snapshot.val();
+      const ordersArray = data ? Object.values(data) : [];
+
+      const transformedOrders = ordersArray.map((order) => {
+        const groupedProducts = order.reduce((acc, product) => {
+          const productId = product.id;
+          if (!acc[productId]) {
+            acc[productId] = { ...product, quantity: 0 };
+          }
+          acc[productId].quantity += 1;
+          return acc;
+        }, {});
+
+        const products = Object.values(groupedProducts);
+        const totalPrice = products.reduce(
+          (total, product) => total + product.totalPrice,
+          0
+        );
+
+        return { products, totalPrice };
+      });
+
+      setOrders(transformedOrders);
+    });
+
+    return () => {
+      usuarioRef.off("value");
+    };
+  }, [userId]);
+
+  if (orders.length === 0) {
+    return null;
   }
-
-  // Creación de un objeto para almacenar los productos con contador y precio total acumulado
-  const productsMap = {};
-
-  order.forEach((product) => {
-    const { id, image, title, price } = product;
-
-    if (!productsMap[id]) {
-      // Si el producto no existe en el mapa, se agrega con contador y precio total inicializados
-      productsMap[id] = {
-        id,
-        image,
-        title,
-        count: 1,
-        unitPrice: price,
-        totalPrice: price,
-      };
-    } else {
-      // Si el producto ya existe en el mapa, se actualiza el contador y precio total
-      productsMap[id].count++;
-      productsMap[id].totalPrice += price;
-    }
-  });
-
-  // Convertir el mapa de productos en un array para su representación en el JSX
-  const renderedProducts = Object.values(productsMap);
-
-  // Cálculo del precio total de todas las prendas
-  const totalPriceOfAllProducts = renderedProducts.reduce(
-    (total, product) => total + product.totalPrice,
-    0
-  );
 
   return (
     <div className={theme === "light" ? "bg-light" : "bg-dark text-light"}>
       <Container className="container-grid">
-        {/* Fila de encabezado */}
-        <Row className="grid-header align-items-center">
-          <Col xs={1}>
-            <p className="grid-header-text">Compra n: ...</p>
-          </Col>
-          <Col xs={3}>
-            <p className="grid-header-text">Producto</p>
-          </Col>
-          <Col xs={1}>
-            <p className="grid-header-text">Cantidad</p>
-          </Col>
-          <Col xs={2}>
-            <p className="grid-header-text">Precio unitario</p>
-          </Col>
-          <Col xs={2}>
-            <p className="grid-header-text">Precio total</p>
-          </Col>
-        </Row>
-        {/* Filas de productos */}
-        {renderedProducts.map((product) => (
-          <Row key={product.id} className="grid-row align-items-center">
-            <Col xs={1}>
-              <img
-                src={product.image}
-                className="grid-cell"
-                alt=""
-                style={{ maxWidth: "100px", maxHeight: "100px" }}
-              />
-            </Col>
-            <Col xs={3}>
-              <p className="grid-cell">{product.title}</p>
-            </Col>
-            <Col xs={1}>
-              <p className="grid-cell">{product.count}</p>
-            </Col>
-            <Col xs={2}>
-              <p className="grid-cell">${product.unitPrice.toFixed(2)}</p>
-            </Col>
-            <Col xs={2}>
-              <p className="grid-cell">${product.totalPrice.toFixed(2)}</p>
-            </Col>
-          </Row>
+        {orders.map((order, index) => (
+          <React.Fragment key={`order-${index}`}>
+            <Row className="grid-row align-items-center">
+              <Col xs={12}>
+                <p className="grid-cell">Pedido {index + 1}</p>
+              </Col>
+            </Row>
+            <Row className="grid-header align-items-center">
+              <Col xs={3}>
+                <p className="grid-header-text">Producto</p>
+              </Col>
+              <Col xs={2}>
+                <p className="grid-header-text">Cantidad</p>
+              </Col>
+              <Col xs={2}>
+                <p className="grid-header-text">Precio unitario</p>
+              </Col>
+              <Col xs={2}>
+                <p className="grid-header-text">Precio total</p>
+              </Col>
+            </Row>
+            {order.products.map((product) => (
+              <Row key={product.id} className="grid-row align-items-center">
+                <Col xs={2}>
+                  <img
+                    src={product.image}
+                    className="grid-cell"
+                    alt=""
+                    style={{ maxWidth: "100px", maxHeight: "100px" }}
+                  />
+                </Col>
+                <Col xs={3}>
+                  <p className="grid-cell">{product?.title}</p>
+                </Col>
+                <Col xs={2}>
+                  <p className="grid-cell">{product?.quantity}</p>
+                </Col>
+                <Col xs={2}>
+                  <p className="grid-cell">${product?.price?.toFixed(2)}</p>
+                </Col>
+                <Col xs={2}>
+                  <p className="grid-cell">
+                    ${product?.totalPrice?.toFixed(2)}
+                  </p>
+                </Col>
+              </Row>
+            ))}
+            <Row className="grid-row align-items-center">
+              <Col xs={7}></Col>
+              <Col xs={3}>
+                <p className="grid-cell">Precio total del pedido:</p>
+              </Col>
+              <Col xs={2}>
+                <p className="grid-cell">${order.totalPrice?.toFixed(2)}</p>
+              </Col>
+            </Row>
+          </React.Fragment>
         ))}
-        {/* Fila del precio total de todas las prendas */}
-        <Row className="grid-row align-items-center">
-          <Col xs={7}>
-            <p className="grid-cell">Total:</p>
-          </Col>
-          <Col xs={2}>
-            <p className="grid-cell">${totalPriceOfAllProducts.toFixed(2)}</p>
-          </Col>
-        </Row>
       </Container>
     </div>
   );

@@ -6,9 +6,11 @@ import { AuthenticationContext } from "../services/authentication/authentication
 import NavBar from "../NavBar/NavBar";
 import ProductProvider from "../ProductProvider/ProductProvider";
 import ProductCatalog from "../ProductCatalog/ProductCatalog";
+import { ThemeContext } from "../services/theme/theme.context";
 
 const DashBoard = () => {
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
 
   const { handleLogout } = useContext(AuthenticationContext);
   console.log("Dashboard");
@@ -20,7 +22,7 @@ const DashBoard = () => {
   };
 
   return (
-    <div>
+    <div className={`bg-${theme}`}>
       <NavBar onLogout={onLogoutHandler} />
       <ProductProvider />
       <ProductCatalog />

@@ -125,7 +125,7 @@ const LoginForm = () => {
                 value={email}
                 onChange={handleEmailChange}
                 style={{
-                  backgroundColor: theme === "light" ? "white" : "black",
+                  backgroundColor: "transparent",
                   color: theme === "light" ? "black" : "white",
                 }}
               />
@@ -148,7 +148,7 @@ const LoginForm = () => {
                   value={password}
                   onChange={handlePasswordChange}
                   style={{
-                    backgroundColor: theme === "light" ? "white" : "black",
+                    backgroundColor: "transparent",
                     color: theme === "light" ? "black" : "white",
                   }}
                 />
@@ -157,7 +157,7 @@ const LoginForm = () => {
                     className="input-group-text password-toggle-icon"
                     onClick={() => setShowPassword(!showPassword)}
                     style={{
-                      backgroundColor: theme === "light" ? "white" : "black",
+                      backgroundColor: "transparent",
                       color: theme === "light" ? "black" : "white",
                       cursor: "pointer",
                     }}

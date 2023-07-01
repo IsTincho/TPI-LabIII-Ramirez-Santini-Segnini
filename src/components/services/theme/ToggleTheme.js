@@ -9,7 +9,7 @@ const ToggleTheme = () => {
     if (theme === "light") {
       return "#dddddd"; // Color del placeholder en tema claro
     } else {
-      return "#888888"; // Color del placeholder en tema oscuro
+      return "#000000"; // Color del placeholder en tema oscuro
     }
   };
 

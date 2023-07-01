@@ -4,9 +4,9 @@ import { Button, Navbar, Nav } from "react-bootstrap";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import { ThemeContext } from "../services/theme/theme.context";
 
-import log from "../img/icon.svg";
+import wolf from "../img/wolf.svg";
 import ToggleTheme from "../services/theme/ToggleTheme";
-import "../Admin/AdminPage/AdminPage.css"
+import "../Admin/AdminPage/AdminPage.css";
 import OrderGridACT from "./OrderGridACT";
 
 const OrderPage = () => {
@@ -29,18 +29,20 @@ const OrderPage = () => {
   };
 
   return (
-    
     <div className={`bg-${theme}`}>
       <Navbar>
-      <Navbar.Brand
+        <Navbar.Brand
           className={`text-${theme === "light" ? "dark" : "light"}`}
         >
-          <a href=".">
+          <a href="."
+          className="pe-none"
+              aria-disabled="true">
             <img
-              src={log}
+              src={wolf}
               style={logoStyle}
               onClick={handlePreventRediction}
               alt="logo"
+              
             />
           </a>
         </Navbar.Brand>
@@ -50,15 +52,13 @@ const OrderPage = () => {
           className="justify-content-center"
         >
           <Nav>
-            <Nav.Link>
-              <button
-                className={`btn btn-outline-${
-                  theme === "light" ? "dark" : "light"
-                }`}
-              >
-                Mi historial de compras
-              </button>
-            </Nav.Link>
+            <Button
+              variant={theme === "light" ? "dark" : "light"}
+              className="pe-none"
+              aria-disabled="true"
+            >
+              Mi historial de compras
+            </Button>
           </Nav>
         </Navbar.Collapse>
         <Nav className="ml-auto">
@@ -76,7 +76,7 @@ const OrderPage = () => {
           <ToggleTheme />
         </Nav>
       </Navbar>
-      <OrderGridACT  />
+      <OrderGridACT />
     </div>
   );
 };

@@ -3,8 +3,9 @@ import { useNavigate } from "react-router";
 import { Button } from "react-bootstrap";
 import { AuthenticationContext } from "../services/authentication/authentication.context";
 import { CartContext } from "../services/cartcontext/cart.context";
-import log from "../img/icon.svg";
-import cart from "../img/cart.svg";
+import wolf from "../img/wolf.svg";
+import cartLight from "../img/cart-light.svg";
+import cartDark from "../img/cart-dark.svg";
 import Cart from "../Cart/Cart";
 import "../NavBar/NavBar.css";
 import ToggleTheme from "../services/theme/ToggleTheme";
@@ -57,17 +58,19 @@ const NavBar = ({ onLogout }) => {
     <div style={containerStyle}>
       <nav
         className={`navbar navbar-expand-sm fixed-top navbar-light ${
-          theme === "light" ? "bg-secondary" : "bg-dark"
+          theme === "light" ? "bg-light" : "bg-dark"
         }`}
         style={navbarStyle}
       >
         <div className="container-fluid mx-auto">
-          <a className="navbar-brand mx-auto" href=".">
+          <a className=" pe-none navbar-brand mx-auto" href="."
+          aria-disabled="true">
             <img
-              src={log}
+              src={wolf}
               style={logoStyle}
               onClick={handlePreventRedirection}
               alt="logo"
+              
             />
           </a>
           <button
@@ -86,8 +89,8 @@ const NavBar = ({ onLogout }) => {
                 <li className="nav-item align-self-end">
                   <Button
                     className={`btn-light btn-outline-info ${
-                      theme === "dark" ? "btn-dark" : ""
-                    }`}
+                  theme === "dark" ? "btn-dark" : ""
+                }`}
                     onClick={adminPageClickHandler}
                   >
                     AdminPage
@@ -96,21 +99,20 @@ const NavBar = ({ onLogout }) => {
               )}
               <li className="nav-item align-self-end">
                 <button
-                  className={`btn btn-${theme === "light" ? "dark" : "light"}`}
+                  className={` pe-none btn btn-${theme === "light" ? "dark" : "light"}`}
                   onClick={handlePreventRedirection}
+                  aria-disabled="true"
                 >
                   ¡Bienvenido {user?.username}!
                 </button>
               </li>
               <li className="nav-item align-self-end">
-                <button
-                  className={`btn btn-outline-${
-                    theme === "light" ? "dark" : "light"
-                  }`}
+                <Button
+                  variant={theme === "light" ? "dark" : "light"}
                   onClick={myOrderClickHandler}
                 >
                   Mi historial de compras
-                </button>
+                </Button>
               </li>
               <div className="align-self-end">
                 <ToggleTheme />
@@ -120,7 +122,7 @@ const NavBar = ({ onLogout }) => {
           <form className="d-flex justify-content-between">
             <div className="navbar-brand mx-auto mt-2 cart-dropdown-container">
               <img
-                src={cart}
+                src={`${theme ==='light' ? cartDark : cartLight}`}
                 style={logoStyle}
                 alt="cart"
                 onClick={toggleCart}
@@ -131,8 +133,8 @@ const NavBar = ({ onLogout }) => {
             <div className="align-self-end">
               <Button
                 type="button"
-                className={`btn-light btn-outline-info ${
-                  theme === "dark" ? "btn-dark" : ""
+                className={`btn-light btn-outline-danger ${
+                  theme === "dark" ? "btn-dark" : "btn-light"
                 }`}
                 onClick={onLogoutHandler}
               >

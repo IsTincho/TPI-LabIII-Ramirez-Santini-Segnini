@@ -6,7 +6,8 @@ import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import AddNewUsers from "./AddNewUsers";
-//xdddd
+import "../AdminPage/AdminPage.css";
+
 const UserManagementScreen = ({ theme }) => {
   const { user } = useContext(AuthenticationContext);
   const [users, setUsers] = useState([]);
@@ -109,42 +110,44 @@ const UserManagementScreen = ({ theme }) => {
           Agregar Nuevo Usuario
         </Button>
       )}{" "}
-      <Table
-        responsive
-        className={theme === "light" ? "table-light" : "table-dark"}
-      >
-        <thead>
-          <tr>
-            <th>Nombre de usuario</th>
-            <th>Email</th>
-            <th>Administrador</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.username}</td>
-              <td>{user.email}</td>
-              <td>{user.isAdmin ? "Sí" : "No"}</td>
-              <td>
-                <Button
-                  variant="outline-danger"
-                  onClick={() => openDeleteConfirmationModal(user)}
-                >
-                  Eliminar
-                </Button>
-                <Button
-                  variant="outline-primary"
-                  onClick={() => handleToggleAdmin(user)}
-                >
-                  {user.isAdmin ? "Remover Admin" : "Asignar Admin"}
-                </Button>
-              </td>
+      <div className="container-admin-page">
+        <Table
+          responsive
+          className={theme === "light" ? "table-light" : "table-dark"}
+        >
+          <thead>
+            <tr>
+              <th>Nombre de usuario</th>
+              <th>Email</th>
+              <th>Administrador</th>
+              <th>Acciones</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id}>
+                <td>{user.username}</td>
+                <td>{user.email}</td>
+                <td>{user.isAdmin ? "Sí" : "No"}</td>
+                <td>
+                  <Button
+                    variant="outline-danger"
+                    onClick={() => openDeleteConfirmationModal(user)}
+                  >
+                    Eliminar
+                  </Button>
+                  <Button
+                    variant="outline-primary"
+                    onClick={() => handleToggleAdmin(user)}
+                  >
+                    {user.isAdmin ? "Remover Admin" : "Asignar Admin"}
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
       <Modal show={showDeleteModal} onHide={closeDeleteModal}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmar Eliminación</Modal.Title>

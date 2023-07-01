@@ -13,7 +13,7 @@ const DashBoard = () => {
   const { theme } = useContext(ThemeContext);
 
   const { handleLogout } = useContext(AuthenticationContext);
-  console.log("Dashboard");
+
   //const userName = user.email.split("@")[0];
 
   const onLogoutHandler = () => {

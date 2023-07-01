@@ -6,7 +6,8 @@ import { ThemeContext } from "../services/theme/theme.context";
 
 import log from "../img/icon.svg";
 import ToggleTheme from "../services/theme/ToggleTheme";
-import OrderGrid from "./OrderGrid.js";
+import "../Admin/AdminPage/AdminPage.css"
+import OrderGridACT from "./OrderGridACT";
 
 const OrderPage = () => {
   const { handleLogout } = useContext(AuthenticationContext);
@@ -28,9 +29,12 @@ const OrderPage = () => {
   };
 
   return (
+    
     <div className={`bg-${theme}`}>
-      <Navbar className={`bg-${theme} "fixed-top"`} expand="lg">
-        <Navbar.Brand>
+      <Navbar>
+      <Navbar.Brand
+          className={`text-${theme === "light" ? "dark" : "light"}`}
+        >
           <a href=".">
             <img
               src={log}
@@ -72,7 +76,7 @@ const OrderPage = () => {
           <ToggleTheme />
         </Nav>
       </Navbar>
-      <OrderGrid />
+      <OrderGridACT  />
     </div>
   );
 };

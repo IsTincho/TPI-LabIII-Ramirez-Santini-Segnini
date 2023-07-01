@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./ProductsManagementPage.css";
 import Button from "react-bootstrap/Button";
 import { Table } from "react-bootstrap";
+import "../AdminPage/AdminPage.css"
 
 const ProductsManagementPage = ({ theme }) => {
   const [cantProducts, setCantProducts] = useState([]);
@@ -148,7 +149,7 @@ const ProductsManagementPage = ({ theme }) => {
   };
 
   return (
-    <div className="container-product-management">
+    <div className="container-product-management container-admin-page">
       <div
         class="modal fade"
         id="exampleModal"

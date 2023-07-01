@@ -27,15 +27,15 @@ const NavBar = ({ onLogout }) => {
     navigation("/admin");
   };
 
-  const myOrdereClickHandler = () => {
-    navigation("/orders"); // Redirige al usuario a la página "/admin" al hacer clic en el botón "AdminPage"
+  const myOrderClickHandler = () => {
+    navigation("/orders");
   };
 
   const toggleCart = () => {
     setIsCartOpen(!isCartOpen);
   };
 
-  const handlePreventRediction = (event) => {
+  const handlePreventRedirection = (event) => {
     event.preventDefault();
     console.log("El evento fue prevenido");
   };
@@ -45,33 +45,16 @@ const NavBar = ({ onLogout }) => {
     background: theme === "light" ? "#f8f9fa" : "#1a202c",
   };
 
-  const linkStyle = {
-    color: theme === "light" ? "#000" : "#fff",
-    background: theme === "light" ? "#fff" : "#000",
-    padding: "8px",
-    marginRight: "10px",
-  };
-
-  const buttonStyle = {
-    border: `2px solid ${theme === "light" ? "#63e4f2" : "#ed409f"}`,
-    marginLeft: "35px",
-    padding: "8px",
-  };
-
-  const ulStyle = {
-    marginLeft: "93px",
-  };
-
   const logoStyle = {
     width: "40px",
   };
 
+  const containerStyle = {
+    overflow: "hidden",
+  };
+
   return (
-    <div
-      className={`book-item-container ${
-        theme === "dark" && "book-item-container-dark"
-      }`}
-    >
+    <div style={containerStyle}>
       <nav
         className={`navbar navbar-expand-sm fixed-top navbar-light ${
           theme === "light" ? "bg-secondary" : "bg-dark"
@@ -83,29 +66,24 @@ const NavBar = ({ onLogout }) => {
             <img
               src={log}
               style={logoStyle}
-              onClick={handlePreventRediction}
+              onClick={handlePreventRedirection}
               alt="logo"
             />
           </a>
           <button
-            className="navbar-toggler"
+            className={`navbar-toggler ${
+              theme === "light" ? "navbar-light" : "navbar-dark"
+            }`}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#mynavbar"
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div
-            className="collapse navbar-collapse"
-            id="mynavbar"
-            style={ulStyle}
-          >
-            <ul
-              className="navbar-nav mx-auto"
-              style={{ display: "flex", alignItems: "center" }}
-            >
+          <div className="collapse navbar-collapse" id="mynavbar">
+            <ul className="navbar-nav mx-auto ml-auto">
               {user && user.isAdmin && (
-                <li>
+                <li className="nav-item align-self-end">
                   <Button
                     className={`btn-light btn-outline-info ${
                       theme === "dark" ? "btn-dark" : ""
@@ -116,24 +94,27 @@ const NavBar = ({ onLogout }) => {
                   </Button>
                 </li>
               )}
-              <li>
+              <li className="nav-item align-self-end">
                 <button
                   className={`btn btn-${theme === "light" ? "dark" : "light"}`}
-                  onClick={handlePreventRediction}
+                  onClick={handlePreventRedirection}
                 >
                   ¡Bienvenido {user?.username}!
                 </button>
               </li>
-              <li>
+              <li className="nav-item align-self-end">
                 <button
                   className={`btn btn-outline-${
                     theme === "light" ? "dark" : "light"
                   }`}
-                  onClick={myOrdereClickHandler}
+                  onClick={myOrderClickHandler}
                 >
                   Mi historial de compras
                 </button>
               </li>
+              <div className="align-self-end">
+                <ToggleTheme />
+              </div>
             </ul>
           </div>
           <form className="d-flex justify-content-between">
@@ -147,19 +128,18 @@ const NavBar = ({ onLogout }) => {
               <span className="cart-item-count">{totalProductCount}</span>
               {isCartOpen && <Cart />}
             </div>
-            <Button
-              type="button"
-              className={`btn-light btn-outline-info ${
-                theme === "dark" ? "btn-dark" : ""
-              }`}
-              onClick={onLogoutHandler}
-            >
-              Cerrar sesión
-            </Button>
+            <div className="align-self-end">
+              <Button
+                type="button"
+                className={`btn-light btn-outline-info ${
+                  theme === "dark" ? "btn-dark" : ""
+                }`}
+                onClick={onLogoutHandler}
+              >
+                Cerrar sesión
+              </Button>
+            </div>
           </form>
-          <div>
-            <ToggleTheme />
-          </div>
         </div>
       </nav>
     </div>

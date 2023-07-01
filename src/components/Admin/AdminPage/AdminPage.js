@@ -59,12 +59,12 @@ const AdminPage = () => {
               Products Management
             </Nav.Link>
 
-            <Nav.Link
+            {/*<Nav.Link
               onClick={handleUnknownPage}
               className={`text-${theme === "light" ? "dark" : "light"}`}
             >
               Unknown Page
-            </Nav.Link>
+            </Nav.Link>*/}
             <Nav.Link
               onClick={handleGoBack}
               className={`text-${theme === "light" ? "dark" : "light"}`}

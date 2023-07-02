@@ -7,3 +7,12 @@
     color:  #212529;
 }
 
+.img-login{
+    min-width: 350px;
+    margin-left: 50px;
+}
+
+.login-form{
+    width: 60%;
+}
+

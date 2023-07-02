@@ -130,7 +130,7 @@ const NavBar = ({ onLogout }) => {
               <span className="cart-item-count">{totalProductCount}</span>
               {isCartOpen && <Cart />}
             </div>
-            <div className="align-self-end">
+            <div className="btn-logout align-self-end">
               <Button
                 type="button"
                 className={`btn-light btn-outline-danger ${

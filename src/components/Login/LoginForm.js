@@ -4,10 +4,11 @@ import { AuthenticationContext } from "../services/authentication/authentication
 import RegisterForm from "./RegisterForm";
 import { borderStyle } from "./bordercolor";
 import { TiEyeOutline, TiEye } from "react-icons/ti";
-
+import login from "../img/login.svg"
 import ToggleTheme from "../services/theme/ToggleTheme";
 import { ThemeContext } from "../services/theme/theme.context";
 
+import "./LoginForm.css"
 const LoginForm = () => {
   const { theme } = useContext(ThemeContext);
 
@@ -95,9 +96,12 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="container">
-      <div className="row vh-100 justify-content-center align-items-center">
-        <div className="col-12 col-md-6 col-lg-4 p-4" style={borderStyle}>
+    <div className="container d-flex justify-content-center align-items-center vh-100">
+    
+    
+      <div className="vh-100 justify-content-center align-items-center d-flex">
+      
+        <div className="login-form col-12 col-md-6 col-lg-4 p-4" style={borderStyle}>
           <h2
             className="text-center mb-4"
             style={{
@@ -152,7 +156,7 @@ const LoginForm = () => {
                     color: theme === "light" ? "black" : "white",
                   }}
                 />
-                <div className="input-group-append">
+                <div className="input-group-append d-flex align-items-center">
                   <span
                     className="input-group-text password-toggle-icon"
                     onClick={() => setShowPassword(!showPassword)}
@@ -189,6 +193,11 @@ const LoginForm = () => {
             <ToggleTheme />
           </form>
         </div>
+        <div className="img-login">
+    <img src={login}
+      
+    />
+    </div>
       </div>
     </div>
   );

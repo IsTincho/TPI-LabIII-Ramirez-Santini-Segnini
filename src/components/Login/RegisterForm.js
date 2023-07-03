@@ -10,6 +10,9 @@ import { borderStyle } from "./bordercolor.js";
 import ToggleTheme from "../services/theme/ToggleTheme.js";
 import { ThemeContext } from "../services/theme/theme.context.js";
 
+import login from "../img/login.svg"
+import "./LoginForm.css"
+
 const RegisterForm = ({ handleToggleForm }) => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -66,7 +69,7 @@ const RegisterForm = ({ handleToggleForm }) => {
 
   return (
     <div className="container">
-      <div className="row vh-100 justify-content-center align-items-center">
+      <div className="d-flex justify-content-center align-items-center vh-100">
         <div className="col-12 col-md-6 col-lg-4 p-4" style={borderStyle}>
           <h2
             className="text-center mb-4"
@@ -139,7 +142,13 @@ const RegisterForm = ({ handleToggleForm }) => {
           </Form>
           <ToggleTheme />
         </div>
+        <div className="img-login">
+    <img src={login}
+      alt=""
+    />
+    </div>
       </div>
+      
     </div>
   );
 };

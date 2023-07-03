@@ -70,7 +70,7 @@ const OrderGridACT = () => {
             >
               <thead>
                 <tr>
-                  <th>{order.orderId}</th>
+                  <th >{order.orderId}</th>
                   
                   <th>PRODUCTO</th>
                   <th>CANTIDAD</th>

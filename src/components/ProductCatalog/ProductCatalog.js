@@ -38,7 +38,7 @@ const ProductCatalog = ({ product }) => {
   }
 
   const { id, title, price, image, stock, description } = products;
-
+  
   const addToCart = () => {
     const newCart = [...cart, products];
     setCart(newCart);

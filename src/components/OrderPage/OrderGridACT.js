@@ -24,9 +24,9 @@ const OrderGridACT = () => {
     const usuarioRef = database.ref(`users/${userId}/pedidos`);
     usuarioRef.on("value", (snapshot) => {
       const data = snapshot.val();
-      const ordersArray = data ? Object.values(data) : [];
+      const ordersArray = data ? Object.entries(data) : [];
 
-      const transformedOrders = ordersArray.map((order) => {
+      const transformedOrders = ordersArray.map(([orderId, order]) => {
         const groupedProducts = order.reduce((acc, product) => {
           const productId = product.id;
           if (!acc[productId]) {
@@ -42,7 +42,7 @@ const OrderGridACT = () => {
           0
         );
 
-        return { products, totalPrice };
+        return { orderId, products, totalPrice };
       });
 
       setOrders(transformedOrders);
@@ -58,20 +58,20 @@ const OrderGridACT = () => {
       <div className="container-admin-page">
         {orders.length === 0 ? (
           <div className="order-empty">
-          <img  src={iconSVG}/>
-          
-          <p>Aun no hay pedidos</p>
+            <img src={iconSVG} alt="Order Empty" />
+            <p>Aun no hay pedidos</p>
           </div>
-          
         ) : (
           orders.map((order, index) => (
             <Table
               responsive
               className={theme === "light" ? "table-light" : "table-dark"}
+              key={order.orderId}
             >
               <thead>
                 <tr>
-                  <th></th>
+                  <th>{order.orderId}</th>
+                  
                   <th>PRODUCTO</th>
                   <th>CANTIDAD</th>
                   <th>PRECIO UNITARIO</th>
@@ -99,11 +99,9 @@ const OrderGridACT = () => {
               </tbody>
               <tfoot className="">
                 <tr>
-                  <td colSpan="4" className="text-success">
+                  <td colSpan="2" className="text-success">
                     <strong>TOTAL DEL PEDIDO </strong>
-
                     <strong className="">
-                      {" "}
                       ${order.totalPrice?.toFixed(2)}
                     </strong>
                   </td>

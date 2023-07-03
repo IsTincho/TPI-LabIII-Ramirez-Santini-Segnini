@@ -64,16 +64,19 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
+     
     const productsWithTotalPrice = cart.map((product) => ({
       ...product,
       totalPrice: product.price * getProductCount(product.id),
+      
     }));
     addToOrder(productsWithTotalPrice);
 
     const usuarioRef = database.ref(`users/${userId}`);
     console.log(userId);
-
+   
     usuarioRef.child("CantidadPedidos").transaction(
+      
       (contador = 0) => {
         // Incrementa el contador de pedidos
         if (!contador) {
@@ -90,7 +93,7 @@ const Cart = () => {
 
         if (committed) {
           const contador = snapshot.val();
-          const pedidoId = `pedido ${contador}`;
+          const pedidoId = `Pedido nº ${contador}`;
 
           const pedidosRef = usuarioRef.child("pedidos").child(pedidoId);
           pedidosRef
@@ -121,6 +124,7 @@ const Cart = () => {
     );
   };
 
+ 
   return (
     <div className="cart">
       {cart.length === 0 ? (
@@ -132,9 +136,10 @@ const Cart = () => {
             {uniqueProductIds.map((productId, index) => {
               const product = cart.find((p) => p.id === productId);
               const count = getProductCount(productId);
+              const titleRecorted = product.title.slice(0, 22);
               return (
                 <div className="cart-container" key={`${productId}-${index}`}>
-                  <div className="product-title">{product.title}</div>
+                  <div className="product-title">{titleRecorted}</div>
                   <div className="product-price">${product.price}</div>
                   <div className="product-count">({count})</div>
                   <button

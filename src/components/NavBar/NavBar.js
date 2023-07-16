@@ -114,10 +114,11 @@ const NavBar = ({ onLogout }) => {
                   Mi historial de compras
                 </Button>
               </li>
-              <div className="align-self-end">
+              
+            </ul>
+            <div className="iconTheme  ">
                 <ToggleTheme />
               </div>
-            </ul>
           </div>
           <form className="d-flex justify-content-between">
             <div className="navbar-brand mx-auto mt-2 cart-dropdown-container">

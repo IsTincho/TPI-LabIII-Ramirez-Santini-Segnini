@@ -1,18 +1,4 @@
-/* Tema claro */
-.light-theme {
-  border: 2px solid #63e4f2;
+.icon-theme svg{
+  margin-top: 10px;
+  cursor: pointer;
 }
-
-.light-theme ::placeholder {
-    color: #888888;
-  }
-  
-/* Tema oscuro */
-.dark-theme {
-    border: 2px solid #ed409f;
-  }
-
-.dark-theme ::placeholder {
-    color: #dddddd;
-  }
-  

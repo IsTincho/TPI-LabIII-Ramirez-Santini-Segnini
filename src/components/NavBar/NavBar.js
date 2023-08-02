@@ -57,22 +57,27 @@ const NavBar = ({ onLogout }) => {
   return (
     <div style={containerStyle}>
       <nav
-        className={`navbar navbar-expand-sm fixed-top navbar-light ${
+        className={`navbar navbar-expand-sm fixed-top navbar-light d-block ${
           theme === "light" ? "bg-light" : "bg-dark"
         }`}
         style={navbarStyle}
       >
         <div className="container-fluid mx-auto">
-          <a className=" pe-none navbar-brand mx-auto" href="."
-          aria-disabled="true">
+          <a
+            className=" pe-none navbar-brand mx-auto"
+            href="."
+            aria-disabled="true"
+          >
             <img
               src={wolf}
               style={logoStyle}
               onClick={handlePreventRedirection}
               alt="logo"
-              
             />
           </a>
+          <span className="welcome">
+                  ¡Bienvenido {user?.username}!
+                </span>
           <button
             className={`navbar-toggler ${
               theme === "light" ? "navbar-light" : "navbar-dark"
@@ -84,28 +89,20 @@ const NavBar = ({ onLogout }) => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="mynavbar">
-            <ul className="navbar-nav mx-auto ml-auto">
+            <ul className="navbar-nav mx-auto ml-auto align-items-center gap-2">
               {user && user.isAdmin && (
                 <li className="nav-item align-self-end">
                   <Button
                     className={`btn-light btn-outline-info ${
-                  theme === "dark" ? "btn-dark" : ""
-                }`}
+                      theme === "dark" ? "btn-dark" : ""
+                    }`}
                     onClick={adminPageClickHandler}
                   >
                     AdminPage
                   </Button>
                 </li>
               )}
-              <li className="nav-item align-self-end">
-                <button
-                  className={` pe-none btn btn-${theme === "light" ? "dark" : "light"}`}
-                  onClick={handlePreventRedirection}
-                  aria-disabled="true"
-                >
-                  ¡Bienvenido {user?.username}!
-                </button>
-              </li>
+              
               <li className="nav-item align-self-end">
                 <Button
                   variant={theme === "light" ? "dark" : "light"}
@@ -114,16 +111,15 @@ const NavBar = ({ onLogout }) => {
                   Mi historial de compras
                 </Button>
               </li>
-              
             </ul>
             <div className="iconTheme  ">
-                <ToggleTheme />
-              </div>
+              <ToggleTheme />
+            </div>
           </div>
           <form className="d-flex justify-content-between">
             <div className="navbar-brand mx-auto mt-2 cart-dropdown-container">
               <img
-                src={`${theme ==='light' ? cartDark : cartLight}`}
+                src={`${theme === "light" ? cartDark : cartLight}`}
                 style={logoStyle}
                 alt="cart"
                 onClick={toggleCart}

@@ -3,6 +3,7 @@ import "./ProductsManagementPage.css";
 import Button from "react-bootstrap/Button";
 import { Table } from "react-bootstrap";
 import "../AdminPage/AdminPage.css"
+import { toast } from "react-toastify";
 
 const ProductsManagementPage = ({ theme }) => {
   const [cantProducts, setCantProducts] = useState([]);
@@ -68,7 +69,16 @@ const ProductsManagementPage = ({ theme }) => {
   const validation = () => {
     // validacion para cada propiedad del producto, si pasa le damos su respectivo metodo y lo agregamos a la API
     if (title.trim() === "") {
-      alert("Escribe el titulo del producto");
+      toast.error('Verifique los campos', {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
     } else if (description.trim() === "") {
       alert("Escribe la descripcion del producto");
     } else if (price <= 0) {
@@ -81,6 +91,16 @@ const ProductsManagementPage = ({ theme }) => {
       alert("El stock debe ser mayor que cero");
     } else {
       if (operation === 1) {
+        toast.success('Producto añadido!', {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
         const dataProducts = {
           title,
           description,
@@ -132,7 +152,7 @@ const ProductsManagementPage = ({ theme }) => {
   };
   //xddd
   const handleRemove = (id) => {
-    if (window.confirm("Seguro uieres eliminar este producto?")) {
+    if (window.confirm("Seguro Quieres eliminar este producto?")) {
       fetch(
         `https://649088bd1e6aa71680cb6c85.mockapi.io/api/v1/products/${id}`,
         {
@@ -284,11 +304,14 @@ const ProductsManagementPage = ({ theme }) => {
           </div>
         </div>
       </div>
-      <h1>Product Management</h1>
+      <h1 className="d-flex align-items-center">Administraccion de Productos <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16" width="26" height="26">
+    <path stroke="currentColor" stroke-linejoin="round" stroke-width="2" d="M8 8v1h4V8m4 7H4a1 1 0 0 1-1-1V5h14v9a1 1 0 0 1-1 1ZM2 1h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1Z"/>
+  </svg></h1>
+      
       <div className="btn-add">
         <button
           type="button"
-          className="btn btn-outline-primary mb-2 w-25"
+          className="btn btn-outline-primary mb-2 w-20"
           data-bs-toggle="modal"
           data-bs-target="#exampleModal"
           onClick={() => openModal(1)}

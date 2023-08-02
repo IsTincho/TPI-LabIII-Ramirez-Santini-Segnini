@@ -8,11 +8,13 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 200px;
+  grid-column-gap: 227px;
   grid-row-gap: 120px;
+  margin-left: 45px;
 }
 
 .card-product {
+  margin-bottom: 10px;
   width: 300px;
   height: 600px;
   border-radius: 5px;
@@ -86,6 +88,7 @@
   .parent {
     grid-template-columns: 1fr; /* Cambia a una sola columna en pantallas móviles */
     grid-column-gap: 0; /* Elimina el espacio entre las columnas en pantallas móviles */
+    margin-left: 0px;
   }
 
   .card-product {

@@ -8,7 +8,7 @@ import ProductCard from "../ProductCard/ProductCard";
 import ChangeStock from "../ChangeStock/ChangeStock";
 
 const ProductCatalog = ({ product }) => {
-  const [products, setProducts] = useState(null);
+  const [products, setProducts] = useState();
   const { cart, setCart } = useContext(CartContext);
   const { user } = useContext(AuthenticationContext);
 
@@ -16,9 +16,7 @@ const ProductCatalog = ({ product }) => {
   useEffect(() => {
     if (product) {
       setProducts(product);
-    } else {
-      setProducts(null);
-    }
+    } 
   }, [product]);
 
   // Recuperar productos del localStorage
@@ -56,6 +54,8 @@ const ProductCatalog = ({ product }) => {
   };
 
   return (
+    <>
+    
     <ProductCard>
       <div className="g-col-4">
         <div className="card-product" key={id}>
@@ -83,6 +83,7 @@ const ProductCatalog = ({ product }) => {
         </div>
       </div>
     </ProductCard>
+    </>
   );
 };
 

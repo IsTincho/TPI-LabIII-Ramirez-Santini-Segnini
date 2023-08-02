@@ -16,3 +16,28 @@
   align-items: center;
   gap: 2rem;
 }
+.mr-auto{
+  justify-content: space-around;
+}
+
+.admin-pages{
+  display: flex;
+  gap: 1rem;
+}
+.admins-names{
+  display: flex;
+  gap: 1rem;
+  size: 16px;
+  
+}
+
+
+.admin-title:hover{
+  color: grey;
+  
+}
+
+.admin-title:active,
+.admin-title:focus {
+  color: gray; 
+}

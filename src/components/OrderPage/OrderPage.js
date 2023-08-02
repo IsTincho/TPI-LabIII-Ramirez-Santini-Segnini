@@ -12,6 +12,7 @@ import OrderGridACT from "./OrderGridACT";
 const OrderPage = () => {
   const { handleLogout } = useContext(AuthenticationContext);
   const { theme } = useContext(ThemeContext);
+  const { user } = useContext(AuthenticationContext);
   const navigate = useNavigate();
 
   const handleGoBack = () => {
@@ -34,34 +35,28 @@ const OrderPage = () => {
         <Navbar.Brand
           className={`text-${theme === "light" ? "dark" : "light"}`}
         >
-          <a href="."
-          className="pe-none"
-              aria-disabled="true">
+          <a href="." className="pe-none" aria-disabled="true">
             <img
               src={wolf}
               style={logoStyle}
               onClick={handlePreventRediction}
               alt="logo"
-              
             />
           </a>
         </Navbar.Brand>
+        <h2 className={`${
+              theme === "light" ? "text-dark" : "text-white"
+            }`} >Historial de Pedidos de <span className="text-decoration-underline">{user?.username}</span> </h2>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
         <Navbar.Collapse
           id="basic-navbar-nav"
           className="justify-content-center"
-        >
-          <Nav>
-            <Button
-              variant={theme === "light" ? "dark" : "light"}
-              className="pe-none"
-              aria-disabled="true"
-            >
-              Mi historial de compras
-            </Button>
-          </Nav>
-        </Navbar.Collapse>
-        <Nav className="ml-auto">
+        ></Navbar.Collapse>
+        
+        <Nav className="ml-auto gap-1">
+        
+          <ToggleTheme />
           <button
             onClick={handleGoBack}
             className={`btn btn-outline-${
@@ -70,10 +65,10 @@ const OrderPage = () => {
           >
             Volver al Inicio
           </button>
+
           <Button onClick={handleLogout} variant="outline-danger">
             Cerrar Sesión
           </Button>
-          <ToggleTheme />
         </Nav>
       </Navbar>
       <OrderGridACT />

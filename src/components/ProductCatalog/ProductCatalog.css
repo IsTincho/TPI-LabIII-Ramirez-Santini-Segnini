@@ -1,16 +1,18 @@
 .container-catalog {
   margin-top: 120px;
-  justify-content: space-around;
+  justify-content:center;
   display: flex;
+  gap: 5rem ;
+  max-width: 100%;
 }
 
 .parent {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 227px;
+  grid-column-gap: 150px;
   grid-row-gap: 120px;
-  margin-left: 45px;
+
 }
 
 .card-product {
@@ -89,14 +91,14 @@
     grid-template-columns: 1fr; /* Cambia a una sola columna en pantallas móviles */
     grid-column-gap: 0; /* Elimina el espacio entre las columnas en pantallas móviles */
     margin-left: 0px;
-  }
-
-  .card-product {
-    width: 100%; /* Ocupa todo el ancho disponible en pantallas móviles */
-    height: auto; /* Ajusta la altura automáticamente en pantallas móviles */
+    grid-row-gap: 40px;
   }
 
   .card-product img {
-    height: 200px; /* Ajusta el tamaño de la imagen en pantallas móviles */
-  }
+    height: 261px;
+}
+
+  
+
+
 }

@@ -99,7 +99,7 @@ const LoginForm = () => {
     <div className="container d-flex justify-content-center align-items-center vh-100">
     
     
-      <div className="vh-100 justify-content-center align-items-center d-flex">
+      <div className="login-cointainer vh-100 justify-content-center align-items-center d-flex">
       
         <div className="login-form col-12 col-md-6 col-lg-4 p-4" style={borderStyle}>
           <h2

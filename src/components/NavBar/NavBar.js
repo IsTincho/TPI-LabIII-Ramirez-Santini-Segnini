@@ -112,7 +112,7 @@ const NavBar = ({ onLogout }) => {
                 </Button>
               </li>
             </ul>
-            <div className="iconTheme  ">
+            <div className="iconTheme">
               <ToggleTheme />
             </div>
           </div>

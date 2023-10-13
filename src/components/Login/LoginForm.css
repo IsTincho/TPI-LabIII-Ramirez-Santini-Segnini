@@ -16,3 +16,16 @@
     width: 60%;
 }
 
+@media (max-width: 823px) { 
+    .container{
+        width: 100%;
+    }
+    .login-cointainer{
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .login-form{
+        width: 80%;
+    }
+}

@@ -1,14 +1,10 @@
 .radio-button-container{
   margin-left: 5px;
 }
-.container-catalog{
-  justify-content: center;
-}
+
 
 .container-filter{
   display: flex;
-  justify-content: start;
-  margin: 10px;
   flex-direction: column;
 }
 
@@ -71,9 +67,19 @@
     border-color: #4c8bf5;
     box-shadow: 0 0 20px #4c8bf580;
   }
-  
 
-  
+
+  @media (max-width: 767px) {
+    .container-catalog {
+      margin: 0px;
+     display: grid;
+    }
+    .container-filter{
+      display: flex;
+      justify-content: center;
+      margin: 0px;
+    }
+  }
   
   
   

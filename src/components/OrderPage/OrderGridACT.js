@@ -11,6 +11,7 @@ import "./OrderGrid.css";
 import iconSVG from "./orderEmpty.svg";
 
 const OrderGridACT = () => {
+  const [dataLoaded, setDataLoaded] = useState(false); // Nuevo estado
   const { theme } = useContext(ThemeContext);
   const { userIdForCart } = useContext(AuthenticationContext);
   const [orders, setOrders] = useState([]);
@@ -46,6 +47,7 @@ const OrderGridACT = () => {
       });
 
       setOrders(transformedOrders);
+      setDataLoaded(true)
     });
 
     return () => {
@@ -56,13 +58,14 @@ const OrderGridACT = () => {
   return (
     <div className={theme === "light" ? "bg-light" : "bg-dark text-light"}>
       <div className="container-admin-page">
-        {orders.length === 0 ? (
+        {dataLoaded ? (
+          orders.length === 0 ? (
           <div className="order-empty">
             <img src={iconSVG} alt="Order Empty" />
             <p>Aun no hay pedidos</p>
           </div>
         ) : (
-          orders.map((order, index) => (
+          orders.map((order) => (
             <Table
               responsive
               className={theme === "light" ? "table-light" : "table-dark"}
@@ -108,7 +111,9 @@ const OrderGridACT = () => {
                 </tr>
               </tfoot>
             </Table>
-          ))
+          )))
+        ) : (
+          ""
         )}
       </div>
     </div>
